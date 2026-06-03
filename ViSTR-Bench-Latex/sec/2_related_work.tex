@@ -1,0 +1,16 @@
+\section{Related Work}
+\subsection{Video Benchmarks for MLLMs}
+Following the success of MLLMs in static image tasks~\citep{SEED-Bench,MMBench,MM-Vet,MMMU}, numerous benchmarks have emerged to evaluate their video understanding capabilities~\citep{MMBench-Video,Video-MME,MVBench,VITATECS,MSQA,TempCompass,OpenEQA,EgoSchema,Video-Bench,TOMATO,SpatialEval,MM-Ego}. 
+However, most of them treat videos merely as temporal sequences of 2D images, leaving reasoning within 3D dynamic scenes largely underexplored. 
+To address this, recent studies have evaluated the spatial intelligence of MLLMs~\citep{OmniSpatial,MMSI-Video-Bench,SpaceR,VSI-Bench,Cambrian-S,SPAR-Bench}, though they primarily focus on static properties like object size and relative positioning. 
+Subsequent spatio-temporal benchmarks~\citep{Dyn-Bench,STI-Bench,OST-Bench,VideoLoom,MLLM-4D,DSI-Bench,DSR-Bench,VLM4D} introduce dynamic evaluations, such as trajectory tracking and speed estimation. 
+Despite these advances, existing benchmarks predominantly assess low-level perception rather than high-level reasoning, and their reliance on quantitative predictions often conflates numerical precision with genuine spatio-temporal reasoning capabilities.
+
+\subsection{MLLMs with Spatial Intelligence}
+While MLLMs exhibit remarkable visual understanding capabilities~\citep{LLaVA-OneVision-1.5,Claude,LongVILA,LLaVA-OneVision,VILA,GPT-5,Gemini,InternVL3.5,LongVA,LLaVA-Video}, physically grounding them in the 3D world remains challenging. 
+This gap has motivated a growing body of work on spatial MLLMs~\citep{SpatialVLM,VLM-3R,3DRS,GeoThinker,SpatialLadder,SpatialCoT,Spatial-SSRL,SpaceR,SoFar,Spatial-MLLM,VST,GeoSR,Think3D,VG-LLM,LLaVA-3D}.
+Spatial-MLLM~\citep{Spatial-MLLM} utilizes a spatial encoder initialized with geometric priors to capture 3D structural information. 
+Spatial-SSRL~\citep{Spatial-SSRL} proposes a novel self-supervised reinforcement learning paradigm aimed at enhancing LVLM spatial understanding.
+Nevertheless, these approaches are largely restricted to static or indoor environments and lack the capacity to explicitly model dynamic scene evolution. 
+To overcome this limitation, recent efforts have extended spatial MLLMs toward 4D reasoning for dynamic real-world settings~\citep{LLaVA-4D,Uni4D-LLM}. 
+For instance, LLaVA-4D~\citep{LLaVA-4D} integrates 3D spatial coordinates and temporal cues into a unified spatio-temporal prompt, thereby facilitating comprehensive dynamic scene understanding.

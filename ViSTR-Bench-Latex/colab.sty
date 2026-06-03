@@ -1,0 +1,477 @@
+%%% Colab Paper Style
+%%% Version 11.0 (2026/04/28)
+%%% Designed for Colab — clean, modern academic paper template
+%%% Based on variant-05 with V-JEPA 2 style improvements
+%%%
+%%% Usage: \usepackage{colab}
+%%%
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{colab}[2026/04/28 v11.0 Colab Paper Style]
+
+%% Pre-load xcolor options to avoid option clashes
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
+
+%% ============================================================
+%%  Citation Style Option (authoryear | numbers)
+%%  Usage: \usepackage[citestyle=authoryear]{colab}  (default)
+%%     or: \usepackage[citestyle=numbers]{colab}
+%% ============================================================
+\newif\if@colabnumbercite
+\@colabnumbercitefalse  % default: authoryear
+
+\DeclareOption{citestyle=authoryear}{\@colabnumbercitefalse}
+\DeclareOption{citestyle=numbers}{\@colabnumbercitetrue}
+\DeclareOption*{\PackageWarning{colab}{Unknown option '\CurrentOption'}}
+\ProcessOptions\relax
+
+%% ============================================================
+%%  Core Dependencies
+%% ============================================================
+\RequirePackage[utf8]{inputenc}
+\RequirePackage[T1]{fontenc}
+\RequirePackage{amsmath,amsfonts,amssymb}
+\RequirePackage{graphicx}
+\RequirePackage{xcolor}
+\RequirePackage{geometry}
+\RequirePackage{fancyhdr}
+\RequirePackage{titlesec}
+\RequirePackage{titling}
+\RequirePackage{enumitem}
+\RequirePackage{booktabs}
+\RequirePackage{caption}
+\RequirePackage{microtype}
+\RequirePackage{hyperref}
+\RequirePackage{tcolorbox}
+\RequirePackage{tikz}
+\RequirePackage{eso-pic}
+\RequirePackage{lastpage}
+\RequirePackage{etoolbox}
+\RequirePackage{setspace}
+\RequirePackage{natbib}
+\RequirePackage{url}
+\RequirePackage{float}
+\RequirePackage{tabularx}
+\RequirePackage{algorithm}
+\RequirePackage{algorithmic}
+
+%% --- Additional commonly-used packages (v10) ---
+%% Math
+\RequirePackage{mathtools}                        % extends amsmath
+\RequirePackage{bm}                               % bold math symbols
+\RequirePackage{amsthm}                           % theorem environments
+%% Tables
+\RequirePackage{multirow}
+\RequirePackage{makecell}
+\RequirePackage{colortbl}
+\RequirePackage{array}
+%% Figures
+\RequirePackage{subcaption}                       % subfigures
+\RequirePackage{wrapfig}
+%% Code
+\RequirePackage{listings}
+%% Other
+\RequirePackage{xspace}
+\RequirePackage{pifont}                           % \ding symbols
+\RequirePackage{soul}                             % highlighting, strikethrough
+\RequirePackage{cancel}                           % cancel math terms
+\RequirePackage{nicefrac}                         % nice inline fractions
+%% Spacing & Layout (v11)
+%% Symbols & Notation (v11)
+%% Use manual definitions instead:
+\DeclareFontFamily{U}{stmry}{}
+\DeclareFontShape{U}{stmry}{m}{n}{<->stmary10}{}
+\DeclareRobustCommand{\llbracket}{\ensuremath{\delimiter"4C066F \mathopen{}}}
+\DeclareRobustCommand{\rrbracket}{\ensuremath{\delimiter"5C166F \mathclose{}}}
+%% Formatting (v11)
+%% Tables (v11)
+%% Cross-referencing (must come after hyperref)
+\RequirePackage{cleveref}
+
+\tcbuselibrary{skins,breakable}
+
+%% ============================================================
+%%  Font Setup  (Requirement 5)
+%%  Palatino text + Libertinus Math + Cabin sans + zlmtt mono
+%%  Strategy: load libertinust1math for math, then set tgpagella
+%%  as the text serif font (overriding Libertinus text).
+%% ============================================================
+\RequirePackage{libertinust1math}                 % Libertinus Math (Type1 for pdflatex)
+\RequirePackage{tgpagella}                        % Palatino text serif (overrides rm)
+\RequirePackage[scaled=1.1]{zlmtt}                % Monospace
+\RequirePackage{cabin}                            % Sans-serif for headings
+\renewcommand{\sfdefault}{Cabin-TLF}
+
+\newcommand{\headingfamily}{\sffamily}
+
+%% ============================================================
+%%  Page Geometry  (Requirement 4 — US Letter, tighter margins)
+%% ============================================================
+\geometry{
+  letterpaper,
+  left=0.75in,
+  right=0.75in,
+  top=0.85in,
+  bottom=0.75in,
+  headheight=36pt,
+  headsep=14pt
+}
+
+%% ============================================================
+%%  Color Palette — derived from Colab Logo
+%% ============================================================
+%% Primary: warm orange-red gradient (the C ring)
+\definecolor{colabOrange}{RGB}{245,130,32}
+\definecolor{colabRed}{RGB}{220,60,50}
+%% Secondary: cool cyan-blue gradient (the O ring)
+\definecolor{colabCyan}{RGB}{0,200,210}
+\definecolor{colabBlue}{RGB}{50,80,180}
+\definecolor{colabDeepBlue}{RGB}{60,50,150}
+%% Accent dots
+\definecolor{colabPurple}{RGB}{120,50,180}
+\definecolor{colabGold}{RGB}{230,180,50}
+%% Functional
+\definecolor{colabPrimary}{RGB}{50,80,180}
+\definecolor{colabSecondary}{RGB}{245,130,32}
+\definecolor{colabGray}{RGB}{100,100,100}
+\definecolor{colabLightGray}{RGB}{245,245,248}
+\definecolor{colabDarkText}{RGB}{40,40,40}
+\definecolor{colabLinkBlue}{RGB}{30,60,160}
+%% Additional colors for tcolorbox environments (Requirement 6)
+\definecolor{colabInsightBg}{RGB}{232,241,255}
+\definecolor{colabInsightFrame}{RGB}{70,130,220}
+\definecolor{colabTakeawayBg}{RGB}{232,249,237}
+\definecolor{colabTakeawayFrame}{RGB}{40,167,69}
+\definecolor{colabLimitBg}{RGB}{255,237,230}
+\definecolor{colabLimitFrame}{RGB}{220,80,50}
+\definecolor{colabPromptBg}{RGB}{243,243,246}
+\definecolor{colabPromptFrame}{RGB}{140,140,150}
+
+%% ============================================================
+%%  Hyperref Setup
+%% ============================================================
+\hypersetup{
+  colorlinks=true,
+  linkcolor=colabLinkBlue,
+  citecolor=colabLinkBlue,
+  urlcolor=colabLinkBlue,
+  filecolor=colabLinkBlue,
+  pdfborder={0 0 0}
+}
+
+%% ============================================================
+%%  Line Spacing  (Requirement 4 — compact 1.1)
+%% ============================================================
+\setstretch{1.1}
+
+%% ============================================================
+%%  Custom Metadata Commands
+%% ============================================================
+\newcommand{\labname}[1]{\def\@labname{#1}}
+\newcommand{\institution}[1]{\def\@institution{#1}}
+\newcommand{\paperurl}[1]{\def\@paperurl{#1}}
+\newcommand{\githuburl}[1]{\def\@githuburl{#1}}
+\newcommand{\huggingfaceurl}[1]{\def\@huggingfaceurl{#1}}
+\newcommand{\dataurl}[1]{\def\@dataurl{#1}}
+\newcommand{\colabdate}[1]{\def\@colabdate{#1}}
+
+%% Defaults
+\labname{Colab}
+\institution{}
+\paperurl{}
+\githuburl{}
+\huggingfaceurl{}
+\dataurl{}
+\colabdate{\today}
+
+%% ============================================================
+%%  Icon commands (GitHub + link icons from logo/ directory)
+%% ============================================================
+\newcommand{\githubicon}{\raisebox{-1.5pt}{\includegraphics[width=1.1em]{logo/github-logo.pdf}}}
+\newcommand{\linkicon}{\raisebox{-1.5pt}{\includegraphics[width=1.1em]{logo/link-logo.pdf}}}
+\newcommand{\hficon}{\raisebox{-2pt}{\includegraphics[width=1.1em]{logo/huggingface-logo.pdf}}}
+\newcommand{\dbicon}{\raisebox{-1.5pt}{\includegraphics[width=1.1em]{logo/database-logo.pdf}}}
+
+%% ============================================================
+%%  Link row helper (used after abstract — Requirement 2)
+%% ============================================================
+\newcommand{\colablinks}{%
+  {%
+    \small\color{colabGray}%
+    \def\@haslinks{0}%
+    \ifx\@paperurl\empty\else\def\@haslinks{1}\fi
+    \ifx\@githuburl\empty\else\def\@haslinks{1}\fi
+    \ifx\@huggingfaceurl\empty\else\def\@haslinks{1}\fi
+    \ifx\@dataurl\empty\else\def\@haslinks{1}\fi
+    \ifnum\@haslinks=1
+      \begin{tabular}{@{}rl@{}}
+      \ifx\@paperurl\empty\else
+        \linkicon & \url{\@paperurl}\\
+      \fi
+      \ifx\@githuburl\empty\else
+        \githubicon & \url{\@githuburl}\\
+      \fi
+      \ifx\@huggingfaceurl\empty\else
+        \hficon & \url{\@huggingfaceurl}\\
+      \fi
+      \ifx\@dataurl\empty\else
+        \dbicon & \url{\@dataurl}\\
+      \fi
+      \end{tabular}
+    \fi
+  \par}%
+}
+
+%% ============================================================
+%%  Running title support (like ICML)
+%% ============================================================
+\newcommand{\colabrunningtitle}[1]{\gdef\@runningtitle{#1}}
+\gdef\@runningtitle{}
+
+%% ============================================================
+%%  Header & Footer
+%% ============================================================
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{}
+\fancyhead[C]{\small\bfseries\@runningtitle}
+\fancyhead[R]{}
+\fancyfoot[C]{\small\color{colabGray}\thepage}
+\renewcommand{\headrulewidth}{0.8pt}
+\renewcommand{\headrule}{%
+  {\color{colabPrimary}\hrule height \headrulewidth width \headwidth}%
+}
+\renewcommand{\footrulewidth}{0pt}
+
+%% First-page style
+\fancypagestyle{firstpage}{%
+  \fancyhf{}
+  \fancyhead[L]{%
+    \raisebox{-6pt}{\includegraphics[height=30pt]{logo/colab_logo.png}}%
+    \hspace{6pt}%
+    {\fontsize{14}{17}\selectfont\sffamily\bfseries\color{colabPrimary}\@labname}%
+  }
+  \fancyhead[R]{%
+    \small\color{colabGray}\@colabdate%
+  }
+  \fancyfoot[C]{\small\color{colabGray}\thepage}%
+  \renewcommand{\headrulewidth}{0.8pt}%
+  \renewcommand{\headrule}{%
+    {\color{colabPrimary}\hrule height \headrulewidth width \headwidth}%
+  }%
+}
+
+%% ============================================================
+%%  Decorative Top Border
+%% ============================================================
+\newcommand{\@colabTopBorder}{%
+  \AddToShipoutPictureBG*{%
+    \AtPageUpperLeft{%
+      \put(0,-4pt){%
+        \begin{tikzpicture}[remember picture, overlay]
+          \shade[left color=colabOrange, right color=colabCyan]
+            (0,0) rectangle (\paperwidth, 4pt);
+        \end{tikzpicture}%
+      }%
+    }%
+  }%
+}
+
+%% ============================================================
+%%  Title Page Layout  (Requirement 1 — left-aligned)
+%%  Links moved to after abstract (Requirement 2)
+%% ============================================================
+\renewcommand{\maketitle}{%
+  \@colabTopBorder%
+  \thispagestyle{firstpage}%
+  %% Left-aligned title block (V-JEPA 2 style)
+  \noindent
+  \begin{flushleft}
+    \vspace*{0.1cm}
+    {\fontsize{20}{25}\selectfont\bfseries\color{colabDarkText}\@title\par}
+    \vspace{0.3cm}
+    {\large\@author\par}
+    \ifx\@institution\empty\else
+      \vspace{0.2cm}
+      {\normalsize\color{colabGray}\@institution\par}
+    \fi
+  \end{flushleft}
+  \vspace{0.3cm}
+}
+
+%% ============================================================
+%%  Abstract Environment  (Requirement 3 — light gray block,
+%%  no frame, no title, no keywords, with hyphenation)
+%% ============================================================
+\newtcolorbox{colababstract}{
+  colframe=colabLightGray,
+  colback=colabLightGray,
+  arc=2mm,
+  boxrule=0pt,
+  left=5mm,
+  right=5mm,
+  top=4mm,
+  bottom=4mm,
+  enhanced,
+  width=\textwidth,
+  before upper={\hyphenpenalty=50\exhyphenpenalty=50},
+  breakable
+}
+
+%% ============================================================
+%%  Section Headings  (Requirement 4 — ~12pt, compact spacing)
+%% ============================================================
+\titleformat{\section}
+  {\fontsize{12}{14.5}\selectfont\headingfamily\bfseries\color{colabPrimary}}
+  {\thesection}
+  {0.5em}
+  {}
+\titleformat{\subsection}
+  {\fontsize{10.5}{13}\selectfont\headingfamily\bfseries\color{colabPrimary}}
+  {\thesubsection}
+  {0.5em}
+  {}
+\titleformat{\subsubsection}
+  {\fontsize{10}{12}\selectfont\headingfamily\bfseries\color{colabDeepBlue}}
+  {\thesubsubsection}
+  {0.5em}
+  {}
+
+\titlespacing*{\section}{0pt}{1.8ex plus 0.5ex minus 0.2ex}{0.8ex plus 0.2ex}
+\titlespacing*{\subsection}{0pt}{1.4ex plus 0.4ex minus 0.2ex}{0.5ex plus 0.1ex}
+\titlespacing*{\subsubsection}{0pt}{1.0ex plus 0.3ex minus 0.1ex}{0.4ex plus 0.1ex}
+
+%% ============================================================
+%%  Caption Styling
+%% ============================================================
+\newcommand{\captionfontpalatino}{\headingfamily}
+\captionsetup{
+  font={small},
+  labelfont={bf,color=colabPrimary},
+  textfont={},
+  labelsep=period,
+  skip=6pt
+}
+\renewcommand{\captionlabelfont}{\small\headingfamily\bfseries\color{colabPrimary}}
+\renewcommand{\captiontextfont}{\small\headingfamily}
+
+%% ============================================================
+%%  List Styling
+%% ============================================================
+\setlist{nolistsep,leftmargin=1.5em}
+\setlist[itemize,1]{label={\color{colabSecondary}$\bullet$}}
+\setlist[itemize,2]{label={\color{colabCyan}$\circ$}}
+
+%% ============================================================
+%%  Bibliography Style
+%% ============================================================
+\if@colabnumbercite
+  \setcitestyle{numbers,square,comma}
+\else
+  \setcitestyle{authoryear,round,semicolon}
+\fi
+
+%% Provide \colabbibstyle for use in \bibliographystyle{}
+\if@colabnumbercite
+  \newcommand{\colabbibstyle}{unsrtnat}
+\else
+  \newcommand{\colabbibstyle}{plainnat}
+\fi
+
+%% ============================================================
+%%  Footnote Styling
+%% ============================================================
+\renewcommand{\footnoterule}{%
+  \kern -3pt
+  {\color{colabPrimary!40}\hrule width 0.4\textwidth height 0.4pt}
+  \kern 2.6pt
+}
+
+%% ============================================================
+%%  Paragraph Settings  (Requirement 4 — tighter parskip)
+%% ============================================================
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.35ex plus 0.15ex minus 0.05ex}
+
+%% Hyphenation: encourage word-breaking at line ends
+\hyphenpenalty=50
+\exhyphenpenalty=50
+\doublehyphendemerits=5000
+\finalhyphendemerits=5000
+
+%% ============================================================
+%%  Appendix tcolorbox Environments  (Requirement 6)
+%% ============================================================
+
+%% Key Insight — blue
+\newtcolorbox{colabinsight}[1][Key Insight]{%
+  colframe=colabInsightFrame,
+  colback=colabInsightBg,
+  coltitle=white,
+  fonttitle=\bfseries\sffamily,
+  title={#1},
+  arc=2mm,
+  boxrule=0.6pt,
+  left=4mm,
+  right=4mm,
+  top=2mm,
+  bottom=2mm,
+  enhanced,
+  breakable
+}
+
+%% Takeaway — green
+\newtcolorbox{colabtakeaway}[1][Takeaway]{%
+  colframe=colabTakeawayFrame,
+  colback=colabTakeawayBg,
+  coltitle=white,
+  fonttitle=\bfseries\sffamily,
+  title={#1},
+  arc=2mm,
+  boxrule=0.6pt,
+  left=4mm,
+  right=4mm,
+  top=2mm,
+  bottom=2mm,
+  enhanced,
+  breakable
+}
+
+%% Limitations — orange/red
+\newtcolorbox{colablimitations}[1][Limitations]{%
+  colframe=colabLimitFrame,
+  colback=colabLimitBg,
+  coltitle=white,
+  fonttitle=\bfseries\sffamily,
+  title={#1},
+  arc=2mm,
+  boxrule=0.6pt,
+  left=4mm,
+  right=4mm,
+  top=2mm,
+  bottom=2mm,
+  enhanced,
+  breakable
+}
+
+%% Prompt — gray (for long-form prompt text)
+\newtcolorbox{colabprompt}[1][Prompt]{%
+  colframe=colabPromptFrame,
+  colback=colabPromptBg,
+  coltitle=white,
+  fonttitle=\bfseries\sffamily,
+  title={#1},
+  arc=2mm,
+  boxrule=0.6pt,
+  left=4mm,
+  right=4mm,
+  top=2mm,
+  bottom=2mm,
+  enhanced,
+  breakable
+}
+
+%% ============================================================
+%%  End of Package
+%% ============================================================
+\endinput

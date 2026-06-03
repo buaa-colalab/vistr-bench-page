@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="title" content="Project Title | Project Homepage">
+  <meta name="description" content="An academic project homepage scaffold for presenting a paper, model, data, and results.">
+  <meta name="keywords" content="robotics, machine learning, project homepage, research website">
+  <meta name="author" content="Project Team">
+  <meta name="robots" content="index, follow">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Project Homepage">
+  <meta property="og:title" content="Project Title">
+  <meta property="og:description" content="An academic project homepage scaffold for presenting a paper, model, data, and results.">
+  <meta property="og:image" content="static/images/carousel1.jpg">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Project Title">
+  <meta name="twitter:description" content="An academic project homepage scaffold for presenting a paper, model, data, and results.">
+  <meta name="twitter:image" content="static/images/carousel1.jpg">
+
+  <title>ViSTR-Bench</title>
+
+  <link rel="icon" type="image/png" href="cologo/cologo.png">
+  <link rel="apple-touch-icon" href="cologo/cologo.png">
+  <script>
+    (function () {
+      var storageKey = "colalab-project-theme";
+      var savedTheme = null;
+      try {
+        savedTheme = window.localStorage.getItem(storageKey);
+      } catch (error) {}
+      var systemTheme = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      var theme = savedTheme === "light" || savedTheme === "dark" ? savedTheme : systemTheme;
+      document.documentElement.dataset.theme = theme;
+    }());
+  </script>
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+  <script defer src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+  <script>
+    window.ProjectPageConfig = {
+      theme: {
+        defaultMode: "system",
+        storageKey: "colalab-project-theme"
+      },
+      demoAutoplayInterval: 6000,
+      verticalChartAutoplayInterval: 7000,
+      horizontalMetrics: {
+        success: [
+          ["Baseline 1", 42, "#64748b", "#94a3b8", "rgba(100, 116, 139, 0.13)"],
+          ["Baseline 2", 58, "#7c3aed", "#a78bfa", "rgba(124, 58, 237, 0.12)"],
+          ["Project Title", 82, "#ef4b34", "#f59e0b", "rgba(239, 75, 52, 0.13)"]
+        ],
+        generalization: [
+          ["Seen tasks", 86, "#0ea5e9", "#35a7ff", "rgba(14, 165, 233, 0.13)"],
+          ["New objects", 74, "#16a34a", "#22c55e", "rgba(34, 197, 94, 0.13)"],
+          ["New scenes", 68, "#f97316", "#facc15", "rgba(249, 115, 22, 0.13)"]
+        ],
+        efficiency: [
+          ["Training cost", 54, "#8b5cf6", "#d946ef", "rgba(139, 92, 246, 0.13)"],
+          ["Fine-tune time", 71, "#06b6d4", "#2dd4bf", "rgba(6, 182, 212, 0.13)"],
+          ["Inference FPS", 88, "#ef4b34", "#fb7185", "rgba(239, 75, 52, 0.13)"]
+        ]
+      },
+      verticalCharts: [
+        {
+          id: "success-rate",
+          title: "Success Rate (%) ↑",
+          xAxisTitle: "Evaluation task",
+          yAxisTitle: "Success rate",
+          unit: "%",
+          caption: "Grouped task results in a kai0-inspired vertical chart. Hover over each bar to inspect exact values.",
+          categories: ["Task A", "Task B", "Task C"],
+          series: [
+            { name: "Baseline 1", values: [42, 51, 60], color: "#4f8cff" },
+            { name: "Baseline 2", values: [58, 63, 68], color: "#f2b84b" },
+            { name: "Project Title", values: [82, 86, 90], color: "#2fbf8f", highlight: true }
+          ]
+        },
+        {
+          id: "throughput",
+          title: "Throughput ↑",
+          xAxisTitle: "Deployment setting",
+          yAxisTitle: "Runs per hour",
+          unit: " r/h",
+          caption: "A second chart demonstrates how later studies can be added without touching the renderer.",
+          categories: ["Lab", "Novel scene", "Long horizon"],
+          series: [
+            { name: "Baseline 1", values: [12, 9, 7], color: "#7c83ff" },
+            { name: "Baseline 2", values: [16, 13, 11], color: "#ff8a65" },
+            { name: "Project Title", values: [24, 21, 18], color: "#26c6da", highlight: true }
+          ]
+        }
+      ],
+      dataPie: {
+        title: "Dataset Composition",
+        caption: "Hover a slice to highlight the source mix and inspect its exact share.",
+        labels: ["Human demos", "Model rollouts", "Held-out tasks", "Failure cases"],
+        values: [42, 28, 18, 12],
+        colors: ["#ef6a5b", "#4f8cff", "#2fbf8f", "#f2b84b"]
+      },
+      references: [
+        {
+          id: "ref-main",
+          label: "[1]",
+          title: "Paper Title",
+          authors: "Author et al.",
+          venue: "Conference",
+          year: "2026",
+          url: "https://example.com"
+        },
+        {
+          id: "ref-data",
+          label: "[2]",
+          title: "Dataset Source Paper",
+          authors: "Dataset Author et al.",
+          venue: "Workshop",
+          year: "2026",
+          url: "https://example.com/data"
+        },
+        {
+          id: "ref-model",
+          label: "[3]",
+          title: "Model Architecture Reference",
+          authors: "Model Author et al.",
+          venue: "Journal",
+          year: "2026",
+          url: "https://example.com/model"
+        }
+      ],
+      footer: {
+        organization: "Colalab",
+        year: 2026
+      },
+      contentTokens: {
+        fontFamily: "Arial, sans-serif",
+        titleFontFamily: "Arial, sans-serif"
+      }
+    };
+
+    window.MathJax = {
+      tex: {
+        inlineMath: [["\\(", "\\)"], ["$", "$"]],
+        displayMath: [["\\[", "\\]"]]
+      },
+      svg: {
+        fontCache: "global"
+      }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+  <script defer src="static/js/index.js"></script>
+  <script defer src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
+</head>
+<body>
+  <nav class="page-nav" aria-label="Page sections">
+    <div class="page-nav-inner">
+      <a href="#top" class="page-nav-brand">
+        <img src="cologo/cologo.png" alt="Colalab logo">
+        <span>ViSTR-Bench</span>
+      </a>
+      <div class="page-nav-links">
+        <a href="#overview" data-nav-link>Overview</a>
+        <a href="#model" data-nav-link>Model</a>
+        <a href="#data" data-nav-link>Data</a>
+        <a href="#results" data-nav-link>Results</a>
+        <a href="#citation" data-nav-link>Citation</a>
+      </div>
+      <button class="theme-toggle" type="button" data-theme-toggle aria-label="Toggle dark mode" title="Toggle dark mode">
+        <svg class="theme-icon theme-icon-sun" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12 4V1h-1v3zm0 19v-3h-1v3zm8-11h3v-1h-3zM1 12h3v-1H1zm17.1-6.4 2.1-2.1-.7-.7-2.1 2.1zM3.5 20.2l2.1-2.1-.7-.7-2.1 2.1zm14.6-2.8-.7.7 2.1 2.1.7-.7zM4.9 5.6l.7-.7-2.1-2.1-.7.7zM11.5 7A4.5 4.5 0 1 0 16 11.5 4.5 4.5 0 0 0 11.5 7z"></path>
+        </svg>
+        <svg class="theme-icon theme-icon-moon" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M20.4 15.1A7.7 7.7 0 0 1 8.9 3.6 9.3 9.3 0 1 0 20.4 15.1z"></path>
+        </svg>
+      </button>
+    </div>
+    <div class="reading-progress" aria-hidden="true">
+      <span data-reading-progress></span>
+    </div>
+  </nav>
+
+  <button class="scroll-to-top" onclick="scrollToTop()" title="Scroll to top" aria-label="Scroll to top">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M12 5l-7 7 1.4 1.4 4.6-4.6V19h2V8.8l4.6 4.6L19 12z"></path>
+    </svg>
+  </button>
+
+  <main>
+    <section class="project-hero" id="top" data-hero>
+      <div class="hero-bubbles" aria-hidden="true">
+        <span class="bubble bubble-1"></span>
+        <span class="bubble bubble-2"></span>
+        <span class="bubble bubble-3"></span>
+        <span class="bubble bubble-4"></span>
+        <span class="bubble bubble-5"></span>
+        <span class="bubble bubble-6"></span>
+        <span class="bubble bubble-7"></span>
+        <span class="bubble bubble-8"></span>
+        <span class="bubble bubble-9"></span>
+        <span class="bubble bubble-10"></span>
+        <span class="bubble bubble-11"></span>
+        <span class="bubble bubble-12"></span>
+        <span class="bubble bubble-13"></span>
+        <span class="bubble bubble-14"></span>
+        <span class="bubble bubble-15"></span>
+        <span class="bubble bubble-16"></span>
+        <span class="bubble bubble-17"></span>
+        <span class="bubble bubble-18"></span>
+        <span class="bubble bubble-19"></span>
+        <span class="bubble bubble-20"></span>
+      </div>
+      <div class="hero-title-wrap">
+        <div class="hero-logo-block" aria-hidden="true">
+          <div class="hero-logo-shell">
+            <img src="cologo/cologo.png" alt="" class="hero-logo-image">
+          </div>
+        </div>
+      </div>
+      <div class="cola-surface" aria-hidden="true">
+        <div class="cola-wave cola-wave-back"></div>
+        <div class="cola-wave cola-wave-front"></div>
+      </div>
+      <div class="hero-title-in-cola">
+        <h1 class="publication-title publication-title-cola" data-hero-title>
+          <span class="title-mark">ViSTR-Bench:</span> Can MLLMs Reason from Continuous Visual Cues in Dynamic Scenes?
+        </h1>
+      </div>
+    </section>
+
+    <section class="after-hero">
+      <div class="container content-narrow">
+        <div class="collapsed-title-bar" data-collapsed-title>
+          <h2 class="collapsed-title">
+            <span class="title-mark">ViSTR-Bench:</span> Can MLLMs Reason from Continuous Visual Cues in Dynamic Scenes?
+          </h2>
+          <div class="after-hero-cola" aria-hidden="true">
+            <div class="after-hero-bubbles">
+              <span class="mini-bubble mini-bubble-1"></span>
+              <span class="mini-bubble mini-bubble-2"></span>
+              <span class="mini-bubble mini-bubble-3"></span>
+              <span class="mini-bubble mini-bubble-4"></span>
+              <span class="mini-bubble mini-bubble-5"></span>
+              <span class="mini-bubble mini-bubble-6"></span>
+              <span class="mini-bubble mini-bubble-7"></span>
+              <span class="mini-bubble mini-bubble-8"></span>
+            </div>
+            <div class="after-hero-cola-wave after-hero-cola-wave-back"></div>
+            <div class="after-hero-cola-wave after-hero-cola-wave-front"></div>
+          </div>
+        </div>
+        <div class="authors-block">
+          <!-- <p class="team-label">Project Team</p> -->
+
+          <div class="author-line author-line-blue">
+            <span class="author-block">Han Li<sup>1,2</sup></span>
+            <span class="author-block">Zehao Huang</span>
+            <span class="author-block">Longfei Xu<sup>1</sup></span>
+            <span class="author-block">Jiahui Fu<sup>1</sup></span>
+            <span class="author-block">Daxin Tian<sup>1</sup></span>
+            <span class="author-block">Naiyan Wang</span>
+            <span class="author-block">Si Liu<sup>1</sup></span>
+          </div>
+
+          <!-- <div class="author-line author-line-amber">
+            <span class="author-block">Sixth Author<sup>3</sup></span>
+            <span class="author-block">Seventh Author<sup>2</sup></span>
+            <span class="author-block">Eighth Author<sup>1</sup></span>
+            <span class="author-block">Ninth Author<sup>1</sup></span>
+            <span class="author-block">Tenth Author<sup>1</sup></span>
+            <span class="author-block">Eleventh Author<sup>1</sup></span>
+          </div> -->
+
+          <!-- <div class="author-line author-line-green">
+            <span class="author-block">Twelfth Author<sup>1</sup></span>
+            <span class="author-block">Thirteenth Author<sup>4</sup></span>
+            <span class="author-block">Fourteenth Author<sup>4</sup></span>
+            <span class="author-block">Fifteenth Author<sup>4</sup></span>
+            <span class="author-block">Sixteenth Author<sup>2</sup></span>
+            <span class="author-block">Seventeenth Author<sup>2</sup></span>
+            <span class="author-block">Eighteenth Author<sup>1</sup></span>
+          </div> -->
+
+          <!-- <p class="authors-note">*denotes equal contribution, listed in alphabetical order</p> -->
+
+          <div class="affiliation-line">
+            <span>1. Beihang University</span>
+            <span>2. Zhongguancun Academy</span>
+            <!-- <span>3. Institution Three</span>
+            <span>4. Institution Four</span> -->
+          </div>
+        </div>
+
+        <div class="resource-grid">
+          <a href="static/pdfs/sample.pdf" target="_blank" class="resource-card">
+            <iconify-icon class="resource-icon resource-icon-paper" icon="material-icon-theme:pdf" aria-hidden="true"></iconify-icon>
+            <span>Paper</span>
+          </a>
+          <!-- <a href="static/pdfs/sample.pdf" target="_blank" class="resource-card">
+            <iconify-icon class="resource-icon resource-icon-pdf" icon="fluent:document-copy-24-filled" aria-hidden="true"></iconify-icon>
+            <span>Supplementary</span>
+          </a> -->
+          <a href="https://github.com" target="_blank" class="resource-card">
+            <iconify-icon class="resource-icon resource-icon-code" icon="simple-icons:github" aria-hidden="true"></iconify-icon>
+            <span>Code</span>
+          </a>
+          <!-- <a href="https://huggingface.co" target="_blank" class="resource-card">
+            <iconify-icon class="resource-icon resource-icon-model" icon="mdi:weight-kilogram" aria-hidden="true"></iconify-icon>
+            <span>Weights</span>
+          </a> -->
+          <a href="https://huggingface.co/datasets" target="_blank" class="resource-card">
+            <iconify-icon class="resource-icon resource-icon-datasets" icon="devicon:huggingface" aria-hidden="true"></iconify-icon>
+            <span>Datasets</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="media-band">
+      <div class="container media-carousel" data-carousel>
+        <button class="carousel-arrow carousel-arrow-left" type="button" aria-label="Previous slide" data-carousel-prev>
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M15.4 4.6 8 12l7.4 7.4-1.4 1.4L5.2 12 14 3.2z"></path>
+          </svg>
+        </button>
+
+        <div class="media-carousel-viewport">
+          <div class="media-carousel-track" data-carousel-track>
+            <article class="media-tile" data-carousel-slide>
+              <video autoplay muted loop playsinline preload="metadata">
+                <source src="static/videos/carousel1.mp4" type="video/mp4">
+              </video>
+              <span class="media-speed-badge">1x</span>
+            </article>
+            <article class="media-tile" data-carousel-slide>
+              <video autoplay muted loop playsinline preload="metadata">
+                <source src="static/videos/carousel2.mp4" type="video/mp4">
+              </video>
+              <span class="media-speed-badge">1x</span>
+            </article>
+            <article class="media-tile" data-carousel-slide>
+              <video autoplay muted loop playsinline preload="metadata">
+                <source src="static/videos/carousel3.mp4" type="video/mp4">
+              </video>
+              <span class="media-speed-badge">1x</span>
+            </article>
+            <article class="media-tile" data-carousel-slide>
+              <video autoplay muted loop playsinline preload="metadata">
+                <source src="static/videos/banner_video.mp4" type="video/mp4">
+              </video>
+              <span class="media-speed-badge">1x</span>
+            </article>
+          </div>
+        </div>
+
+        <button class="carousel-arrow carousel-arrow-right" type="button" aria-label="Next slide" data-carousel-next>
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="m8.6 19.4 7.4-7.4-7.4-7.4L10 3.2 18.8 12 10 20.8z"></path>
+          </svg>
+        </button>
+
+        <div class="carousel-dots" data-carousel-dots></div>
+      </div>
+    </section>
+
+    <section class="section content-section" id="overview">
+      <div class="container content-wide">
+        <div class="paragraph-with-reference paragraph-with-reference-lead">
+          <p class="lead-paragraph">
+            We introduce <strong>Project Title</strong>, our placeholder effort for building an open-source, widely applicable
+            research system <a class="inline-ref" href="#ref-main" data-ref="ref-main">[1]</a>. This page is organized to
+            highlight the central idea, team, resources, media, method, data, and results while keeping the title, authors,
+            figures, and links easy to replace with your own project details.
+          </p>
+          <aside class="paragraph-reference-note" data-reference-note="ref-main" aria-label="Reference for this paragraph"></aside>
+        </div>
+
+        <div class="method-diagram-scroll" data-method-diagram>
+          <div class="method-diagram-stage" aria-label="Interactive method diagram">
+            <div class="method-node method-node-data is-active" data-method-node="data">
+              <span class="method-node-kicker">01</span>
+              <strong>Data</strong>
+              <span>Curated demonstrations, task metadata, and multimodal observations.</span>
+            </div>
+            <div class="method-node method-node-model" data-method-node="model">
+              <span class="method-node-kicker">02</span>
+              <strong>Model</strong>
+              <span>Shared policy backbone that aligns perception, language, and actions.</span>
+            </div>
+            <div class="method-node method-node-deployment" data-method-node="deployment">
+              <span class="method-node-kicker">03</span>
+              <strong>Deployment</strong>
+              <span>Task-conditioned execution across new scenes and robot setups.</span>
+            </div>
+            <div class="method-node method-node-feedback" data-method-node="feedback">
+              <span class="method-node-kicker">04</span>
+              <strong>Feedback</strong>
+              <span>Evaluation signals and user corrections feed the next training round.</span>
+            </div>
+
+            <svg class="method-links" viewBox="0 0 1000 520" aria-hidden="true">
+              <path class="method-link method-link-data" data-method-link="data" d="M360 148 C450 98 550 98 640 148"></path>
+              <path class="method-link method-link-model" data-method-link="model" d="M750 220 C792 248 792 296 750 324"></path>
+              <path class="method-link method-link-deployment" data-method-link="deployment" d="M640 392 C550 442 450 442 360 392"></path>
+              <path class="method-link method-link-feedback" data-method-link="feedback" d="M250 324 C208 296 208 248 250 220"></path>
+            </svg>
+          </div>
+
+          <div class="method-steps-viewport" aria-label="Method steps">
+            <div class="method-scroll-steps" data-method-track>
+              <article class="method-step is-active" data-method-step="data">
+                <span>Step 1</span>
+                <h3>Data</h3>
+                <p>Start with diverse demonstrations and structured metadata that describe the scene, task intent, and expected behavior.</p>
+              </article>
+              <article class="method-step" data-method-step="model">
+                <span>Step 2</span>
+                <h3>Model</h3>
+                <p>Train a unified model that transforms observations and task prompts into robust, reusable action representations.</p>
+              </article>
+              <article class="method-step" data-method-step="deployment">
+                <span>Step 3</span>
+                <h3>Deployment</h3>
+                <p>Deploy the policy to new environments, where it conditions on the current task and adapts to visual and physical variation.</p>
+              </article>
+              <article class="method-step" data-method-step="feedback">
+                <span>Step 4</span>
+                <h3>Feedback</h3>
+                <p>Collect failures, human corrections, and evaluation metrics, then feed them back into the next iteration of the system.</p>
+              </article>
+            </div>
+          </div>
+        </div>
+
+        <div class="video-card">
+          <div class="video-card-copy">
+            <span class="eyebrow-label">Project video</span>
+            <h3>Overview presentation</h3>
+            <p>Use this embedded video slot for a paper overview, experiment montage, or narrated demo.</p>
+          </div>
+          <figure class="video-embed-wrap">
+            <iframe
+              width="800"
+              height="450"
+              src="https://www.youtube.com/embed/JkaxUblCGz0"
+              title="Project video"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen>
+            </iframe>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="section content-section" id="model">
+      <div class="container content-wide">
+        <h2 class="section-title">The Model</h2>
+        <div class="paragraph-with-reference">
+          <p class="body-paragraph">
+            The design of Project Title emphasizes flexibility and scale: the system is meant to support multiple task
+            definitions, observation layouts, and deployment settings while remaining simple enough to finetune or adapt
+            <a class="inline-ref" href="#ref-model" data-ref="ref-model">[3]</a>. This placeholder block should eventually
+            describe your architecture, input modalities, output space, and why the method is broadly useful.
+          </p>
+          <aside class="paragraph-reference-note" data-reference-note="ref-model" aria-label="Reference for this paragraph"></aside>
+        </div>
+
+        <div class="model-architecture" data-model-architecture>
+          <div class="model-architecture-header">
+            <div>
+              <span class="eyebrow-label">Mode consistency architecture</span>
+              <h3>Replaceable model system diagram</h3>
+            </div>
+            <p>
+              Left: expert demonstration collection. Middle: model arithmetic. Right: real-robot inference. Bottom:
+              DAgger feedback and stage advantage from on-policy experience.
+            </p>
+          </div>
+
+          <div class="model-architecture-canvas system-architecture" role="img" aria-label="Mode consistency system architecture diagram">
+            <svg class="system-architecture-lines" viewBox="0 0 1200 560" aria-hidden="true">
+              <path class="system-line system-line-main system-line-data" d="M276 170 H336"></path>
+              <path class="system-line system-line-main system-line-inference" d="M864 170 H924"></path>
+              <path class="system-line system-line-green" d="M162 330 C162 392 262 438 356 460"></path>
+              <path class="system-line system-line-green" d="M596 460 H640"></path>
+              <path class="system-line system-line-feedback" d="M874 460 C984 450 1038 392 1038 330"></path>
+            </svg>
+
+            <section class="system-panel system-panel-train">
+              <div class="system-panel-heading">
+                <span class="system-formula">\(P_{\mathrm{train}}\)</span>
+                <span>Expert Data</span>
+              </div>
+              <div class="system-mini-plot" aria-hidden="true">
+                <svg viewBox="0 0 160 96">
+                  <path d="M18 72 C42 30 70 28 92 34 C118 42 128 24 142 16"></path>
+                </svg>
+              </div>
+            </section>
+
+            <section class="system-panel system-panel-model">
+              <div class="system-panel-heading">
+                <span class="system-formula">\(Q_{\mathrm{model}}\)</span>
+                <span>Model Arithmetic</span>
+              </div>
+              <svg class="system-model-lines" viewBox="0 0 390 184" aria-hidden="true">
+                <defs>
+                  <marker id="system-arrow-src" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="3" markerHeight="3" orient="auto-start-reverse">
+                    <path d="M0 0 L10 5 L0 10 Z"></path>
+                  </marker>
+                  <marker id="system-arrow-purple" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="3" markerHeight="3" orient="auto-start-reverse">
+                    <path d="M0 0 L10 5 L0 10 Z"></path>
+                  </marker>
+                </defs>
+                <path class="system-line system-line-src" d="M89 61 H104"></path>
+                <path class="system-line system-line-src" d="M89 123 H104"></path>
+                <path class="system-line system-line-purple" d="M180 61 C214 61 226 92 253 92"></path>
+                <path class="system-line system-line-purple system-line-delay" d="M180 123 C214 123 226 92 253 92"></path>
+              </svg>
+              <div class="system-model-grid">
+                <div class="system-stack">
+                  <span>SRC 1</span>
+                  <span>SRC 2</span>
+                </div>
+                <div class="system-stack system-stack-q">
+                  <span>\(Q_1\)</span>
+                  <span>\(Q_2\)</span>
+                </div>
+                <div class="system-plus">+</div>
+                <div class="system-mix">
+                  <span class="system-formula">\(Q_{\mathrm{mix}}\)</span>
+                  <small>Arithmetic</small>
+                </div>
+              </div>
+            </section>
+
+            <section class="system-panel system-panel-test">
+              <div class="system-panel-heading">
+                <span class="system-formula">\(P_{\mathrm{test}}\)</span>
+                <span>Deployment</span>
+              </div>
+              <div class="system-mini-plot" aria-hidden="true">
+                <svg viewBox="0 0 160 96">
+                  <path d="M20 72 C42 34 70 26 96 34 C118 42 126 24 142 18"></path>
+                </svg>
+              </div>
+            </section>
+
+            <div class="system-chip system-chip-advantage">
+              <span>Stage Advantage</span>
+              <small>\(\hat{A}_t = r_t + \gamma V(s_{t+1}) - V(s_t)\)</small>
+            </div>
+            <div class="system-chip system-chip-feedback">
+              <span>DAgger Feedback</span>
+              <small>\(\mathcal{D}_{t+1} \leftarrow \mathcal{D}_t \cup \tau_{\pi}\)</small>
+            </div>
+          </div>
+
+          <div class="model-architecture-legend">
+            <span><i class="legend-dot legend-dot-data"></i>Data collection</span>
+            <span><i class="legend-dot legend-dot-model"></i>Model training</span>
+            <span><i class="legend-dot legend-dot-deploy"></i>Inference</span>
+            <span><i class="legend-dot legend-dot-feedback"></i>Feedback</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section content-section" id="data">
+      <div class="container content-wide">
+        <h2 class="section-title">The Data</h2>
+        <div class="paragraph-with-reference">
+          <p class="body-paragraph">
+            This section is reserved for dataset composition, collection diversity, task coverage, and benchmark setup
+            <a class="inline-ref" href="#ref-data" data-ref="ref-data">[2]</a>. If your project is not primarily
+            data-centric, it can easily become a training pipeline or system setup section. The structure here uses
+            compact prose followed by a single supporting figure for fast scanning.
+          </p>
+          <aside class="paragraph-reference-note" data-reference-note="ref-data" aria-label="Reference for this paragraph"></aside>
+        </div>
+        <div class="interactive-data-panel">
+          <div class="interactive-panel-copy">
+            <span class="eyebrow-label">Interactive embedding</span>
+            <h3>3D t-SNE / scatter visualization</h3>
+            <p>
+              Rotate, zoom, and inspect placeholder clusters that represent dataset sources, model rollouts, and
+              held-out evaluation trajectories. Replace this synthetic data with your own embedding coordinates.
+            </p>
+          </div>
+          <div id="tsne-plot" class="tsne-plot" aria-label="Interactive 3D scatter plot"></div>
+        </div>
+
+        <div class="data-pie-panel" data-data-pie-panel>
+          <div class="interactive-panel-copy">
+            <span class="eyebrow-label">Dataset mix</span>
+            <h3>Interactive composition chart</h3>
+            <p>Hover over each slice to pull it forward and reveal the exact contribution to the dataset.</p>
+          </div>
+          <div class="data-pie-plot" data-data-pie aria-label="Interactive dataset composition pie chart"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section content-section" id="results">
+      <div class="container content-wide">
+        <h2 class="section-title">The Results</h2>
+        <div class="paragraph-with-reference">
+          <p class="body-paragraph">
+            We evaluate Project Title across several placeholder tasks and scenarios. This section is intended to hold your
+            main quantitative comparison, finetuning or ablation results, and a concise narrative for where the gains come
+            from <a class="inline-ref" href="#ref-main" data-ref="ref-main">[1]</a>. The tables below use a compact
+            black-rule academic style for dense quantitative comparison.
+          </p>
+          <aside class="paragraph-reference-note" data-reference-note="ref-main" aria-label="Reference for this paragraph"></aside>
+        </div>
+
+        <div class="metrics-dashboard" data-metrics-dashboard>
+          <div class="metrics-header">
+            <div>
+              <span class="eyebrow-label">Benchmarks</span>
+              <h3>Interactive metric comparison</h3>
+            </div>
+            <div class="metric-tabs" role="tablist" aria-label="Metric datasets">
+              <button class="metric-tab is-active" type="button" data-metric-tab="success">Success</button>
+              <button class="metric-tab" type="button" data-metric-tab="generalization">Generalization</button>
+              <button class="metric-tab" type="button" data-metric-tab="efficiency">Efficiency</button>
+            </div>
+          </div>
+          <div class="metric-chart" data-metric-chart aria-label="Metric bar chart"></div>
+        </div>
+
+        <div class="vertical-results-panel" data-vertical-results>
+          <div class="vertical-results-header">
+            <div>
+              <span class="eyebrow-label">Ablation view</span>
+              <h3>Vertical task comparison</h3>
+            </div>
+          </div>
+          <div class="vertical-chart-stage">
+            <button class="vertical-chart-arrow vertical-chart-prev" type="button" aria-label="Previous chart" data-vertical-prev>
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M15.4 4.6 8 12l7.4 7.4-1.4 1.4L5.2 12 14 3.2z"></path>
+              </svg>
+            </button>
+            <div class="vertical-charts-viewport">
+              <div class="vertical-charts-grid" data-vertical-charts></div>
+            </div>
+            <button class="vertical-chart-arrow vertical-chart-next" type="button" aria-label="Next chart" data-vertical-next>
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="m8.6 19.4 7.4-7.4-7.4-7.4L10 3.2 18.8 12 10 20.8z"></path>
+              </svg>
+            </button>
+          </div>
+          <div class="vertical-chart-progress" data-vertical-progress aria-label="Chart progress"></div>
+        </div>
+
+        <div class="demo-gallery" data-demo-gallery>
+          <div class="demo-gallery-copy">
+            <span class="eyebrow-label">Demo gallery</span>
+            <h3>Qualitative rollouts</h3>
+            <p>Use the controls to switch between representative demos, rollout views, and failure cases.</p>
+          </div>
+          <div class="demo-gallery-stage">
+            <button class="demo-gallery-arrow demo-gallery-prev" type="button" aria-label="Previous demo" data-demo-prev>
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M15.4 4.6 8 12l7.4 7.4-1.4 1.4L5.2 12 14 3.2z"></path>
+              </svg>
+            </button>
+            <div class="demo-gallery-viewport">
+              <div class="demo-gallery-track" data-demo-track>
+                <article class="demo-card is-active" data-demo-card>
+                  <video autoplay muted loop playsinline preload="metadata">
+                    <source src="static/videos/carousel1.mp4" type="video/mp4">
+                  </video>
+                  <div class="demo-card-caption">
+                    <span>Demo 1</span>
+                    <strong>Generalist rollout</strong>
+                  </div>
+                </article>
+                <article class="demo-card" data-demo-card>
+                  <video autoplay muted loop playsinline preload="metadata">
+                    <source src="static/videos/carousel2.mp4" type="video/mp4">
+                  </video>
+                  <div class="demo-card-caption">
+                    <span>Demo 2</span>
+                    <strong>Long-horizon execution</strong>
+                  </div>
+                </article>
+                <article class="demo-card" data-demo-card>
+                  <video autoplay muted loop playsinline preload="metadata">
+                    <source src="static/videos/carousel3.mp4" type="video/mp4">
+                  </video>
+                  <div class="demo-card-caption">
+                    <span>Demo 3</span>
+                    <strong>Out-of-distribution scene</strong>
+                  </div>
+                </article>
+                <article class="demo-card demo-card-player" data-demo-card data-demo-manual-video>
+                  <video controls playsinline preload="metadata">
+                    <source src="static/videos/banner_video.mp4" type="video/mp4">
+                  </video>
+                  <div class="demo-card-caption">
+                    <span>Playable demo</span>
+                    <strong>Scrubbable example video</strong>
+                  </div>
+                </article>
+              </div>
+            </div>
+            <button class="demo-gallery-arrow demo-gallery-next" type="button" aria-label="Next demo" data-demo-next>
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="m8.6 19.4 7.4-7.4-7.4-7.4L10 3.2 18.8 12 10 20.8z"></path>
+              </svg>
+            </button>
+          </div>
+          <div class="demo-gallery-dots" data-demo-dots></div>
+        </div>
+
+        <div class="tables-panel" data-enhanced-tables>
+          <div class="demo-gallery-copy tables-panel-copy">
+            <span class="eyebrow-label">Result tables</span>
+            <h3>Quantitative comparison</h3>
+            <p>Hover to scan rows and columns; click a row to pin it while comparing methods across settings.</p>
+          </div>
+          <div class="tables-wrap">
+            <div class="table-card">
+              <div class="table-scroll">
+                <table class="results-table results-table-compact">
+                  <thead>
+                    <tr>
+                      <th colspan="4" class="table-title">Zero-shot</th>
+                    </tr>
+                    <tr class="header-rule">
+                      <th></th>
+                      <th>Task A</th>
+                      <th>Task B</th>
+                      <th>Task C</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Baseline 1</td>
+                      <td>0.20</td>
+                      <td>0.35</td>
+                      <td>0.60</td>
+                    </tr>
+                    <tr>
+                      <td>Baseline 2</td>
+                      <td class="is-best">0.50</td>
+                      <td>&mdash;</td>
+                      <td class="is-best">0.85</td>
+                    </tr>
+                    <tr class="strong-row bottom-rule">
+                      <td>Project Title</td>
+                      <td>0.50</td>
+                      <td>0.70</td>
+                      <td>0.80</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div class="table-card table-card-wide">
+              <div class="table-scroll">
+                <table class="results-table results-table-wide">
+                  <thead>
+                    <tr>
+                      <th colspan="8" class="table-title">Finetuning</th>
+                    </tr>
+                    <tr class="header-rule">
+                      <th></th>
+                      <th>Setup 1</th>
+                      <th>Setup 2</th>
+                      <th>Setup 3<sup>*</sup></th>
+                      <th>Setup 4<sup>&dagger;</sup></th>
+                      <th>Setup 5<sup>&dagger;</sup></th>
+                      <th>Setup 6</th>
+                      <th>Average</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>From Scratch</td>
+                      <td>0.25</td>
+                      <td>0.45</td>
+                      <td>0.10</td>
+                      <td>0.00</td>
+                      <td>0.20</td>
+                      <td>0.20</td>
+                      <td>0.20</td>
+                    </tr>
+                    <tr>
+                      <td>Backbone Init</td>
+                      <td>0.30</td>
+                      <td>0.00</td>
+                      <td>0.05</td>
+                      <td>0.00</td>
+                      <td>0.50</td>
+                      <td>0.10</td>
+                      <td>0.15</td>
+                    </tr>
+                    <tr class="strong-row bottom-rule">
+                      <td>Project Title</td>
+                      <td>0.50</td>
+                      <td>0.75</td>
+                      <td>0.70</td>
+                      <td>0.60</td>
+                      <td>0.80</td>
+                      <td>1.00</td>
+                      <td>0.72</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <p class="table-caption">Table 1. Placeholder benchmark summary for zero-shot and finetuning settings.</p>
+          <div class="table-footnotes">
+            <span><sup>*</sup> New observation input placeholder</span>
+            <span><sup>&dagger;</sup> New action space placeholder</span>
+          </div>
+        </div>
+
+        <p class="body-paragraph body-paragraph-spaced">
+          Out-of-the-box, this placeholder page provides a large title treatment, compact author metadata, a horizontal
+          resource row, a full-width visual band, a single-column narrative, and two dense quantitative tables. The
+          remaining work is swapping in your real content.
+        </p>
+      </div>
+    </section>
+
+    <section class="section citation-section" id="citation">
+      <div class="container content-wide">
+        <div class="bibtex-header">
+          <h2 class="section-title no-accent">Citation</h2>
+          <button class="copy-bibtex-btn" onclick="copyBibTeX()" title="Copy BibTeX to clipboard">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M16 1H6a2 2 0 0 0-2 2v12h2V3h10zm3 4H10a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2m0 16H10V7h9z"></path>
+            </svg>
+            <span class="copy-text">Copy</span>
+          </button>
+        </div>
+        <p class="citation-note">Please replace the placeholder BibTeX below with your actual paper metadata.</p>
+        <div class="references-mobile" data-reference-mobile aria-label="References"></div>
+        <pre id="bibtex-code"><code>@inproceedings{project2026,
+  title={Project Title: An Open-Source Generalist Research Project},
+  author={First Author and Second Author and Third Author and Fourth Author},
+  booktitle={Conference Name},
+  year={2026},
+  url={https://your-project-page.example}
+}</code></pre>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container content-wide">
+      <div class="content has-text-centered">
+        <p data-footer-copy>&copy; 2026 Colalab. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <div class="media-preview-modal" data-media-preview-modal hidden>
+    <button class="media-preview-backdrop" type="button" aria-label="Close preview" data-media-preview-close></button>
+    <figure class="media-preview-frame" role="dialog" aria-modal="true" aria-label="Media preview">
+      <button class="media-preview-close" type="button" aria-label="Close preview" data-media-preview-close>
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="m6.4 5 5.6 5.6L17.6 5 19 6.4 13.4 12l5.6 5.6-1.4 1.4-5.6-5.6L6.4 19 5 17.6l5.6-5.6L5 6.4z"></path>
+        </svg>
+      </button>
+      <div class="media-preview-content" data-media-preview-content></div>
+    </figure>
+  </div>
+</body>
+</html>
