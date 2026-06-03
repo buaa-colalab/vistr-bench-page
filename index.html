@@ -97,7 +97,7 @@
       dataPie: {
         title: "Data Sources",
         caption: "Distribution of video QA pairs by collection source.",
-        labels: ["Public Datasets", "Web Videos", "Self-collected"],
+        labels: ["Public datasets", "Web videos", "Self-collected recordings"],
         values: [479, 353, 261],
         colors: ["#4f8cff", "#2fbf8f", "#f2b84b"]
       },
@@ -126,10 +126,10 @@
       </a>
       <div class="page-nav-links">
         <a href="#overview" data-nav-link>Overview</a>
-        <a href="#tasks" data-nav-link>Tasks</a>
-        <a href="#distribution" data-nav-link>Distribution</a>
-        <a href="#construction" data-nav-link>Construction</a>
-        <a href="#results" data-nav-link>Results</a>
+        <a href="#tasks" data-nav-link>Task Definition</a>
+        <a href="#distribution" data-nav-link>Benchmark statistics</a>
+        <a href="#construction" data-nav-link>Construction pipeline</a>
+        <a href="#results" data-nav-link>Evaluation Results</a>
         <a href="#citation" data-nav-link>Citation</a>
       </div>
       <button class="theme-toggle" type="button" data-theme-toggle aria-label="Toggle dark mode" title="Toggle dark mode">
@@ -189,12 +189,13 @@
       </div>
       <div class="hero-title-in-cola">
         <h1 class="publication-title publication-title-cola" data-hero-title>
-          <span class="title-mark">ViSTR-Bench:</span>
-          <span class="title-rest">
-            <span class="title-line">Can MLLMs Reason from</span>
-            <span class="title-line">Continuous Visual Cues in</span>
-            <span class="title-line">Dynamic Scenes?</span>
-          </span>
+          <span class="title-line title-line-desktop"><span class="title-mark">ViSTR-Bench:</span> Can MLLMs Reason from</span>
+          <span class="title-line title-line-desktop">Continuous Visual Cues in Dynamic Scenes?</span>
+          <span class="title-line title-line-mobile"><span class="title-mark">ViSTR-Bench:</span></span>
+          <span class="title-line title-line-mobile">Can MLLMs Reason</span>
+          <span class="title-line title-line-mobile">from Continuous</span>
+          <span class="title-line title-line-mobile">Visual Cues in</span>
+          <span class="title-line title-line-mobile">Dynamic Scenes?</span>
         </h1>
       </div>
     </section>
@@ -203,12 +204,13 @@
       <div class="container content-narrow">
         <div class="collapsed-title-bar" data-collapsed-title>
           <h2 class="collapsed-title">
-            <span class="title-mark">ViSTR-Bench:</span>
-            <span class="title-rest">
-              <span class="title-line">Can MLLMs Reason from</span>
-              <span class="title-line">Continuous Visual Cues in</span>
-              <span class="title-line">Dynamic Scenes?</span>
-            </span>
+            <span class="title-line title-line-desktop"><span class="title-mark">ViSTR-Bench:</span> Can MLLMs Reason from</span>
+            <span class="title-line title-line-desktop">Continuous Visual Cues in Dynamic Scenes?</span>
+            <span class="title-line title-line-mobile"><span class="title-mark">ViSTR-Bench:</span></span>
+            <span class="title-line title-line-mobile">Can MLLMs Reason</span>
+            <span class="title-line title-line-mobile">from Continuous</span>
+            <span class="title-line title-line-mobile">Visual Cues in</span>
+            <span class="title-line title-line-mobile">Dynamic Scenes?</span>
           </h2>
           <div class="after-hero-cola" aria-hidden="true">
             <div class="after-hero-bubbles">
@@ -243,15 +245,15 @@
         </div>
 
         <div class="resource-grid">
-          <a href="ViSTR-Bench-Latex/main.pdf" target="_blank" class="resource-card">
+          <a href="static/pdfs/main.pdf" target="_blank" class="resource-card">
             <iconify-icon class="resource-icon resource-icon-paper" icon="material-icon-theme:pdf" aria-hidden="true"></iconify-icon>
             <span>Paper</span>
           </a>
-          <a href="https://github.com" target="_blank" class="resource-card">
+          <a href="https://github.com/homothetic/ViSTR-Bench" target="_blank" class="resource-card">
             <iconify-icon class="resource-icon resource-icon-code" icon="simple-icons:github" aria-hidden="true"></iconify-icon>
             <span>Code</span>
           </a>
-          <a href="https://huggingface.co/datasets" target="_blank" class="resource-card">
+          <a href="https://huggingface.co/datasets/homothetic/ViSTR-Bench" target="_blank" class="resource-card">
             <iconify-icon class="resource-icon resource-icon-datasets" icon="devicon:huggingface" aria-hidden="true"></iconify-icon>
             <span>Dataset</span>
           </a>
@@ -269,7 +271,7 @@
 
         <div class="media-carousel-viewport">
           <div class="media-carousel-track" data-carousel-track>
-            <article class="media-tile task-example-card" data-carousel-slide>
+            <article class="media-tile task-example-card" data-carousel-slide data-answer-statuses="wrong wrong wrong">
               <div class="task-video-wrap">
                 <video autoplay muted loop playsinline preload="metadata">
                   <source src="static/videos/carousel1.mp4" type="video/mp4">
@@ -278,12 +280,19 @@
               </div>
               <div class="task-example-copy">
                 <span>Vehicle Movement</span>
-                <p><strong>Question</strong> Determine whether the vehicle in the green box shows subtle movement during the video.</p>
-                <p><strong>Model Answer</strong> Pending model output.</p>
+                <div class="task-prompt-line">
+                  <span class="qa-symbol" aria-hidden="true">?</span>
+                  <p>Determine whether the vehicle in the green box shows subtle movement during the video.</p>
+                </div>
+                <div class="model-answer-list">
+                  <span class="model-answer" aria-label="GPT answer"><iconify-icon icon="simple-icons:openai" aria-hidden="true"></iconify-icon><em>Pending.</em></span>
+                  <span class="model-answer" aria-label="Gemini answer"><iconify-icon icon="simple-icons:googlegemini" aria-hidden="true"></iconify-icon><em>Pending.</em></span>
+                  <span class="model-answer" aria-label="Claude answer"><iconify-icon icon="simple-icons:anthropic" aria-hidden="true"></iconify-icon><em>Pending.</em></span>
+                </div>
               </div>
             </article>
 
-            <article class="media-tile task-example-card" data-carousel-slide>
+            <article class="media-tile task-example-card" data-carousel-slide data-answer-statuses="wrong wrong wrong">
               <div class="task-video-wrap">
                 <video autoplay muted loop playsinline preload="metadata">
                   <source src="static/videos/carousel2.mp4" type="video/mp4">
@@ -292,12 +301,19 @@
               </div>
               <div class="task-example-copy">
                 <span>Relative Velocity</span>
-                <p><strong>Question</strong> Determine which prompted vehicle moves faster over time: the green vehicle or the blue vehicle.</p>
-                <p><strong>Model Answer</strong> Pending model output.</p>
+                <div class="task-prompt-line">
+                  <span class="qa-symbol" aria-hidden="true">?</span>
+                  <p>Determine which prompted vehicle moves faster over time: the green vehicle or the blue vehicle.</p>
+                </div>
+                <div class="model-answer-list">
+                  <span class="model-answer" aria-label="GPT answer"><iconify-icon icon="simple-icons:openai" aria-hidden="true"></iconify-icon><em>Pending.</em></span>
+                  <span class="model-answer" aria-label="Gemini answer"><iconify-icon icon="simple-icons:googlegemini" aria-hidden="true"></iconify-icon><em>Pending.</em></span>
+                  <span class="model-answer" aria-label="Claude answer"><iconify-icon icon="simple-icons:anthropic" aria-hidden="true"></iconify-icon><em>Pending.</em></span>
+                </div>
               </div>
             </article>
 
-            <article class="media-tile task-example-card" data-carousel-slide>
+            <article class="media-tile task-example-card" data-carousel-slide data-answer-statuses="wrong wrong wrong">
               <div class="task-video-wrap">
                 <video autoplay muted loop playsinline preload="metadata">
                   <source src="static/videos/carousel3.mp4" type="video/mp4">
@@ -306,12 +322,19 @@
               </div>
               <div class="task-example-copy">
                 <span>Ego Motion</span>
-                <p><strong>Question</strong> Infer the final position of the target object relative to the moving camera.</p>
-                <p><strong>Model Answer</strong> Pending model output.</p>
+                <div class="task-prompt-line">
+                  <span class="qa-symbol" aria-hidden="true">?</span>
+                  <p>Infer the final position of the target object relative to the moving camera.</p>
+                </div>
+                <div class="model-answer-list">
+                  <span class="model-answer" aria-label="GPT answer"><iconify-icon icon="simple-icons:openai" aria-hidden="true"></iconify-icon><em>Pending.</em></span>
+                  <span class="model-answer" aria-label="Gemini answer"><iconify-icon icon="simple-icons:googlegemini" aria-hidden="true"></iconify-icon><em>Pending.</em></span>
+                  <span class="model-answer" aria-label="Claude answer"><iconify-icon icon="simple-icons:anthropic" aria-hidden="true"></iconify-icon><em>Pending.</em></span>
+                </div>
               </div>
             </article>
 
-            <article class="media-tile task-example-card" data-carousel-slide>
+            <article class="media-tile task-example-card" data-carousel-slide data-answer-statuses="correct wrong wrong">
               <div class="task-video-wrap">
                 <video autoplay muted loop playsinline preload="metadata">
                   <source src="static/videos/banner_video.mp4" type="video/mp4">
@@ -320,12 +343,19 @@
               </div>
               <div class="task-example-copy">
                 <span>Passage Feasibility</span>
-                <p><strong>Question</strong> Predict whether the vehicle can pass the cone-constrained area without touching any cone.</p>
-                <p><strong>Model Answer</strong> Pending model output.</p>
+                <div class="task-prompt-line">
+                  <span class="qa-symbol" aria-hidden="true">?</span>
+                  <p>Predict whether the vehicle can pass the cone-constrained area without touching any cone.</p>
+                </div>
+                <div class="model-answer-list">
+                  <span class="model-answer" aria-label="GPT answer"><iconify-icon icon="simple-icons:openai" aria-hidden="true"></iconify-icon><em>Pending.</em></span>
+                  <span class="model-answer" aria-label="Gemini answer"><iconify-icon icon="simple-icons:googlegemini" aria-hidden="true"></iconify-icon><em>Pending.</em></span>
+                  <span class="model-answer" aria-label="Claude answer"><iconify-icon icon="simple-icons:anthropic" aria-hidden="true"></iconify-icon><em>Pending.</em></span>
+                </div>
               </div>
             </article>
 
-            <article class="media-tile task-example-card" data-carousel-slide>
+            <article class="media-tile task-example-card" data-carousel-slide data-answer-statuses="wrong correct correct">
               <div class="task-video-wrap">
                 <video autoplay muted loop playsinline preload="metadata">
                   <source src="static/videos/carousel1.mp4" type="video/mp4">
@@ -334,12 +364,19 @@
               </div>
               <div class="task-example-copy">
                 <span>Basketball Shot</span>
-                <p><strong>Question</strong> Predict whether the basketball will go into the hoop from its observed trajectory.</p>
-                <p><strong>Model Answer</strong> Pending model output.</p>
+                <div class="task-prompt-line">
+                  <span class="qa-symbol" aria-hidden="true">?</span>
+                  <p>Predict whether the basketball will go into the hoop from its observed trajectory.</p>
+                </div>
+                <div class="model-answer-list">
+                  <span class="model-answer" aria-label="GPT answer"><iconify-icon icon="simple-icons:openai" aria-hidden="true"></iconify-icon><em>Pending.</em></span>
+                  <span class="model-answer" aria-label="Gemini answer"><iconify-icon icon="simple-icons:googlegemini" aria-hidden="true"></iconify-icon><em>Pending.</em></span>
+                  <span class="model-answer" aria-label="Claude answer"><iconify-icon icon="simple-icons:anthropic" aria-hidden="true"></iconify-icon><em>Pending.</em></span>
+                </div>
               </div>
             </article>
 
-            <article class="media-tile task-example-card" data-carousel-slide>
+            <article class="media-tile task-example-card" data-carousel-slide data-answer-statuses="correct correct wrong">
               <div class="task-video-wrap">
                 <video autoplay muted loop playsinline preload="metadata">
                   <source src="static/videos/carousel2.mp4" type="video/mp4">
@@ -348,12 +385,19 @@
               </div>
               <div class="task-example-copy">
                 <span>Soccer Shot</span>
-                <p><strong>Question</strong> Predict whether the ball will enter the goal based on its trajectory.</p>
-                <p><strong>Model Answer</strong> Pending model output.</p>
+                <div class="task-prompt-line">
+                  <span class="qa-symbol" aria-hidden="true">?</span>
+                  <p>Predict whether the ball will enter the goal based on its trajectory.</p>
+                </div>
+                <div class="model-answer-list">
+                  <span class="model-answer" aria-label="GPT answer"><iconify-icon icon="simple-icons:openai" aria-hidden="true"></iconify-icon><em>Pending.</em></span>
+                  <span class="model-answer" aria-label="Gemini answer"><iconify-icon icon="simple-icons:googlegemini" aria-hidden="true"></iconify-icon><em>Pending.</em></span>
+                  <span class="model-answer" aria-label="Claude answer"><iconify-icon icon="simple-icons:anthropic" aria-hidden="true"></iconify-icon><em>Pending.</em></span>
+                </div>
               </div>
             </article>
 
-            <article class="media-tile task-example-card" data-carousel-slide>
+            <article class="media-tile task-example-card" data-carousel-slide data-answer-statuses="wrong wrong wrong">
               <div class="task-video-wrap">
                 <video autoplay muted loop playsinline preload="metadata">
                   <source src="static/videos/carousel3.mp4" type="video/mp4">
@@ -362,12 +406,19 @@
               </div>
               <div class="task-example-copy">
                 <span>Golf Shot</span>
-                <p><strong>Question</strong> Predict whether the golf ball will go into the hole from the observed motion.</p>
-                <p><strong>Model Answer</strong> Pending model output.</p>
+                <div class="task-prompt-line">
+                  <span class="qa-symbol" aria-hidden="true">?</span>
+                  <p>Predict whether the golf ball will go into the hole from the observed motion.</p>
+                </div>
+                <div class="model-answer-list">
+                  <span class="model-answer" aria-label="GPT answer"><iconify-icon icon="simple-icons:openai" aria-hidden="true"></iconify-icon><em>Pending.</em></span>
+                  <span class="model-answer" aria-label="Gemini answer"><iconify-icon icon="simple-icons:googlegemini" aria-hidden="true"></iconify-icon><em>Pending.</em></span>
+                  <span class="model-answer" aria-label="Claude answer"><iconify-icon icon="simple-icons:anthropic" aria-hidden="true"></iconify-icon><em>Pending.</em></span>
+                </div>
               </div>
             </article>
 
-            <article class="media-tile task-example-card" data-carousel-slide>
+            <article class="media-tile task-example-card" data-carousel-slide data-answer-statuses="wrong correct wrong">
               <div class="task-video-wrap">
                 <video autoplay muted loop playsinline preload="metadata">
                   <source src="static/videos/banner_video.mp4" type="video/mp4">
@@ -376,12 +427,19 @@
               </div>
               <div class="task-example-copy">
                 <span>Billiards Shot</span>
-                <p><strong>Question</strong> Predict whether the target ball will enter the pocket from its current trajectory.</p>
-                <p><strong>Model Answer</strong> Pending model output.</p>
+                <div class="task-prompt-line">
+                  <span class="qa-symbol" aria-hidden="true">?</span>
+                  <p>Predict whether the target ball will enter the pocket from its current trajectory.</p>
+                </div>
+                <div class="model-answer-list">
+                  <span class="model-answer" aria-label="GPT answer"><iconify-icon icon="simple-icons:openai" aria-hidden="true"></iconify-icon><em>Pending.</em></span>
+                  <span class="model-answer" aria-label="Gemini answer"><iconify-icon icon="simple-icons:googlegemini" aria-hidden="true"></iconify-icon><em>Pending.</em></span>
+                  <span class="model-answer" aria-label="Claude answer"><iconify-icon icon="simple-icons:anthropic" aria-hidden="true"></iconify-icon><em>Pending.</em></span>
+                </div>
               </div>
             </article>
 
-            <article class="media-tile task-example-card" data-carousel-slide>
+            <article class="media-tile task-example-card" data-carousel-slide data-answer-statuses="wrong wrong wrong">
               <div class="task-video-wrap">
                 <video autoplay muted loop playsinline preload="metadata">
                   <source src="static/videos/carousel1.mp4" type="video/mp4">
@@ -390,12 +448,19 @@
               </div>
               <div class="task-example-copy">
                 <span>Swimming Race</span>
-                <p><strong>Question</strong> Determine which swimmer will reach the finish line first between two candidate lanes.</p>
-                <p><strong>Model Answer</strong> Pending model output.</p>
+                <div class="task-prompt-line">
+                  <span class="qa-symbol" aria-hidden="true">?</span>
+                  <p>Determine which swimmer will reach the finish line first between two candidate lanes.</p>
+                </div>
+                <div class="model-answer-list">
+                  <span class="model-answer" aria-label="GPT answer"><iconify-icon icon="simple-icons:openai" aria-hidden="true"></iconify-icon><em>Pending.</em></span>
+                  <span class="model-answer" aria-label="Gemini answer"><iconify-icon icon="simple-icons:googlegemini" aria-hidden="true"></iconify-icon><em>Pending.</em></span>
+                  <span class="model-answer" aria-label="Claude answer"><iconify-icon icon="simple-icons:anthropic" aria-hidden="true"></iconify-icon><em>Pending.</em></span>
+                </div>
               </div>
             </article>
 
-            <article class="media-tile task-example-card" data-carousel-slide>
+            <article class="media-tile task-example-card" data-carousel-slide data-answer-statuses="wrong correct correct">
               <div class="task-video-wrap">
                 <video autoplay muted loop playsinline preload="metadata">
                   <source src="static/videos/carousel2.mp4" type="video/mp4">
@@ -404,12 +469,19 @@
               </div>
               <div class="task-example-copy">
                 <span>Jenga Stability</span>
-                <p><strong>Question</strong> Predict whether the tower will remain stable after the target block is removed.</p>
-                <p><strong>Model Answer</strong> Pending model output.</p>
+                <div class="task-prompt-line">
+                  <span class="qa-symbol" aria-hidden="true">?</span>
+                  <p>Predict whether the tower will remain stable after the target block is removed.</p>
+                </div>
+                <div class="model-answer-list">
+                  <span class="model-answer" aria-label="GPT answer"><iconify-icon icon="simple-icons:openai" aria-hidden="true"></iconify-icon><em>Pending.</em></span>
+                  <span class="model-answer" aria-label="Gemini answer"><iconify-icon icon="simple-icons:googlegemini" aria-hidden="true"></iconify-icon><em>Pending.</em></span>
+                  <span class="model-answer" aria-label="Claude answer"><iconify-icon icon="simple-icons:anthropic" aria-hidden="true"></iconify-icon><em>Pending.</em></span>
+                </div>
               </div>
             </article>
 
-            <article class="media-tile task-example-card" data-carousel-slide>
+            <article class="media-tile task-example-card" data-carousel-slide data-answer-statuses="wrong wrong correct">
               <div class="task-video-wrap">
                 <video autoplay muted loop playsinline preload="metadata">
                   <source src="static/videos/carousel3.mp4" type="video/mp4">
@@ -418,12 +490,19 @@
               </div>
               <div class="task-example-copy">
                 <span>Mikado Dependency</span>
-                <p><strong>Question</strong> Predict whether the indicated stick can be picked up without touching other sticks.</p>
-                <p><strong>Model Answer</strong> Pending model output.</p>
+                <div class="task-prompt-line">
+                  <span class="qa-symbol" aria-hidden="true">?</span>
+                  <p>Predict whether the indicated stick can be picked up without touching other sticks.</p>
+                </div>
+                <div class="model-answer-list">
+                  <span class="model-answer" aria-label="GPT answer"><iconify-icon icon="simple-icons:openai" aria-hidden="true"></iconify-icon><em>Pending.</em></span>
+                  <span class="model-answer" aria-label="Gemini answer"><iconify-icon icon="simple-icons:googlegemini" aria-hidden="true"></iconify-icon><em>Pending.</em></span>
+                  <span class="model-answer" aria-label="Claude answer"><iconify-icon icon="simple-icons:anthropic" aria-hidden="true"></iconify-icon><em>Pending.</em></span>
+                </div>
               </div>
             </article>
 
-            <article class="media-tile task-example-card" data-carousel-slide>
+            <article class="media-tile task-example-card" data-carousel-slide data-answer-statuses="wrong correct correct">
               <div class="task-video-wrap">
                 <video autoplay muted loop playsinline preload="metadata">
                   <source src="static/videos/banner_video.mp4" type="video/mp4">
@@ -432,8 +511,15 @@
               </div>
               <div class="task-example-copy">
                 <span>Knot Type</span>
-                <p><strong>Question</strong> Determine whether the manipulated knot is a slip knot or a fixed knot.</p>
-                <p><strong>Model Answer</strong> Pending model output.</p>
+                <div class="task-prompt-line">
+                  <span class="qa-symbol" aria-hidden="true">?</span>
+                  <p>Determine whether the manipulated knot is a slip knot or a fixed knot.</p>
+                </div>
+                <div class="model-answer-list">
+                  <span class="model-answer" aria-label="GPT answer"><iconify-icon icon="simple-icons:openai" aria-hidden="true"></iconify-icon><em>Pending.</em></span>
+                  <span class="model-answer" aria-label="Gemini answer"><iconify-icon icon="simple-icons:googlegemini" aria-hidden="true"></iconify-icon><em>Pending.</em></span>
+                  <span class="model-answer" aria-label="Claude answer"><iconify-icon icon="simple-icons:anthropic" aria-hidden="true"></iconify-icon><em>Pending.</em></span>
+                </div>
               </div>
             </article>
           </div>
@@ -453,7 +539,7 @@
       <div class="container content-wide">
         <h2 class="section-title">Overview</h2>
         <p class="lead-paragraph">
-          ViSTR-Bench evaluates whether multimodal large language models can reason from continuous visual cues in dynamic scenes. This page introduces the benchmark through its task definition, task and data distribution, construction pipeline, and evaluation results.
+          ViSTR-Bench is designed to systematically evaluate whether MLLMs can reason from continuous visual cues in dynamic scenes. This project page follows the paper through four parts: Task Definition, Benchmark statistics, Construction pipeline, and Evaluation Results.
         </p>
 
         <div class="overview-stat-grid" aria-label="Benchmark statistics">
@@ -470,8 +556,8 @@
             <span>video QA pairs</span>
           </article>
           <article class="overview-stat">
-            <strong>3</strong>
-            <span>data source types</span>
+            <strong>34</strong>
+            <span>evaluated MLLMs</span>
           </article>
         </div>
 
@@ -479,22 +565,22 @@
           <a href="#tasks" class="overview-link-card">
             <iconify-icon icon="fluent:video-clip-24-filled" aria-hidden="true"></iconify-icon>
             <span>Task Definition</span>
-            <p>Four dimensions and 12 qualitative binary-choice subtasks for dynamic visual reasoning.</p>
+            <p>ViSTR-Bench is organized into four complementary dimensions, namely Motion Perception, Spatial Relations, Outcome Prediction, and Physical Dynamics.</p>
           </a>
           <a href="#distribution" class="overview-link-card">
             <iconify-icon icon="mdi:chart-donut" aria-hidden="true"></iconify-icon>
-            <span>Task Distribution</span>
-            <p>Interactive benchmark statistics across dimensions, subtasks, and data sources.</p>
+            <span>Benchmark statistics</span>
+            <p>The benchmark comprises 12 distinct subtasks and 1,093 high-quality video question-answer pairs spanning diverse scenarios.</p>
           </a>
           <a href="#construction" class="overview-link-card">
-            <iconify-icon icon="mdi:source-branch" aria-hidden="true"></iconify-icon>
-            <span>Benchmark Construction</span>
-            <p>A controlled pipeline for collecting videos, preprocessing clips, generating QA pairs, and quality control.</p>
+            <iconify-icon icon="material-symbols:construction-rounded" aria-hidden="true"></iconify-icon>
+            <span>Construction pipeline</span>
+            <p>ViSTR-Bench is constructed through data collection, video preprocessing, QA pair generation, and human quality control.</p>
           </a>
           <a href="#results" class="overview-link-card">
             <iconify-icon icon="mdi:trophy-variant" aria-hidden="true"></iconify-icon>
             <span>Evaluation Results</span>
-            <p>Current MLLMs remain far below human performance on spatial-temporal reasoning.</p>
+            <p>Comprehensive evaluations reveal substantial bottlenecks in complex spatial-temporal reasoning.</p>
           </a>
         </div>
       </div>
@@ -506,33 +592,31 @@
         <div class="definition-layout">
           <div class="definition-copy">
             <p class="body-paragraph">
-              Each ViSTR-Bench task requires models to aggregate temporal evidence and make qualitative judgments about motion states, spatial relations, future outcomes, or latent physical properties.
+              <!-- ViSTR-Bench evaluates whether MLLMs can reason from continuous visual cues in dynamic scenes.  -->
+              We organize ViSTR-Bench into four complementary dimensions, which comprise 12 subtasks in total.
             </p>
             <div class="dimension-card-grid">
               <article class="dimension-card dimension-motion">
                 <span>Motion Perception</span>
-                <p>Vehicle Movement and Relative Velocity evaluate whether models can distinguish true object motion from apparent visual changes caused by camera movement or viewpoint variation.</p>
+                <p>This dimension evaluates whether MLLMs can perceive and compare object motion from continuous visual observations. The core challenge is to distinguish true object motion from apparent visual changes caused by camera movement, viewpoint variation, or environmental distractors.</p>
               </article>
               <article class="dimension-card dimension-spatial">
                 <span>Spatial Relations</span>
-                <p>Ego Motion and Passage Feasibility require models to account for camera motion, object positions, scene layout, and spatial clearance over time.</p>
+                <p>This dimension focuses on reasoning about evolving spatial relationships and geometric constraints in dynamic scenes, requiring models to account for camera motion, object positions, scene layout, and spatial clearance over time.</p>
               </article>
               <article class="dimension-card dimension-outcome">
                 <span>Outcome Prediction</span>
-                <p>Basketball, Soccer, Golf, Billiards, and Swimming tasks test whether models can extrapolate trajectories and infer outcome-level consequences before final outcomes are visible.</p>
+                <p>This dimension evaluates whether MLLMs can infer future outcomes from historical motion cues before the final outcomes are directly observed.</p>
               </article>
               <article class="dimension-card dimension-physical">
                 <span>Physical Dynamics</span>
-                <p>Jenga Stability, Mikado Dependency, and Knot Type examine latent physical states such as stability, contact dependencies, and knot structure.</p>
+                <p>This dimension examines whether MLLMs can reason about latent physical properties, dependencies, and stability conditions revealed through dynamic interactions.</p>
               </article>
             </div>
           </div>
           <figure class="paper-figure-card">
             <img src="static/images/task-definition-1.png" alt="Representative task examples from ViSTR-Bench">
-            <figcaption>
-              Representative task examples from ViSTR-Bench. Each task is formulated as a qualitative binary-choice question requiring temporal evidence.
-              <a href="static/images/task-definition-1.png" target="_blank">Open full figure</a>
-            </figcaption>
+            <figcaption>Representative task examples from ViSTR-Bench.</figcaption>
           </figure>
         </div>
       </div>
@@ -540,72 +624,19 @@
 
     <section class="section content-section" id="distribution">
       <div class="container content-wide">
-        <h2 class="section-title">Task Distribution</h2>
+        <h2 class="section-title">Benchmark statistics</h2>
         <p class="body-paragraph">
-          ViSTR-Bench contains 1,093 video question-answer pairs across four reasoning dimensions and 12 subtasks, collected from public datasets, curated web videos, and self-collected recordings.
+          ViSTR-Bench consists of 12 subtasks and 1,093 high-quality video question-answer pairs, spanning tabletop, indoor, and outdoor scenes. The data are collected from multiple sources, including public datasets, web videos, and self-collected recordings.
         </p>
 
         <div class="distribution-dashboard">
           <div class="distribution-chart-panel">
             <div class="interactive-panel-copy">
-              <span class="eyebrow-label">Reasoning taxonomy</span>
+              <!-- <span class="eyebrow-label">Benchmark statistics</span> -->
               <h3>Dimensions and subtasks</h3>
-              <p>Hover a ring segment to inspect task counts and data-source composition.</p>
+              <p>Hover over each segment to view detailed benchmark statistics.</p>
             </div>
             <div class="distribution-nested-chart" data-distribution-chart aria-label="Nested task distribution chart"></div>
-          </div>
-
-          <div class="data-pie-panel source-pie-panel" data-data-pie-panel>
-            <div class="interactive-panel-copy">
-              <span class="eyebrow-label">Data sources</span>
-              <h3>Collection mix</h3>
-              <p>Public datasets, curated web videos, and self-collected recordings provide complementary scene coverage.</p>
-            </div>
-            <div class="data-pie-plot source-pie-plot" data-data-pie aria-label="Data source composition chart"></div>
-          </div>
-        </div>
-
-        <div class="tables-panel distribution-table-panel" data-enhanced-tables>
-          <div class="demo-gallery-copy tables-panel-copy">
-            <span class="eyebrow-label">Task-level statistics</span>
-            <h3>Source breakdown by subtask</h3>
-            <p>Each row reports the number of QA pairs and the contribution from each collection source.</p>
-          </div>
-          <div class="table-card table-card-wide">
-            <div class="table-scroll">
-              <table class="results-table results-table-wide distribution-table">
-                <thead>
-                  <tr class="header-rule">
-                    <th>Task</th>
-                    <th>Dimension</th>
-                    <th>Total</th>
-                    <th>Public</th>
-                    <th>Web</th>
-                    <th>Self</th>
-                    <th>Source Mix</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr data-task-key="vehicle-movement"><td>Vehicle Movement</td><td>Motion Perception</td><td>112</td><td>112</td><td>0</td><td>0</td><td><span class="source-stack" style="--public:100%;--web:0%;--self:0%;"></span></td></tr>
-                  <tr data-task-key="relative-velocity"><td>Relative Velocity</td><td>Motion Perception</td><td>84</td><td>84</td><td>0</td><td>0</td><td><span class="source-stack" style="--public:100%;--web:0%;--self:0%;"></span></td></tr>
-                  <tr data-task-key="ego-motion"><td>Ego Motion</td><td>Spatial Relations</td><td>131</td><td>131</td><td>0</td><td>0</td><td><span class="source-stack" style="--public:100%;--web:0%;--self:0%;"></span></td></tr>
-                  <tr data-task-key="passage-feasibility"><td>Passage Feasibility</td><td>Spatial Relations</td><td>55</td><td>0</td><td>0</td><td>55</td><td><span class="source-stack" style="--public:0%;--web:0%;--self:100%;"></span></td></tr>
-                  <tr data-task-key="basketball-shot"><td>Basketball Shot</td><td>Outcome Prediction</td><td>124</td><td>124</td><td>0</td><td>0</td><td><span class="source-stack" style="--public:100%;--web:0%;--self:0%;"></span></td></tr>
-                  <tr data-task-key="soccer-shot"><td>Soccer Shot</td><td>Outcome Prediction</td><td>158</td><td>0</td><td>158</td><td>0</td><td><span class="source-stack" style="--public:0%;--web:100%;--self:0%;"></span></td></tr>
-                  <tr data-task-key="golf-shot"><td>Golf Shot</td><td>Outcome Prediction</td><td>53</td><td>0</td><td>53</td><td>0</td><td><span class="source-stack" style="--public:0%;--web:100%;--self:0%;"></span></td></tr>
-                  <tr data-task-key="billiards-shot"><td>Billiards Shot</td><td>Outcome Prediction</td><td>75</td><td>28</td><td>47</td><td>0</td><td><span class="source-stack" style="--public:37.3%;--web:62.7%;--self:0%;"></span></td></tr>
-                  <tr data-task-key="swimming-race"><td>Swimming Race</td><td>Outcome Prediction</td><td>72</td><td>0</td><td>72</td><td>0</td><td><span class="source-stack" style="--public:0%;--web:100%;--self:0%;"></span></td></tr>
-                  <tr data-task-key="jenga-stability"><td>Jenga Stability</td><td>Physical Dynamics</td><td>117</td><td>0</td><td>0</td><td>117</td><td><span class="source-stack" style="--public:0%;--web:0%;--self:100%;"></span></td></tr>
-                  <tr data-task-key="mikado-dependency"><td>Mikado Dependency</td><td>Physical Dynamics</td><td>83</td><td>0</td><td>0</td><td>83</td><td><span class="source-stack" style="--public:0%;--web:0%;--self:100%;"></span></td></tr>
-                  <tr data-task-key="knot-type"><td>Knot Type</td><td>Physical Dynamics</td><td>29</td><td>0</td><td>23</td><td>6</td><td><span class="source-stack" style="--public:0%;--web:79.3%;--self:20.7%;"></span></td></tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-          <div class="source-legend">
-            <span><i class="source-dot source-dot-public"></i>Public datasets</span>
-            <span><i class="source-dot source-dot-web"></i>Web videos</span>
-            <span><i class="source-dot source-dot-self"></i>Self-collected</span>
           </div>
         </div>
       </div>
@@ -613,39 +644,36 @@
 
     <section class="section content-section" id="construction">
       <div class="container content-wide">
-        <h2 class="section-title">Benchmark Construction</h2>
+        <h2 class="section-title">Construction pipeline</h2>
         <p class="body-paragraph">
-          ViSTR-Bench is constructed through a systematic multi-stage pipeline, including data collection, video preprocessing, question-answer pair generation, and human quality control.
+          We construct ViSTR-Bench through a systematic multi-stage pipeline, including data collection, video preprocessing, question-answer (QA) pair generation, and human quality control. This pipeline is designed to ensure that each sample requires temporal evidence, supports high-level reasoning, and has an unambiguous qualitative answer.
         </p>
 
         <figure class="paper-figure-card paper-figure-wide">
           <img src="static/images/construction-pipeline-1.png" alt="Benchmark construction pipeline">
-          <figcaption>
-            Benchmark construction pipeline. Each sample is designed to contain sufficient temporal evidence, support high-level reasoning, and have an unambiguous qualitative answer.
-            <a href="static/images/construction-pipeline-1.png" target="_blank">Open full figure</a>
-          </figcaption>
+          <figcaption>Benchmark construction pipeline.</figcaption>
         </figure>
 
         <div class="construction-timeline" aria-label="Benchmark construction steps">
           <article class="timeline-step">
             <span>01</span>
             <h3>Data Collection</h3>
-            <p>Videos are collected from public datasets, curated web videos, and task-specific recordings across tabletop, indoor, and outdoor scenarios.</p>
+            <p>To cover diverse spatio-temporal reasoning scenarios across tabletop, indoor, and outdoor environments, we collect videos from established public datasets, curated web videos, and self-collected recordings.</p>
           </article>
           <article class="timeline-step">
             <span>02</span>
             <h3>Video Preprocessing</h3>
-            <p>Event localization, visual prompting, and outcome truncation remove irrelevant context, referential ambiguity, and answer-revealing frames.</p>
+            <p>Raw videos inherently contain multiple distinct events, irrelevant temporal context, and explicit outcomes that could trivialize reasoning tasks into simple recognition.</p>
           </article>
           <article class="timeline-step">
             <span>03</span>
             <h3>QA Pair Generation</h3>
-            <p>All instances are formulated as qualitative binary-choice questions using task-specific templates and randomized candidate ordering.</p>
+            <p>We formulate all instances as binary-choice questions using task-specific templates, and the order of the two candidate options is systematically randomized for each question.</p>
           </article>
           <article class="timeline-step">
             <span>04</span>
             <h3>Human Quality Control</h3>
-            <p>Expert annotators verify visibility, temporal sufficiency, objectivity, and non-triviality for reliable benchmark samples.</p>
+            <p>Expert annotators manually filter all candidate QA pairs according to four strict criteria: visibility, temporal sufficiency, objectivity, and non-triviality.</p>
           </article>
         </div>
       </div>
@@ -655,33 +683,30 @@
       <div class="container content-wide">
         <h2 class="section-title">Evaluation Results</h2>
         <p class="body-paragraph">
-          Comprehensive evaluation shows that current MLLMs still struggle with continuous visual cues, subtle motion perception, future outcome prediction, and latent physical reasoning.
+          Existing MLLMs achieve limited performance on ViSTR-Bench, indicating that qualitative spatial-temporal reasoning from continuous visual cues remains a challenging problem for current MLLMs.
         </p>
 
         <div class="result-key-grid">
           <article class="result-key-card">
             <span>Best MLLM</span>
             <strong>59.8%</strong>
-            <p>Seed-2.0-Pro-thinking achieves the highest overall accuracy among evaluated models.</p>
+            <p>The best-performing model, Seed-2.0-Pro-thinking, obtains an overall accuracy of 59.8%.</p>
           </article>
           <article class="result-key-card">
             <span>Frequency Baseline</span>
             <strong>57.2%</strong>
-            <p>The best model is only 2.6 percentage points above the answer-frequency baseline.</p>
+            <p>The best-performing model is only 2.6% higher than Chance Level (Frequency).</p>
           </article>
           <article class="result-key-card">
             <span>Human Evaluation</span>
             <strong>89.0%</strong>
-            <p>Human performance remains far above current MLLMs on dynamic spatial-temporal reasoning.</p>
+            <p>Human results serve as an approximate upper-bound reference.</p>
           </article>
         </div>
 
         <figure class="paper-figure-card paper-figure-wide">
           <img src="static/images/radar-results-1.png" alt="Radar comparison across model groups">
-          <figcaption>
-            Radar comparison across representative model groups and human performance over the 12 subtasks.
-            <a href="static/images/radar-results-1.png" target="_blank">Open full figure</a>
-          </figcaption>
+          <figcaption>Radar comparison across model groups.</figcaption>
         </figure>
 
         <div class="tables-panel results-summary-panel" data-enhanced-tables>
@@ -695,19 +720,65 @@
               <table class="results-table results-table-wide">
                 <thead>
                   <tr class="header-rule">
-                    <th>Group</th>
-                    <th>Representative Method</th>
-                    <th>Avg. Accuracy</th>
-                    <th>Takeaway</th>
+                    <th>Method</th>
+                    <th>Rank</th>
+                    <th>Avg.</th>
+                    <th>Motion</th>
+                    <th>Spatial</th>
+                    <th>Outcome</th>
+                    <th>Physical</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr><td>Chance</td><td>Random</td><td>50.0</td><td>Expected accuracy under binary-choice guessing.</td></tr>
-                  <tr><td>Chance</td><td>Frequency</td><td>57.2</td><td>Captures answer-prior bias within each task.</td></tr>
-                  <tr class="strong-row"><td>Proprietary General MLLMs</td><td>Seed-2.0-Pro-thinking</td><td class="is-best">59.8</td><td>Best overall model, but still close to the frequency baseline.</td></tr>
-                  <tr><td>Open-source General MLLMs</td><td>Qwen3.5-27B-thinking</td><td>55.1</td><td>Best open-source result remains below the frequency baseline.</td></tr>
-                  <tr><td>Specialized Spatial MLLMs</td><td>GeoThinker-Qwen2.5VL-7B</td><td>52.0</td><td>Static or geometry-centric spatial training transfers poorly to dynamic reasoning.</td></tr>
-                  <tr class="strong-row bottom-rule"><td>Human Evaluation</td><td>Human</td><td class="is-best">89.0</td><td>Shows a large remaining gap to human-level spatial-temporal reasoning.</td></tr>
+                  <tr class="group-row group-row-baseline"><th colspan="7">Baseline</th></tr>
+                  <tr class="result-group-baseline"><td>Chance Level (Random)</td><td>-</td><td>50.0</td><td>50.0</td><td>50.0</td><td>50.0</td><td>50.0</td></tr>
+                  <tr class="result-group-baseline"><td>Chance Level (Frequency)</td><td>-</td><td>57.2</td><td>61.9</td><td>59.5</td><td>53.6</td><td>59.3</td></tr>
+                  <tr class="group-row group-row-proprietary"><th colspan="7">Proprietary General MLLMs</th></tr>
+                  <tr class="result-group-proprietary"><td>GPT-5.4</td><td>9</td><td>54.9</td><td>67.0</td><td>65.4</td><td>48.9</td><td>53.7</td></tr>
+                  <tr class="result-group-proprietary"><td>GPT-5.4-thinking</td><td>3</td><td>59.0</td><td>66.1</td><td>66.9</td><td>52.3</td><td>62.3</td></tr>
+                  <tr class="result-group-proprietary"><td>Gemini-3-Flash-Preview</td><td>17</td><td>50.0</td><td>39.9</td><td>59.7</td><td>52.2</td><td>52.4</td></tr>
+                  <tr class="result-group-proprietary"><td>Gemini-3.1-Flash-Lite-Preview</td><td>13</td><td>52.4</td><td>47.8</td><td>63.1</td><td>49.0</td><td>56.9</td></tr>
+                  <tr class="result-group-proprietary"><td>Gemini-3.1-Pro-Preview</td><td>11</td><td>53.6</td><td>49.0</td><td>69.0</td><td>50.9</td><td>55.2</td></tr>
+                  <tr class="result-group-proprietary"><td>Claude-Sonnet-4.6</td><td>16</td><td>52.0</td><td>54.2</td><td>58.8</td><td>51.8</td><td>45.0</td></tr>
+                  <tr class="result-group-proprietary"><td>Claude-Sonnet-4.6-thinking</td><td>8</td><td>55.4</td><td>53.8</td><td>59.6</td><td>55.1</td><td>51.8</td></tr>
+                  <tr class="result-group-proprietary"><td>Claude-Opus-4.6</td><td>4</td><td>57.0</td><td>55.2</td><td>67.5</td><td>50.7</td><td>60.9</td></tr>
+                  <tr class="result-group-proprietary"><td>Claude-Opus-4.6-thinking</td><td>6</td><td>56.1</td><td>52.9</td><td>69.6</td><td>50.0</td><td>56.1</td></tr>
+                  <tr class="result-group-proprietary"><td>Seed-2.0-Lite</td><td>7</td><td>56.0</td><td>62.5</td><td>57.4</td><td>51.0</td><td>56.2</td></tr>
+                  <tr class="result-group-proprietary"><td>Seed-2.0-Lite-thinking</td><td>2</td><td>59.7</td><td>68.4</td><td>66.0</td><td>53.7</td><td>56.2</td></tr>
+                  <tr class="result-group-proprietary"><td>Seed-2.0-Pro</td><td>5</td><td>56.6</td><td>62.5</td><td>64.5</td><td>53.0</td><td>53.2</td></tr>
+                  <tr class="strong-row result-group-proprietary"><td>Seed-2.0-Pro-thinking</td><td>1</td><td class="is-best">59.8</td><td>72.2</td><td>68.5</td><td>55.9</td><td>51.6</td></tr>
+                  <tr class="result-group-proprietary"><td>MiMo-V2-Omni</td><td>14</td><td>52.1</td><td>57.8</td><td>58.5</td><td>45.1</td><td>55.5</td></tr>
+                  <tr class="result-group-proprietary"><td>MiMo-V2-Omni-thinking</td><td>10</td><td>54.1</td><td>50.3</td><td>67.2</td><td>48.2</td><td>57.8</td></tr>
+                  <tr class="result-group-proprietary"><td>MiMo-V2.5</td><td>15</td><td>52.0</td><td>50.2</td><td>57.9</td><td>49.0</td><td>51.9</td></tr>
+                  <tr class="result-group-proprietary"><td>MiMo-V2.5-thinking</td><td>12</td><td>52.5</td><td>45.0</td><td>60.8</td><td>48.5</td><td>56.3</td></tr>
+                  <tr class="group-row group-row-open"><th colspan="7">Open-source General MLLMs</th></tr>
+                  <tr class="result-group-open"><td>LLaVA-OneVision-1.5-4B</td><td>14</td><td>47.8</td><td>48.8</td><td>59.1</td><td>48.3</td><td>40.7</td></tr>
+                  <tr class="result-group-open"><td>LLaVA-OneVision-1.5-8B</td><td>11</td><td>48.9</td><td>52.0</td><td>59.5</td><td>47.7</td><td>45.3</td></tr>
+                  <tr class="strong-row result-group-open"><td>Qwen3.5-27B-thinking</td><td>1</td><td>55.1</td><td>55.4</td><td>64.1</td><td>54.3</td><td>48.1</td></tr>
+                  <tr class="result-group-open"><td>Qwen3.5-35B-A3B-thinking</td><td>13</td><td>48.7</td><td>45.8</td><td>60.8</td><td>45.4</td><td>48.1</td></tr>
+                  <tr class="result-group-open"><td>Qwen3.5-122B-A10B-thinking</td><td>5</td><td>53.0</td><td>51.8</td><td>64.6</td><td>47.4</td><td>58.7</td></tr>
+                  <tr class="result-group-open"><td>Qwen3.5-397B-A17B-thinking</td><td>3</td><td>54.3</td><td>57.1</td><td>64.6</td><td>49.6</td><td>53.2</td></tr>
+                  <tr class="result-group-open"><td>InternVL3.5-8B</td><td>7</td><td>50.5</td><td>57.1</td><td>67.9</td><td>46.5</td><td>40.7</td></tr>
+                  <tr class="result-group-open"><td>InternVL3.5-14B</td><td>8</td><td>50.0</td><td>54.8</td><td>59.5</td><td>50.0</td><td>43.4</td></tr>
+                  <tr class="result-group-open"><td>InternVL3.5-38B</td><td>2</td><td>54.5</td><td>48.4</td><td>62.9</td><td>52.7</td><td>59.2</td></tr>
+                  <tr class="result-group-open"><td>InternVL3.5-30B-A3B</td><td>9</td><td>49.6</td><td>55.7</td><td>61.8</td><td>44.2</td><td>46.2</td></tr>
+                  <tr class="result-group-open"><td>InternVL3.5-241B-A28B</td><td>4</td><td>54.1</td><td>55.8</td><td>67.8</td><td>48.3</td><td>55.7</td></tr>
+                  <tr class="result-group-open"><td>Intern-S1-thinking</td><td>6</td><td>50.8</td><td>52.7</td><td>59.3</td><td>47.3</td><td>50.8</td></tr>
+                  <tr class="result-group-open"><td>Intern-S1-Pro-thinking</td><td>10</td><td>49.2</td><td>47.1</td><td>59.9</td><td>47.0</td><td>48.7</td></tr>
+                  <tr class="result-group-open"><td>GLM-4.6V-thinking</td><td>12</td><td>48.9</td><td>49.9</td><td>57.3</td><td>45.9</td><td>50.3</td></tr>
+                  <tr class="group-row group-row-specialized"><th colspan="7">Specialized Spatial MLLMs</th></tr>
+                  <tr class="result-group-specialized"><td>SpaceR-SFT-7B</td><td>2</td><td>50.7</td><td>53.6</td><td>65.2</td><td>46.9</td><td>48.9</td></tr>
+                  <tr class="result-group-specialized"><td>VG-LLM-4B</td><td>8</td><td>46.8</td><td>44.9</td><td>53.8</td><td>48.6</td><td>49.3</td></tr>
+                  <tr class="result-group-specialized"><td>VG-LLM-8B</td><td>10</td><td>45.3</td><td>38.0</td><td>51.9</td><td>50.9</td><td>45.3</td></tr>
+                  <tr class="result-group-specialized"><td>Spatial-MLLM-135K-4B</td><td>9</td><td>45.7</td><td>44.8</td><td>45.1</td><td>47.1</td><td>48.0</td></tr>
+                  <tr class="result-group-specialized"><td>Spatial-MLLM-820K-4B</td><td>3</td><td>50.5</td><td>63.7</td><td>52.0</td><td>48.3</td><td>51.6</td></tr>
+                  <tr class="result-group-specialized"><td>SpatialLadder-3B</td><td>7</td><td>48.2</td><td>60.3</td><td>53.1</td><td>47.3</td><td>44.7</td></tr>
+                  <tr class="result-group-specialized"><td>Spatial-SSRL-7B</td><td>6</td><td>49.5</td><td>46.7</td><td>62.2</td><td>48.2</td><td>53.9</td></tr>
+                  <tr class="result-group-specialized"><td>VST-7B-RL</td><td>4</td><td>50.1</td><td>59.7</td><td>53.8</td><td>50.0</td><td>47.5</td></tr>
+                  <tr class="strong-row result-group-specialized"><td>GeoThinker-Qwen2.5VL-7B</td><td>1</td><td>52.0</td><td>54.2</td><td>54.1</td><td>48.2</td><td>61.6</td></tr>
+                  <tr class="result-group-specialized"><td>GeoThinker-Qwen3VL-8B</td><td>5</td><td>50.0</td><td>63.1</td><td>52.6</td><td>48.3</td><td>49.2</td></tr>
+                  <tr class="group-row group-row-human"><th colspan="7">Human Evaluation</th></tr>
+                  <tr class="strong-row bottom-rule result-group-human"><td>Human</td><td>-</td><td class="is-best">89.0</td><td class="is-best">93.8</td><td class="is-best">92.6</td><td class="is-best">82.8</td><td class="is-best">90.3</td></tr>
                 </tbody>
               </table>
             </div>
@@ -721,15 +792,15 @@
           </article>
           <article class="observation-card">
             <span>02</span>
-            <p>Proprietary general-purpose MLLMs perform best overall, but the gains over simple baselines are small.</p>
+            <p>Proprietary general-purpose MLLMs perform best overall.</p>
           </article>
           <article class="observation-card">
             <span>03</span>
-            <p>Specialized spatial MLLMs show limited generalization from static spatial training to dynamic scenes.</p>
+            <p>Spatial MLLMs show limited generalization to dynamic reasoning.</p>
           </article>
           <article class="observation-card">
             <span>04</span>
-            <p>Outcome Prediction and Physical Dynamics are especially challenging because they require extrapolation and latent physical reasoning.</p>
+            <p>Outcome Prediction and Physical Dynamics remain more challenging.</p>
           </article>
         </div>
       </div>
@@ -748,11 +819,7 @@
         </div>
         <p class="citation-note">Please cite ViSTR-Bench if you find the benchmark useful for your research.</p>
         <div class="references-mobile" data-reference-mobile aria-label="References"></div>
-        <pre id="bibtex-code"><code>@misc{li2026vistrbench,
-  title={ViSTR-Bench: Can MLLMs Reason from Continuous Visual Cues in Dynamic Scenes?},
-  author={Li, Han and Huang, Zehao and Xu, Longfei and Fu, Jiahui and Tian, Daxin and Wang, Naiyan and Liu, Si},
-  year={2026}
-}</code></pre>
+        <pre id="bibtex-code"><code></code></pre>
       </div>
     </section>
   </main>

@@ -107,6 +107,33 @@ function copyBibTeX() {
   });
 }
 
+function setupAnswerStatuses() {
+  document.querySelectorAll("[data-answer-statuses]").forEach((card) => {
+    const statuses = card.dataset.answerStatuses
+      .split(/\s+/)
+      .map((status) => status.trim().toLowerCase())
+      .filter(Boolean);
+    const answers = card.querySelectorAll(".model-answer");
+
+    answers.forEach((answer, index) => {
+      if (answer.querySelector(".answer-status")) {
+        return;
+      }
+
+      const status = statuses[index];
+      if (status !== "correct" && status !== "wrong") {
+        return;
+      }
+
+      const badge = document.createElement("span");
+      badge.className = `answer-status status-${status}`;
+      badge.setAttribute("aria-label", status === "correct" ? "Correct answer" : "Incorrect answer");
+      badge.textContent = status === "correct" ? "\u2713" : "\u00d7";
+      answer.appendChild(badge);
+    });
+  });
+}
+
 function scrollToTop() {
   window.scrollTo({
     top: 0,
@@ -1481,8 +1508,9 @@ function setupEnhancedTables() {
     });
 
     const headerCells = Array.from(table.querySelectorAll("thead tr:last-child th"));
+    const skippedBestColumns = table.classList.contains("results-table-wide") ? 2 : 1;
     headerCells.forEach((_, columnIndex) => {
-      if (columnIndex === 0) {
+      if (columnIndex < skippedBestColumns) {
         return;
       }
       const columnCells = rows
@@ -1510,6 +1538,10 @@ function setupEnhancedTables() {
       if (!cell || !table.contains(cell)) {
         return;
       }
+      if (cell.closest(".group-row")) {
+        clearColumnHover();
+        return;
+      }
       clearColumnHover();
       const columnIndex = cell.cellIndex;
       if (columnIndex < 0) {
@@ -1525,6 +1557,9 @@ function setupEnhancedTables() {
     table.addEventListener("mouseleave", clearColumnHover);
 
     rows.forEach((row) => {
+      if (row.classList.contains("group-row")) {
+        return;
+      }
       row.addEventListener("click", () => {
         rows.forEach((otherRow) => {
           if (otherRow !== row) {
@@ -1647,6 +1682,7 @@ window.ProjectPage = {
 const config = getProjectConfig();
 setupThemeToggle(config.theme);
 resetPageToHero();
+setupAnswerStatuses();
 setupPageNavigation();
 setupMediaCarousel();
 setupMediaPreviewModal();
