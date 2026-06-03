@@ -115,6 +115,10 @@ function scrollToTop() {
 }
 
 function resetPageToHero() {
+  if (window.location.hash && window.location.hash !== "#top") {
+    return;
+  }
+
   if ("scrollRestoration" in window.history) {
     window.history.scrollRestoration = "manual";
   }
@@ -1208,6 +1212,196 @@ function setupDataPieChart(dataPie) {
   window.addEventListener("project-theme-change", () => render());
 }
 
+function setupDistributionChart(distribution) {
+  const root = document.querySelector("[data-distribution-chart]");
+  if (!root || !distribution || !Array.isArray(distribution.dimensions)) {
+    return;
+  }
+
+  const dimensions = distribution.dimensions.filter((dimension) => dimension && Array.isArray(dimension.tasks));
+  if (dimensions.length === 0) {
+    root.hidden = true;
+    return;
+  }
+
+  const total = Number(distribution.total) || dimensions.reduce((sum, dimension) => sum + Number(dimension.value || 0), 0) || 1;
+  const tasks = dimensions.flatMap((dimension) => (
+    dimension.tasks.map((task) => ({
+      ...task,
+      dimensionKey: dimension.key,
+      dimensionLabel: dimension.label,
+      color: dimension.color
+    }))
+  ));
+  const rows = Array.from(document.querySelectorAll("[data-task-key]"));
+  let activeDimensionKey = dimensions[0].key;
+  let activeTaskKey = null;
+
+  function getDimension(key) {
+    return dimensions.find((dimension) => dimension.key === key) || dimensions[0];
+  }
+
+  function getTask(key) {
+    return tasks.find((task) => task.key === key) || null;
+  }
+
+  function formatPercent(value, base = total) {
+    const percent = base > 0 ? value / base * 100 : 0;
+    return `${Math.round(percent)}%`;
+  }
+
+  function getTaskKeysForDimension(dimensionKey) {
+    const dimension = getDimension(dimensionKey);
+    return dimension.tasks.map((task) => task.key);
+  }
+
+  function highlightTable(taskKeys) {
+    const keySet = new Set(taskKeys);
+    rows.forEach((row) => {
+      row.classList.toggle("is-linked", keySet.has(row.dataset.taskKey));
+    });
+  }
+
+  function getSourceText(task) {
+    return `Public ${task.public || 0}, Web ${task.web || 0}, Self-collected ${task.self || 0}`;
+  }
+
+  function makeRingSegments(items, options) {
+    const radius = options.radius;
+    const gap = options.gap || 0.7;
+    let offset = 0;
+    return items.map((item) => {
+      const value = Number(item.value || 0);
+      const percent = value / total * 100;
+      const visible = Math.max(0, percent - gap);
+      const isActive = options.isActive(item);
+      const attrs = options.attrs(item);
+      const label = `${item.label}: ${value} QA pairs (${formatPercent(value)})`;
+      const segment = `
+        <circle
+          class="${options.className}${isActive ? " is-active" : ""}"
+          pathLength="100"
+          cx="160"
+          cy="160"
+          r="${radius}"
+          style="--slice-color:${item.color || "#737373"};--slice-size:${visible};stroke-dashoffset:${-offset};"
+          ${attrs}>
+          <title>${escapeHtml(label)}</title>
+        </circle>
+      `;
+      offset += percent;
+      return segment;
+    }).join("");
+  }
+
+  function render() {
+    const activeTask = getTask(activeTaskKey);
+    const activeDimension = activeTask ? getDimension(activeTask.dimensionKey) : getDimension(activeDimensionKey);
+    const activeValue = Number(activeTask ? activeTask.value : activeDimension.value) || 0;
+    const activeLabel = activeTask ? activeTask.label : activeDimension.label;
+    const activeKicker = activeTask ? activeTask.dimensionLabel : "Reasoning dimension";
+    const activeDetail = activeTask
+      ? getSourceText(activeTask)
+      : `${activeDimension.tasks.length} subtasks`;
+
+    const dimensionSegments = makeRingSegments(dimensions, {
+      radius: 86,
+      className: "distribution-ring-segment distribution-ring-dimension",
+      isActive: (dimension) => activeDimension && dimension.key === activeDimension.key && !activeTask,
+      attrs: (dimension) => `data-dist-dimension="${escapeHtml(dimension.key)}"`
+    });
+
+    const taskSegments = makeRingSegments(tasks, {
+      radius: 124,
+      className: "distribution-ring-segment distribution-ring-task",
+      isActive: (task) => {
+        if (activeTask) {
+          return task.key === activeTask.key;
+        }
+        return activeDimension && task.dimensionKey === activeDimension.key;
+      },
+      attrs: (task) => `data-dist-task="${escapeHtml(task.key)}"`
+    });
+
+    root.innerHTML = `
+      <div class="distribution-chart-card">
+        <div class="distribution-donut-wrap">
+          <svg class="distribution-donut-svg" viewBox="0 0 320 320" role="img" aria-label="Task distribution across dimensions and subtasks">
+            <circle class="distribution-ring-track distribution-ring-track-outer" cx="160" cy="160" r="124"></circle>
+            <circle class="distribution-ring-track distribution-ring-track-inner" cx="160" cy="160" r="86"></circle>
+            ${taskSegments}
+            ${dimensionSegments}
+          </svg>
+          <div class="distribution-donut-center">
+            <span>${escapeHtml(activeKicker)}</span>
+            <strong>${escapeHtml(activeValue)}</strong>
+            <em>${escapeHtml(activeLabel)}</em>
+          </div>
+        </div>
+        <div class="distribution-side">
+          <div class="distribution-detail">
+            <span>${escapeHtml(formatPercent(activeValue))} of benchmark</span>
+            <strong>${escapeHtml(activeLabel)}</strong>
+            <p>${escapeHtml(activeDetail)}</p>
+          </div>
+          <div class="distribution-legend" aria-label="Reasoning dimensions">
+            ${dimensions.map((dimension) => `
+              <button class="distribution-legend-item${activeDimension && dimension.key === activeDimension.key && !activeTask ? " is-active" : ""}" type="button" data-dist-dimension="${escapeHtml(dimension.key)}">
+                <i style="--slice-color:${dimension.color || "#737373"};"></i>
+                <span>${escapeHtml(dimension.label)}</span>
+                <strong>${escapeHtml(dimension.value)}</strong>
+              </button>
+            `).join("")}
+          </div>
+        </div>
+      </div>
+    `;
+
+    Array.from(root.querySelectorAll("[data-dist-dimension]")).forEach((item) => {
+      item.addEventListener("mouseenter", () => setActiveDimension(item.dataset.distDimension));
+      item.addEventListener("focus", () => setActiveDimension(item.dataset.distDimension));
+      item.addEventListener("click", () => setActiveDimension(item.dataset.distDimension));
+    });
+
+    Array.from(root.querySelectorAll("[data-dist-task]")).forEach((item) => {
+      item.addEventListener("mouseenter", () => setActiveTask(item.dataset.distTask));
+      item.addEventListener("focus", () => setActiveTask(item.dataset.distTask));
+      item.addEventListener("click", () => setActiveTask(item.dataset.distTask));
+    });
+
+    highlightTable(activeTask ? [activeTask.key] : getTaskKeysForDimension(activeDimension.key));
+  }
+
+  function setActiveDimension(key) {
+    const dimension = getDimension(key);
+    if (!dimension || (activeDimensionKey === dimension.key && activeTaskKey === null)) {
+      return;
+    }
+    activeDimensionKey = dimension.key;
+    activeTaskKey = null;
+    render();
+  }
+
+  function setActiveTask(key) {
+    const task = getTask(key);
+    if (!task || activeTaskKey === task.key) {
+      return;
+    }
+    activeTaskKey = task.key;
+    activeDimensionKey = task.dimensionKey;
+    render();
+  }
+
+  rows.forEach((row) => {
+    row.addEventListener("mouseenter", () => setActiveTask(row.dataset.taskKey));
+    row.addEventListener("focusin", () => setActiveTask(row.dataset.taskKey));
+    row.addEventListener("click", () => setActiveTask(row.dataset.taskKey));
+  });
+
+  render();
+  window.addEventListener("project-theme-change", () => render());
+}
+
 function setupDemoGallery() {
   const gallery = document.querySelector("[data-demo-gallery]");
   if (!gallery) {
@@ -1443,6 +1637,7 @@ window.ProjectPage = {
   setupMetricsDashboard,
   setupVerticalCharts,
   setupDataPieChart,
+  setupDistributionChart,
   setupEnhancedTables,
   setupAutoplayCarousel,
   setupMediaPreviewModal,
@@ -1461,11 +1656,14 @@ setupTsnePlot();
 setupMetricsDashboard(config.horizontalMetrics);
 setupVerticalCharts(config.verticalCharts);
 setupDataPieChart(config.dataPie);
+setupDistributionChart(config.distribution);
 setupDemoGallery();
 setupEnhancedTables();
 setupReferenceSidebar(config.references);
 setupFooter(config.footer);
-window.addEventListener("pageshow", resetPageToHero);
+window.addEventListener("pageshow", () => {
+  resetPageToHero();
+});
 
 window.addEventListener("scroll", () => {
   const scrollButton = document.querySelector(".scroll-to-top");

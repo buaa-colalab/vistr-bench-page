@@ -3,22 +3,22 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="title" content="Project Title | Project Homepage">
-  <meta name="description" content="An academic project homepage scaffold for presenting a paper, model, data, and results.">
-  <meta name="keywords" content="robotics, machine learning, project homepage, research website">
-  <meta name="author" content="Project Team">
+  <meta name="title" content="ViSTR-Bench | Project Homepage">
+  <meta name="description" content="ViSTR-Bench is a visual spatial-temporal reasoning benchmark for evaluating whether MLLMs can reason from continuous visual cues in dynamic scenes.">
+  <meta name="keywords" content="ViSTR-Bench, spatial-temporal reasoning, multimodal large language models, benchmark, video reasoning">
+  <meta name="author" content="Han Li, Zehao Huang, Longfei Xu, Jiahui Fu, Daxin Tian, Naiyan Wang, Si Liu">
   <meta name="robots" content="index, follow">
 
   <meta property="og:type" content="website">
-  <meta property="og:site_name" content="Project Homepage">
-  <meta property="og:title" content="Project Title">
-  <meta property="og:description" content="An academic project homepage scaffold for presenting a paper, model, data, and results.">
-  <meta property="og:image" content="static/images/carousel1.jpg">
+  <meta property="og:site_name" content="ViSTR-Bench">
+  <meta property="og:title" content="ViSTR-Bench">
+  <meta property="og:description" content="Can MLLMs reason from continuous visual cues in dynamic scenes?">
+  <meta property="og:image" content="static/images/task-definition-1.png">
 
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Project Title">
-  <meta name="twitter:description" content="An academic project homepage scaffold for presenting a paper, model, data, and results.">
-  <meta name="twitter:image" content="static/images/carousel1.jpg">
+  <meta name="twitter:title" content="ViSTR-Bench">
+  <meta name="twitter:description" content="Can MLLMs reason from continuous visual cues in dynamic scenes?">
+  <meta name="twitter:image" content="static/images/task-definition-1.png">
 
   <title>ViSTR-Bench</title>
 
@@ -38,98 +38,72 @@
   </script>
   <link rel="stylesheet" href="static/css/bulma.min.css">
   <link rel="stylesheet" href="static/css/index.css">
-  <script defer src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
   <script>
     window.ProjectPageConfig = {
       theme: {
         defaultMode: "system",
         storageKey: "colalab-project-theme"
       },
-      demoAutoplayInterval: 6000,
-      verticalChartAutoplayInterval: 7000,
-      horizontalMetrics: {
-        success: [
-          ["Baseline 1", 42, "#64748b", "#94a3b8", "rgba(100, 116, 139, 0.13)"],
-          ["Baseline 2", 58, "#7c3aed", "#a78bfa", "rgba(124, 58, 237, 0.12)"],
-          ["Project Title", 82, "#ef4b34", "#f59e0b", "rgba(239, 75, 52, 0.13)"]
-        ],
-        generalization: [
-          ["Seen tasks", 86, "#0ea5e9", "#35a7ff", "rgba(14, 165, 233, 0.13)"],
-          ["New objects", 74, "#16a34a", "#22c55e", "rgba(34, 197, 94, 0.13)"],
-          ["New scenes", 68, "#f97316", "#facc15", "rgba(249, 115, 22, 0.13)"]
-        ],
-        efficiency: [
-          ["Training cost", 54, "#8b5cf6", "#d946ef", "rgba(139, 92, 246, 0.13)"],
-          ["Fine-tune time", 71, "#06b6d4", "#2dd4bf", "rgba(6, 182, 212, 0.13)"],
-          ["Inference FPS", 88, "#ef4b34", "#fb7185", "rgba(239, 75, 52, 0.13)"]
+      demoAutoplayInterval: 7000,
+      distribution: {
+        total: 1093,
+        dimensions: [
+          {
+            key: "motion",
+            label: "Motion Perception",
+            value: 196,
+            color: "#ef6a5b",
+            tasks: [
+              { key: "vehicle-movement", label: "Vehicle Movement", value: 112, public: 112, web: 0, self: 0 },
+              { key: "relative-velocity", label: "Relative Velocity", value: 84, public: 84, web: 0, self: 0 }
+            ]
+          },
+          {
+            key: "spatial",
+            label: "Spatial Relations",
+            value: 186,
+            color: "#4f8cff",
+            tasks: [
+              { key: "ego-motion", label: "Ego Motion", value: 131, public: 131, web: 0, self: 0 },
+              { key: "passage-feasibility", label: "Passage Feasibility", value: 55, public: 0, web: 0, self: 55 }
+            ]
+          },
+          {
+            key: "outcome",
+            label: "Outcome Prediction",
+            value: 482,
+            color: "#2fbf8f",
+            tasks: [
+              { key: "basketball-shot", label: "Basketball Shot", value: 124, public: 124, web: 0, self: 0 },
+              { key: "soccer-shot", label: "Soccer Shot", value: 158, public: 0, web: 158, self: 0 },
+              { key: "golf-shot", label: "Golf Shot", value: 53, public: 0, web: 53, self: 0 },
+              { key: "billiards-shot", label: "Billiards Shot", value: 75, public: 28, web: 47, self: 0 },
+              { key: "swimming-race", label: "Swimming Race", value: 72, public: 0, web: 72, self: 0 }
+            ]
+          },
+          {
+            key: "physical",
+            label: "Physical Dynamics",
+            value: 229,
+            color: "#f2b84b",
+            tasks: [
+              { key: "jenga-stability", label: "Jenga Stability", value: 117, public: 0, web: 0, self: 117 },
+              { key: "mikado-dependency", label: "Mikado Dependency", value: 83, public: 0, web: 0, self: 83 },
+              { key: "knot-type", label: "Knot Type", value: 29, public: 0, web: 23, self: 6 }
+            ]
+          }
         ]
       },
-      verticalCharts: [
-        {
-          id: "success-rate",
-          title: "Success Rate (%) ↑",
-          xAxisTitle: "Evaluation task",
-          yAxisTitle: "Success rate",
-          unit: "%",
-          caption: "Grouped task results in a kai0-inspired vertical chart. Hover over each bar to inspect exact values.",
-          categories: ["Task A", "Task B", "Task C"],
-          series: [
-            { name: "Baseline 1", values: [42, 51, 60], color: "#4f8cff" },
-            { name: "Baseline 2", values: [58, 63, 68], color: "#f2b84b" },
-            { name: "Project Title", values: [82, 86, 90], color: "#2fbf8f", highlight: true }
-          ]
-        },
-        {
-          id: "throughput",
-          title: "Throughput ↑",
-          xAxisTitle: "Deployment setting",
-          yAxisTitle: "Runs per hour",
-          unit: " r/h",
-          caption: "A second chart demonstrates how later studies can be added without touching the renderer.",
-          categories: ["Lab", "Novel scene", "Long horizon"],
-          series: [
-            { name: "Baseline 1", values: [12, 9, 7], color: "#7c83ff" },
-            { name: "Baseline 2", values: [16, 13, 11], color: "#ff8a65" },
-            { name: "Project Title", values: [24, 21, 18], color: "#26c6da", highlight: true }
-          ]
-        }
-      ],
       dataPie: {
-        title: "Dataset Composition",
-        caption: "Hover a slice to highlight the source mix and inspect its exact share.",
-        labels: ["Human demos", "Model rollouts", "Held-out tasks", "Failure cases"],
-        values: [42, 28, 18, 12],
-        colors: ["#ef6a5b", "#4f8cff", "#2fbf8f", "#f2b84b"]
+        title: "Data Sources",
+        caption: "Distribution of video QA pairs by collection source.",
+        labels: ["Public Datasets", "Web Videos", "Self-collected"],
+        values: [479, 353, 261],
+        colors: ["#4f8cff", "#2fbf8f", "#f2b84b"]
       },
-      references: [
-        {
-          id: "ref-main",
-          label: "[1]",
-          title: "Paper Title",
-          authors: "Author et al.",
-          venue: "Conference",
-          year: "2026",
-          url: "https://example.com"
-        },
-        {
-          id: "ref-data",
-          label: "[2]",
-          title: "Dataset Source Paper",
-          authors: "Dataset Author et al.",
-          venue: "Workshop",
-          year: "2026",
-          url: "https://example.com/data"
-        },
-        {
-          id: "ref-model",
-          label: "[3]",
-          title: "Model Architecture Reference",
-          authors: "Model Author et al.",
-          venue: "Journal",
-          year: "2026",
-          url: "https://example.com/model"
-        }
-      ],
+      horizontalMetrics: {},
+      verticalCharts: [],
+      references: [],
       footer: {
         organization: "Colalab",
         year: 2026
@@ -139,18 +113,7 @@
         titleFontFamily: "Arial, sans-serif"
       }
     };
-
-    window.MathJax = {
-      tex: {
-        inlineMath: [["\\(", "\\)"], ["$", "$"]],
-        displayMath: [["\\[", "\\]"]]
-      },
-      svg: {
-        fontCache: "global"
-      }
-    };
   </script>
-  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
   <script defer src="static/js/index.js"></script>
   <script defer src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
 </head>
@@ -163,8 +126,9 @@
       </a>
       <div class="page-nav-links">
         <a href="#overview" data-nav-link>Overview</a>
-        <a href="#model" data-nav-link>Model</a>
-        <a href="#data" data-nav-link>Data</a>
+        <a href="#tasks" data-nav-link>Tasks</a>
+        <a href="#distribution" data-nav-link>Distribution</a>
+        <a href="#construction" data-nav-link>Construction</a>
         <a href="#results" data-nav-link>Results</a>
         <a href="#citation" data-nav-link>Citation</a>
       </div>
@@ -225,7 +189,12 @@
       </div>
       <div class="hero-title-in-cola">
         <h1 class="publication-title publication-title-cola" data-hero-title>
-          <span class="title-mark">ViSTR-Bench:</span> Can MLLMs Reason from Continuous Visual Cues in Dynamic Scenes?
+          <span class="title-mark">ViSTR-Bench:</span>
+          <span class="title-rest">
+            <span class="title-line">Can MLLMs Reason from</span>
+            <span class="title-line">Continuous Visual Cues in</span>
+            <span class="title-line">Dynamic Scenes?</span>
+          </span>
         </h1>
       </div>
     </section>
@@ -234,7 +203,12 @@
       <div class="container content-narrow">
         <div class="collapsed-title-bar" data-collapsed-title>
           <h2 class="collapsed-title">
-            <span class="title-mark">ViSTR-Bench:</span> Can MLLMs Reason from Continuous Visual Cues in Dynamic Scenes?
+            <span class="title-mark">ViSTR-Bench:</span>
+            <span class="title-rest">
+              <span class="title-line">Can MLLMs Reason from</span>
+              <span class="title-line">Continuous Visual Cues in</span>
+              <span class="title-line">Dynamic Scenes?</span>
+            </span>
           </h2>
           <div class="after-hero-cola" aria-hidden="true">
             <div class="after-hero-bubbles">
@@ -251,9 +225,8 @@
             <div class="after-hero-cola-wave after-hero-cola-wave-front"></div>
           </div>
         </div>
-        <div class="authors-block">
-          <!-- <p class="team-label">Project Team</p> -->
 
+        <div class="authors-block">
           <div class="author-line author-line-blue">
             <span class="author-block">Han Li<sup>1,2</sup></span>
             <span class="author-block">Zehao Huang</span>
@@ -263,64 +236,32 @@
             <span class="author-block">Naiyan Wang</span>
             <span class="author-block">Si Liu<sup>1</sup></span>
           </div>
-
-          <!-- <div class="author-line author-line-amber">
-            <span class="author-block">Sixth Author<sup>3</sup></span>
-            <span class="author-block">Seventh Author<sup>2</sup></span>
-            <span class="author-block">Eighth Author<sup>1</sup></span>
-            <span class="author-block">Ninth Author<sup>1</sup></span>
-            <span class="author-block">Tenth Author<sup>1</sup></span>
-            <span class="author-block">Eleventh Author<sup>1</sup></span>
-          </div> -->
-
-          <!-- <div class="author-line author-line-green">
-            <span class="author-block">Twelfth Author<sup>1</sup></span>
-            <span class="author-block">Thirteenth Author<sup>4</sup></span>
-            <span class="author-block">Fourteenth Author<sup>4</sup></span>
-            <span class="author-block">Fifteenth Author<sup>4</sup></span>
-            <span class="author-block">Sixteenth Author<sup>2</sup></span>
-            <span class="author-block">Seventeenth Author<sup>2</sup></span>
-            <span class="author-block">Eighteenth Author<sup>1</sup></span>
-          </div> -->
-
-          <!-- <p class="authors-note">*denotes equal contribution, listed in alphabetical order</p> -->
-
           <div class="affiliation-line">
             <span>1. Beihang University</span>
             <span>2. Zhongguancun Academy</span>
-            <!-- <span>3. Institution Three</span>
-            <span>4. Institution Four</span> -->
           </div>
         </div>
 
         <div class="resource-grid">
-          <a href="static/pdfs/sample.pdf" target="_blank" class="resource-card">
+          <a href="ViSTR-Bench-Latex/main.pdf" target="_blank" class="resource-card">
             <iconify-icon class="resource-icon resource-icon-paper" icon="material-icon-theme:pdf" aria-hidden="true"></iconify-icon>
             <span>Paper</span>
           </a>
-          <!-- <a href="static/pdfs/sample.pdf" target="_blank" class="resource-card">
-            <iconify-icon class="resource-icon resource-icon-pdf" icon="fluent:document-copy-24-filled" aria-hidden="true"></iconify-icon>
-            <span>Supplementary</span>
-          </a> -->
           <a href="https://github.com" target="_blank" class="resource-card">
             <iconify-icon class="resource-icon resource-icon-code" icon="simple-icons:github" aria-hidden="true"></iconify-icon>
             <span>Code</span>
           </a>
-          <!-- <a href="https://huggingface.co" target="_blank" class="resource-card">
-            <iconify-icon class="resource-icon resource-icon-model" icon="mdi:weight-kilogram" aria-hidden="true"></iconify-icon>
-            <span>Weights</span>
-          </a> -->
           <a href="https://huggingface.co/datasets" target="_blank" class="resource-card">
             <iconify-icon class="resource-icon resource-icon-datasets" icon="devicon:huggingface" aria-hidden="true"></iconify-icon>
-            <span>Datasets</span>
+            <span>Dataset</span>
           </a>
         </div>
       </div>
     </section>
 
-    <section class="media-band">
-      <div class="container media-carousel" data-carousel>
-        <button class="carousel-arrow carousel-arrow-left" type="button" aria-label="Previous slide" data-carousel-prev>
+    <section class="media-band task-examples-band" aria-label="Representative task examples">
+      <div class="container media-carousel task-carousel" data-carousel>
+        <button class="carousel-arrow carousel-arrow-left" type="button" aria-label="Previous task example" data-carousel-prev>
           <svg viewBox="0 0 24 24" aria-hidden="true">
             <path d="M15.4 4.6 8 12l7.4 7.4-1.4 1.4L5.2 12 14 3.2z"></path>
           </svg>
@@ -328,34 +269,177 @@
 
         <div class="media-carousel-viewport">
           <div class="media-carousel-track" data-carousel-track>
-            <article class="media-tile" data-carousel-slide>
-              <video autoplay muted loop playsinline preload="metadata">
-                <source src="static/videos/carousel1.mp4" type="video/mp4">
-              </video>
-              <span class="media-speed-badge">1x</span>
+            <article class="media-tile task-example-card" data-carousel-slide>
+              <div class="task-video-wrap">
+                <video autoplay muted loop playsinline preload="metadata">
+                  <source src="static/videos/carousel1.mp4" type="video/mp4">
+                </video>
+                <span class="task-dimension-badge badge-motion">Motion Perception</span>
+              </div>
+              <div class="task-example-copy">
+                <span>Vehicle Movement</span>
+                <p><strong>Question</strong> Determine whether the vehicle in the green box shows subtle movement during the video.</p>
+                <p><strong>Model Answer</strong> Pending model output.</p>
+              </div>
             </article>
-            <article class="media-tile" data-carousel-slide>
-              <video autoplay muted loop playsinline preload="metadata">
-                <source src="static/videos/carousel2.mp4" type="video/mp4">
-              </video>
-              <span class="media-speed-badge">1x</span>
+
+            <article class="media-tile task-example-card" data-carousel-slide>
+              <div class="task-video-wrap">
+                <video autoplay muted loop playsinline preload="metadata">
+                  <source src="static/videos/carousel2.mp4" type="video/mp4">
+                </video>
+                <span class="task-dimension-badge badge-motion">Motion Perception</span>
+              </div>
+              <div class="task-example-copy">
+                <span>Relative Velocity</span>
+                <p><strong>Question</strong> Determine which prompted vehicle moves faster over time: the green vehicle or the blue vehicle.</p>
+                <p><strong>Model Answer</strong> Pending model output.</p>
+              </div>
             </article>
-            <article class="media-tile" data-carousel-slide>
-              <video autoplay muted loop playsinline preload="metadata">
-                <source src="static/videos/carousel3.mp4" type="video/mp4">
-              </video>
-              <span class="media-speed-badge">1x</span>
+
+            <article class="media-tile task-example-card" data-carousel-slide>
+              <div class="task-video-wrap">
+                <video autoplay muted loop playsinline preload="metadata">
+                  <source src="static/videos/carousel3.mp4" type="video/mp4">
+                </video>
+                <span class="task-dimension-badge badge-spatial">Spatial Relations</span>
+              </div>
+              <div class="task-example-copy">
+                <span>Ego Motion</span>
+                <p><strong>Question</strong> Infer the final position of the target object relative to the moving camera.</p>
+                <p><strong>Model Answer</strong> Pending model output.</p>
+              </div>
             </article>
-            <article class="media-tile" data-carousel-slide>
-              <video autoplay muted loop playsinline preload="metadata">
-                <source src="static/videos/banner_video.mp4" type="video/mp4">
-              </video>
-              <span class="media-speed-badge">1x</span>
+
+            <article class="media-tile task-example-card" data-carousel-slide>
+              <div class="task-video-wrap">
+                <video autoplay muted loop playsinline preload="metadata">
+                  <source src="static/videos/banner_video.mp4" type="video/mp4">
+                </video>
+                <span class="task-dimension-badge badge-spatial">Spatial Relations</span>
+              </div>
+              <div class="task-example-copy">
+                <span>Passage Feasibility</span>
+                <p><strong>Question</strong> Predict whether the vehicle can pass the cone-constrained area without touching any cone.</p>
+                <p><strong>Model Answer</strong> Pending model output.</p>
+              </div>
+            </article>
+
+            <article class="media-tile task-example-card" data-carousel-slide>
+              <div class="task-video-wrap">
+                <video autoplay muted loop playsinline preload="metadata">
+                  <source src="static/videos/carousel1.mp4" type="video/mp4">
+                </video>
+                <span class="task-dimension-badge badge-outcome">Outcome Prediction</span>
+              </div>
+              <div class="task-example-copy">
+                <span>Basketball Shot</span>
+                <p><strong>Question</strong> Predict whether the basketball will go into the hoop from its observed trajectory.</p>
+                <p><strong>Model Answer</strong> Pending model output.</p>
+              </div>
+            </article>
+
+            <article class="media-tile task-example-card" data-carousel-slide>
+              <div class="task-video-wrap">
+                <video autoplay muted loop playsinline preload="metadata">
+                  <source src="static/videos/carousel2.mp4" type="video/mp4">
+                </video>
+                <span class="task-dimension-badge badge-outcome">Outcome Prediction</span>
+              </div>
+              <div class="task-example-copy">
+                <span>Soccer Shot</span>
+                <p><strong>Question</strong> Predict whether the ball will enter the goal based on its trajectory.</p>
+                <p><strong>Model Answer</strong> Pending model output.</p>
+              </div>
+            </article>
+
+            <article class="media-tile task-example-card" data-carousel-slide>
+              <div class="task-video-wrap">
+                <video autoplay muted loop playsinline preload="metadata">
+                  <source src="static/videos/carousel3.mp4" type="video/mp4">
+                </video>
+                <span class="task-dimension-badge badge-outcome">Outcome Prediction</span>
+              </div>
+              <div class="task-example-copy">
+                <span>Golf Shot</span>
+                <p><strong>Question</strong> Predict whether the golf ball will go into the hole from the observed motion.</p>
+                <p><strong>Model Answer</strong> Pending model output.</p>
+              </div>
+            </article>
+
+            <article class="media-tile task-example-card" data-carousel-slide>
+              <div class="task-video-wrap">
+                <video autoplay muted loop playsinline preload="metadata">
+                  <source src="static/videos/banner_video.mp4" type="video/mp4">
+                </video>
+                <span class="task-dimension-badge badge-outcome">Outcome Prediction</span>
+              </div>
+              <div class="task-example-copy">
+                <span>Billiards Shot</span>
+                <p><strong>Question</strong> Predict whether the target ball will enter the pocket from its current trajectory.</p>
+                <p><strong>Model Answer</strong> Pending model output.</p>
+              </div>
+            </article>
+
+            <article class="media-tile task-example-card" data-carousel-slide>
+              <div class="task-video-wrap">
+                <video autoplay muted loop playsinline preload="metadata">
+                  <source src="static/videos/carousel1.mp4" type="video/mp4">
+                </video>
+                <span class="task-dimension-badge badge-outcome">Outcome Prediction</span>
+              </div>
+              <div class="task-example-copy">
+                <span>Swimming Race</span>
+                <p><strong>Question</strong> Determine which swimmer will reach the finish line first between two candidate lanes.</p>
+                <p><strong>Model Answer</strong> Pending model output.</p>
+              </div>
+            </article>
+
+            <article class="media-tile task-example-card" data-carousel-slide>
+              <div class="task-video-wrap">
+                <video autoplay muted loop playsinline preload="metadata">
+                  <source src="static/videos/carousel2.mp4" type="video/mp4">
+                </video>
+                <span class="task-dimension-badge badge-physical">Physical Dynamics</span>
+              </div>
+              <div class="task-example-copy">
+                <span>Jenga Stability</span>
+                <p><strong>Question</strong> Predict whether the tower will remain stable after the target block is removed.</p>
+                <p><strong>Model Answer</strong> Pending model output.</p>
+              </div>
+            </article>
+
+            <article class="media-tile task-example-card" data-carousel-slide>
+              <div class="task-video-wrap">
+                <video autoplay muted loop playsinline preload="metadata">
+                  <source src="static/videos/carousel3.mp4" type="video/mp4">
+                </video>
+                <span class="task-dimension-badge badge-physical">Physical Dynamics</span>
+              </div>
+              <div class="task-example-copy">
+                <span>Mikado Dependency</span>
+                <p><strong>Question</strong> Predict whether the indicated stick can be picked up without touching other sticks.</p>
+                <p><strong>Model Answer</strong> Pending model output.</p>
+              </div>
+            </article>
+
+            <article class="media-tile task-example-card" data-carousel-slide>
+              <div class="task-video-wrap">
+                <video autoplay muted loop playsinline preload="metadata">
+                  <source src="static/videos/banner_video.mp4" type="video/mp4">
+                </video>
+                <span class="task-dimension-badge badge-physical">Physical Dynamics</span>
+              </div>
+              <div class="task-example-copy">
+                <span>Knot Type</span>
+                <p><strong>Question</strong> Determine whether the manipulated knot is a slip knot or a fixed knot.</p>
+                <p><strong>Model Answer</strong> Pending model output.</p>
+              </div>
             </article>
           </div>
         </div>
 
-        <button class="carousel-arrow carousel-arrow-right" type="button" aria-label="Next slide" data-carousel-next>
+        <button class="carousel-arrow carousel-arrow-right" type="button" aria-label="Next task example" data-carousel-next>
           <svg viewBox="0 0 24 24" aria-hidden="true">
             <path d="m8.6 19.4 7.4-7.4-7.4-7.4L10 3.2 18.8 12 10 20.8z"></path>
           </svg>
@@ -367,468 +451,287 @@
 
     <section class="section content-section" id="overview">
       <div class="container content-wide">
-        <div class="paragraph-with-reference paragraph-with-reference-lead">
-          <p class="lead-paragraph">
-            We introduce <strong>Project Title</strong>, our placeholder effort for building an open-source, widely applicable
-            research system <a class="inline-ref" href="#ref-main" data-ref="ref-main">[1]</a>. This page is organized to
-            highlight the central idea, team, resources, media, method, data, and results while keeping the title, authors,
-            figures, and links easy to replace with your own project details.
-          </p>
-          <aside class="paragraph-reference-note" data-reference-note="ref-main" aria-label="Reference for this paragraph"></aside>
+        <h2 class="section-title">Overview</h2>
+        <p class="lead-paragraph">
+          ViSTR-Bench evaluates whether multimodal large language models can reason from continuous visual cues in dynamic scenes. This page introduces the benchmark through its task definition, task and data distribution, construction pipeline, and evaluation results.
+        </p>
+
+        <div class="overview-stat-grid" aria-label="Benchmark statistics">
+          <article class="overview-stat">
+            <strong>4</strong>
+            <span>reasoning dimensions</span>
+          </article>
+          <article class="overview-stat">
+            <strong>12</strong>
+            <span>subtasks</span>
+          </article>
+          <article class="overview-stat">
+            <strong>1,093</strong>
+            <span>video QA pairs</span>
+          </article>
+          <article class="overview-stat">
+            <strong>3</strong>
+            <span>data source types</span>
+          </article>
         </div>
 
-        <div class="method-diagram-scroll" data-method-diagram>
-          <div class="method-diagram-stage" aria-label="Interactive method diagram">
-            <div class="method-node method-node-data is-active" data-method-node="data">
-              <span class="method-node-kicker">01</span>
-              <strong>Data</strong>
-              <span>Curated demonstrations, task metadata, and multimodal observations.</span>
-            </div>
-            <div class="method-node method-node-model" data-method-node="model">
-              <span class="method-node-kicker">02</span>
-              <strong>Model</strong>
-              <span>Shared policy backbone that aligns perception, language, and actions.</span>
-            </div>
-            <div class="method-node method-node-deployment" data-method-node="deployment">
-              <span class="method-node-kicker">03</span>
-              <strong>Deployment</strong>
-              <span>Task-conditioned execution across new scenes and robot setups.</span>
-            </div>
-            <div class="method-node method-node-feedback" data-method-node="feedback">
-              <span class="method-node-kicker">04</span>
-              <strong>Feedback</strong>
-              <span>Evaluation signals and user corrections feed the next training round.</span>
-            </div>
-
-            <svg class="method-links" viewBox="0 0 1000 520" aria-hidden="true">
-              <path class="method-link method-link-data" data-method-link="data" d="M360 148 C450 98 550 98 640 148"></path>
-              <path class="method-link method-link-model" data-method-link="model" d="M750 220 C792 248 792 296 750 324"></path>
-              <path class="method-link method-link-deployment" data-method-link="deployment" d="M640 392 C550 442 450 442 360 392"></path>
-              <path class="method-link method-link-feedback" data-method-link="feedback" d="M250 324 C208 296 208 248 250 220"></path>
-            </svg>
-          </div>
-
-          <div class="method-steps-viewport" aria-label="Method steps">
-            <div class="method-scroll-steps" data-method-track>
-              <article class="method-step is-active" data-method-step="data">
-                <span>Step 1</span>
-                <h3>Data</h3>
-                <p>Start with diverse demonstrations and structured metadata that describe the scene, task intent, and expected behavior.</p>
-              </article>
-              <article class="method-step" data-method-step="model">
-                <span>Step 2</span>
-                <h3>Model</h3>
-                <p>Train a unified model that transforms observations and task prompts into robust, reusable action representations.</p>
-              </article>
-              <article class="method-step" data-method-step="deployment">
-                <span>Step 3</span>
-                <h3>Deployment</h3>
-                <p>Deploy the policy to new environments, where it conditions on the current task and adapts to visual and physical variation.</p>
-              </article>
-              <article class="method-step" data-method-step="feedback">
-                <span>Step 4</span>
-                <h3>Feedback</h3>
-                <p>Collect failures, human corrections, and evaluation metrics, then feed them back into the next iteration of the system.</p>
-              </article>
-            </div>
-          </div>
+        <div class="overview-link-grid">
+          <a href="#tasks" class="overview-link-card">
+            <iconify-icon icon="fluent:video-clip-24-filled" aria-hidden="true"></iconify-icon>
+            <span>Task Definition</span>
+            <p>Four dimensions and 12 qualitative binary-choice subtasks for dynamic visual reasoning.</p>
+          </a>
+          <a href="#distribution" class="overview-link-card">
+            <iconify-icon icon="mdi:chart-donut" aria-hidden="true"></iconify-icon>
+            <span>Task Distribution</span>
+            <p>Interactive benchmark statistics across dimensions, subtasks, and data sources.</p>
+          </a>
+          <a href="#construction" class="overview-link-card">
+            <iconify-icon icon="mdi:source-branch" aria-hidden="true"></iconify-icon>
+            <span>Benchmark Construction</span>
+            <p>A controlled pipeline for collecting videos, preprocessing clips, generating QA pairs, and quality control.</p>
+          </a>
+          <a href="#results" class="overview-link-card">
+            <iconify-icon icon="mdi:trophy-variant" aria-hidden="true"></iconify-icon>
+            <span>Evaluation Results</span>
+            <p>Current MLLMs remain far below human performance on spatial-temporal reasoning.</p>
+          </a>
         </div>
+      </div>
+    </section>
 
-        <div class="video-card">
-          <div class="video-card-copy">
-            <span class="eyebrow-label">Project video</span>
-            <h3>Overview presentation</h3>
-            <p>Use this embedded video slot for a paper overview, experiment montage, or narrated demo.</p>
+    <section class="section content-section" id="tasks">
+      <div class="container content-wide">
+        <h2 class="section-title">Task Definition</h2>
+        <div class="definition-layout">
+          <div class="definition-copy">
+            <p class="body-paragraph">
+              Each ViSTR-Bench task requires models to aggregate temporal evidence and make qualitative judgments about motion states, spatial relations, future outcomes, or latent physical properties.
+            </p>
+            <div class="dimension-card-grid">
+              <article class="dimension-card dimension-motion">
+                <span>Motion Perception</span>
+                <p>Vehicle Movement and Relative Velocity evaluate whether models can distinguish true object motion from apparent visual changes caused by camera movement or viewpoint variation.</p>
+              </article>
+              <article class="dimension-card dimension-spatial">
+                <span>Spatial Relations</span>
+                <p>Ego Motion and Passage Feasibility require models to account for camera motion, object positions, scene layout, and spatial clearance over time.</p>
+              </article>
+              <article class="dimension-card dimension-outcome">
+                <span>Outcome Prediction</span>
+                <p>Basketball, Soccer, Golf, Billiards, and Swimming tasks test whether models can extrapolate trajectories and infer outcome-level consequences before final outcomes are visible.</p>
+              </article>
+              <article class="dimension-card dimension-physical">
+                <span>Physical Dynamics</span>
+                <p>Jenga Stability, Mikado Dependency, and Knot Type examine latent physical states such as stability, contact dependencies, and knot structure.</p>
+              </article>
+            </div>
           </div>
-          <figure class="video-embed-wrap">
-            <iframe
-              width="800"
-              height="450"
-              src="https://www.youtube.com/embed/JkaxUblCGz0"
-              title="Project video"
-              frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowfullscreen>
-            </iframe>
+          <figure class="paper-figure-card">
+            <img src="static/images/task-definition-1.png" alt="Representative task examples from ViSTR-Bench">
+            <figcaption>
+              Representative task examples from ViSTR-Bench. Each task is formulated as a qualitative binary-choice question requiring temporal evidence.
+              <a href="static/images/task-definition-1.png" target="_blank">Open full figure</a>
+            </figcaption>
           </figure>
         </div>
       </div>
     </section>
 
-    <section class="section content-section" id="model">
+    <section class="section content-section" id="distribution">
       <div class="container content-wide">
-        <h2 class="section-title">The Model</h2>
-        <div class="paragraph-with-reference">
-          <p class="body-paragraph">
-            The design of Project Title emphasizes flexibility and scale: the system is meant to support multiple task
-            definitions, observation layouts, and deployment settings while remaining simple enough to finetune or adapt
-            <a class="inline-ref" href="#ref-model" data-ref="ref-model">[3]</a>. This placeholder block should eventually
-            describe your architecture, input modalities, output space, and why the method is broadly useful.
-          </p>
-          <aside class="paragraph-reference-note" data-reference-note="ref-model" aria-label="Reference for this paragraph"></aside>
+        <h2 class="section-title">Task Distribution</h2>
+        <p class="body-paragraph">
+          ViSTR-Bench contains 1,093 video question-answer pairs across four reasoning dimensions and 12 subtasks, collected from public datasets, curated web videos, and self-collected recordings.
+        </p>
+
+        <div class="distribution-dashboard">
+          <div class="distribution-chart-panel">
+            <div class="interactive-panel-copy">
+              <span class="eyebrow-label">Reasoning taxonomy</span>
+              <h3>Dimensions and subtasks</h3>
+              <p>Hover a ring segment to inspect task counts and data-source composition.</p>
+            </div>
+            <div class="distribution-nested-chart" data-distribution-chart aria-label="Nested task distribution chart"></div>
+          </div>
+
+          <div class="data-pie-panel source-pie-panel" data-data-pie-panel>
+            <div class="interactive-panel-copy">
+              <span class="eyebrow-label">Data sources</span>
+              <h3>Collection mix</h3>
+              <p>Public datasets, curated web videos, and self-collected recordings provide complementary scene coverage.</p>
+            </div>
+            <div class="data-pie-plot source-pie-plot" data-data-pie aria-label="Data source composition chart"></div>
+          </div>
         </div>
 
-        <div class="model-architecture" data-model-architecture>
-          <div class="model-architecture-header">
-            <div>
-              <span class="eyebrow-label">Mode consistency architecture</span>
-              <h3>Replaceable model system diagram</h3>
-            </div>
-            <p>
-              Left: expert demonstration collection. Middle: model arithmetic. Right: real-robot inference. Bottom:
-              DAgger feedback and stage advantage from on-policy experience.
-            </p>
+        <div class="tables-panel distribution-table-panel" data-enhanced-tables>
+          <div class="demo-gallery-copy tables-panel-copy">
+            <span class="eyebrow-label">Task-level statistics</span>
+            <h3>Source breakdown by subtask</h3>
+            <p>Each row reports the number of QA pairs and the contribution from each collection source.</p>
           </div>
-
-          <div class="model-architecture-canvas system-architecture" role="img" aria-label="Mode consistency system architecture diagram">
-            <svg class="system-architecture-lines" viewBox="0 0 1200 560" aria-hidden="true">
-              <path class="system-line system-line-main system-line-data" d="M276 170 H336"></path>
-              <path class="system-line system-line-main system-line-inference" d="M864 170 H924"></path>
-              <path class="system-line system-line-green" d="M162 330 C162 392 262 438 356 460"></path>
-              <path class="system-line system-line-green" d="M596 460 H640"></path>
-              <path class="system-line system-line-feedback" d="M874 460 C984 450 1038 392 1038 330"></path>
-            </svg>
-
-            <section class="system-panel system-panel-train">
-              <div class="system-panel-heading">
-                <span class="system-formula">\(P_{\mathrm{train}}\)</span>
-                <span>Expert Data</span>
-              </div>
-              <div class="system-mini-plot" aria-hidden="true">
-                <svg viewBox="0 0 160 96">
-                  <path d="M18 72 C42 30 70 28 92 34 C118 42 128 24 142 16"></path>
-                </svg>
-              </div>
-            </section>
-
-            <section class="system-panel system-panel-model">
-              <div class="system-panel-heading">
-                <span class="system-formula">\(Q_{\mathrm{model}}\)</span>
-                <span>Model Arithmetic</span>
-              </div>
-              <svg class="system-model-lines" viewBox="0 0 390 184" aria-hidden="true">
-                <defs>
-                  <marker id="system-arrow-src" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="3" markerHeight="3" orient="auto-start-reverse">
-                    <path d="M0 0 L10 5 L0 10 Z"></path>
-                  </marker>
-                  <marker id="system-arrow-purple" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="3" markerHeight="3" orient="auto-start-reverse">
-                    <path d="M0 0 L10 5 L0 10 Z"></path>
-                  </marker>
-                </defs>
-                <path class="system-line system-line-src" d="M89 61 H104"></path>
-                <path class="system-line system-line-src" d="M89 123 H104"></path>
-                <path class="system-line system-line-purple" d="M180 61 C214 61 226 92 253 92"></path>
-                <path class="system-line system-line-purple system-line-delay" d="M180 123 C214 123 226 92 253 92"></path>
-              </svg>
-              <div class="system-model-grid">
-                <div class="system-stack">
-                  <span>SRC 1</span>
-                  <span>SRC 2</span>
-                </div>
-                <div class="system-stack system-stack-q">
-                  <span>\(Q_1\)</span>
-                  <span>\(Q_2\)</span>
-                </div>
-                <div class="system-plus">+</div>
-                <div class="system-mix">
-                  <span class="system-formula">\(Q_{\mathrm{mix}}\)</span>
-                  <small>Arithmetic</small>
-                </div>
-              </div>
-            </section>
-
-            <section class="system-panel system-panel-test">
-              <div class="system-panel-heading">
-                <span class="system-formula">\(P_{\mathrm{test}}\)</span>
-                <span>Deployment</span>
-              </div>
-              <div class="system-mini-plot" aria-hidden="true">
-                <svg viewBox="0 0 160 96">
-                  <path d="M20 72 C42 34 70 26 96 34 C118 42 126 24 142 18"></path>
-                </svg>
-              </div>
-            </section>
-
-            <div class="system-chip system-chip-advantage">
-              <span>Stage Advantage</span>
-              <small>\(\hat{A}_t = r_t + \gamma V(s_{t+1}) - V(s_t)\)</small>
-            </div>
-            <div class="system-chip system-chip-feedback">
-              <span>DAgger Feedback</span>
-              <small>\(\mathcal{D}_{t+1} \leftarrow \mathcal{D}_t \cup \tau_{\pi}\)</small>
+          <div class="table-card table-card-wide">
+            <div class="table-scroll">
+              <table class="results-table results-table-wide distribution-table">
+                <thead>
+                  <tr class="header-rule">
+                    <th>Task</th>
+                    <th>Dimension</th>
+                    <th>Total</th>
+                    <th>Public</th>
+                    <th>Web</th>
+                    <th>Self</th>
+                    <th>Source Mix</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr data-task-key="vehicle-movement"><td>Vehicle Movement</td><td>Motion Perception</td><td>112</td><td>112</td><td>0</td><td>0</td><td><span class="source-stack" style="--public:100%;--web:0%;--self:0%;"></span></td></tr>
+                  <tr data-task-key="relative-velocity"><td>Relative Velocity</td><td>Motion Perception</td><td>84</td><td>84</td><td>0</td><td>0</td><td><span class="source-stack" style="--public:100%;--web:0%;--self:0%;"></span></td></tr>
+                  <tr data-task-key="ego-motion"><td>Ego Motion</td><td>Spatial Relations</td><td>131</td><td>131</td><td>0</td><td>0</td><td><span class="source-stack" style="--public:100%;--web:0%;--self:0%;"></span></td></tr>
+                  <tr data-task-key="passage-feasibility"><td>Passage Feasibility</td><td>Spatial Relations</td><td>55</td><td>0</td><td>0</td><td>55</td><td><span class="source-stack" style="--public:0%;--web:0%;--self:100%;"></span></td></tr>
+                  <tr data-task-key="basketball-shot"><td>Basketball Shot</td><td>Outcome Prediction</td><td>124</td><td>124</td><td>0</td><td>0</td><td><span class="source-stack" style="--public:100%;--web:0%;--self:0%;"></span></td></tr>
+                  <tr data-task-key="soccer-shot"><td>Soccer Shot</td><td>Outcome Prediction</td><td>158</td><td>0</td><td>158</td><td>0</td><td><span class="source-stack" style="--public:0%;--web:100%;--self:0%;"></span></td></tr>
+                  <tr data-task-key="golf-shot"><td>Golf Shot</td><td>Outcome Prediction</td><td>53</td><td>0</td><td>53</td><td>0</td><td><span class="source-stack" style="--public:0%;--web:100%;--self:0%;"></span></td></tr>
+                  <tr data-task-key="billiards-shot"><td>Billiards Shot</td><td>Outcome Prediction</td><td>75</td><td>28</td><td>47</td><td>0</td><td><span class="source-stack" style="--public:37.3%;--web:62.7%;--self:0%;"></span></td></tr>
+                  <tr data-task-key="swimming-race"><td>Swimming Race</td><td>Outcome Prediction</td><td>72</td><td>0</td><td>72</td><td>0</td><td><span class="source-stack" style="--public:0%;--web:100%;--self:0%;"></span></td></tr>
+                  <tr data-task-key="jenga-stability"><td>Jenga Stability</td><td>Physical Dynamics</td><td>117</td><td>0</td><td>0</td><td>117</td><td><span class="source-stack" style="--public:0%;--web:0%;--self:100%;"></span></td></tr>
+                  <tr data-task-key="mikado-dependency"><td>Mikado Dependency</td><td>Physical Dynamics</td><td>83</td><td>0</td><td>0</td><td>83</td><td><span class="source-stack" style="--public:0%;--web:0%;--self:100%;"></span></td></tr>
+                  <tr data-task-key="knot-type"><td>Knot Type</td><td>Physical Dynamics</td><td>29</td><td>0</td><td>23</td><td>6</td><td><span class="source-stack" style="--public:0%;--web:79.3%;--self:20.7%;"></span></td></tr>
+                </tbody>
+              </table>
             </div>
           </div>
-
-          <div class="model-architecture-legend">
-            <span><i class="legend-dot legend-dot-data"></i>Data collection</span>
-            <span><i class="legend-dot legend-dot-model"></i>Model training</span>
-            <span><i class="legend-dot legend-dot-deploy"></i>Inference</span>
-            <span><i class="legend-dot legend-dot-feedback"></i>Feedback</span>
+          <div class="source-legend">
+            <span><i class="source-dot source-dot-public"></i>Public datasets</span>
+            <span><i class="source-dot source-dot-web"></i>Web videos</span>
+            <span><i class="source-dot source-dot-self"></i>Self-collected</span>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="section content-section" id="data">
+    <section class="section content-section" id="construction">
       <div class="container content-wide">
-        <h2 class="section-title">The Data</h2>
-        <div class="paragraph-with-reference">
-          <p class="body-paragraph">
-            This section is reserved for dataset composition, collection diversity, task coverage, and benchmark setup
-            <a class="inline-ref" href="#ref-data" data-ref="ref-data">[2]</a>. If your project is not primarily
-            data-centric, it can easily become a training pipeline or system setup section. The structure here uses
-            compact prose followed by a single supporting figure for fast scanning.
-          </p>
-          <aside class="paragraph-reference-note" data-reference-note="ref-data" aria-label="Reference for this paragraph"></aside>
-        </div>
-        <div class="interactive-data-panel">
-          <div class="interactive-panel-copy">
-            <span class="eyebrow-label">Interactive embedding</span>
-            <h3>3D t-SNE / scatter visualization</h3>
-            <p>
-              Rotate, zoom, and inspect placeholder clusters that represent dataset sources, model rollouts, and
-              held-out evaluation trajectories. Replace this synthetic data with your own embedding coordinates.
-            </p>
-          </div>
-          <div id="tsne-plot" class="tsne-plot" aria-label="Interactive 3D scatter plot"></div>
-        </div>
+        <h2 class="section-title">Benchmark Construction</h2>
+        <p class="body-paragraph">
+          ViSTR-Bench is constructed through a systematic multi-stage pipeline, including data collection, video preprocessing, question-answer pair generation, and human quality control.
+        </p>
 
-        <div class="data-pie-panel" data-data-pie-panel>
-          <div class="interactive-panel-copy">
-            <span class="eyebrow-label">Dataset mix</span>
-            <h3>Interactive composition chart</h3>
-            <p>Hover over each slice to pull it forward and reveal the exact contribution to the dataset.</p>
-          </div>
-          <div class="data-pie-plot" data-data-pie aria-label="Interactive dataset composition pie chart"></div>
+        <figure class="paper-figure-card paper-figure-wide">
+          <img src="static/images/construction-pipeline-1.png" alt="Benchmark construction pipeline">
+          <figcaption>
+            Benchmark construction pipeline. Each sample is designed to contain sufficient temporal evidence, support high-level reasoning, and have an unambiguous qualitative answer.
+            <a href="static/images/construction-pipeline-1.png" target="_blank">Open full figure</a>
+          </figcaption>
+        </figure>
+
+        <div class="construction-timeline" aria-label="Benchmark construction steps">
+          <article class="timeline-step">
+            <span>01</span>
+            <h3>Data Collection</h3>
+            <p>Videos are collected from public datasets, curated web videos, and task-specific recordings across tabletop, indoor, and outdoor scenarios.</p>
+          </article>
+          <article class="timeline-step">
+            <span>02</span>
+            <h3>Video Preprocessing</h3>
+            <p>Event localization, visual prompting, and outcome truncation remove irrelevant context, referential ambiguity, and answer-revealing frames.</p>
+          </article>
+          <article class="timeline-step">
+            <span>03</span>
+            <h3>QA Pair Generation</h3>
+            <p>All instances are formulated as qualitative binary-choice questions using task-specific templates and randomized candidate ordering.</p>
+          </article>
+          <article class="timeline-step">
+            <span>04</span>
+            <h3>Human Quality Control</h3>
+            <p>Expert annotators verify visibility, temporal sufficiency, objectivity, and non-triviality for reliable benchmark samples.</p>
+          </article>
         </div>
       </div>
     </section>
 
     <section class="section content-section" id="results">
       <div class="container content-wide">
-        <h2 class="section-title">The Results</h2>
-        <div class="paragraph-with-reference">
-          <p class="body-paragraph">
-            We evaluate Project Title across several placeholder tasks and scenarios. This section is intended to hold your
-            main quantitative comparison, finetuning or ablation results, and a concise narrative for where the gains come
-            from <a class="inline-ref" href="#ref-main" data-ref="ref-main">[1]</a>. The tables below use a compact
-            black-rule academic style for dense quantitative comparison.
-          </p>
-          <aside class="paragraph-reference-note" data-reference-note="ref-main" aria-label="Reference for this paragraph"></aside>
-        </div>
-
-        <div class="metrics-dashboard" data-metrics-dashboard>
-          <div class="metrics-header">
-            <div>
-              <span class="eyebrow-label">Benchmarks</span>
-              <h3>Interactive metric comparison</h3>
-            </div>
-            <div class="metric-tabs" role="tablist" aria-label="Metric datasets">
-              <button class="metric-tab is-active" type="button" data-metric-tab="success">Success</button>
-              <button class="metric-tab" type="button" data-metric-tab="generalization">Generalization</button>
-              <button class="metric-tab" type="button" data-metric-tab="efficiency">Efficiency</button>
-            </div>
-          </div>
-          <div class="metric-chart" data-metric-chart aria-label="Metric bar chart"></div>
-        </div>
-
-        <div class="vertical-results-panel" data-vertical-results>
-          <div class="vertical-results-header">
-            <div>
-              <span class="eyebrow-label">Ablation view</span>
-              <h3>Vertical task comparison</h3>
-            </div>
-          </div>
-          <div class="vertical-chart-stage">
-            <button class="vertical-chart-arrow vertical-chart-prev" type="button" aria-label="Previous chart" data-vertical-prev>
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M15.4 4.6 8 12l7.4 7.4-1.4 1.4L5.2 12 14 3.2z"></path>
-              </svg>
-            </button>
-            <div class="vertical-charts-viewport">
-              <div class="vertical-charts-grid" data-vertical-charts></div>
-            </div>
-            <button class="vertical-chart-arrow vertical-chart-next" type="button" aria-label="Next chart" data-vertical-next>
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="m8.6 19.4 7.4-7.4-7.4-7.4L10 3.2 18.8 12 10 20.8z"></path>
-              </svg>
-            </button>
-          </div>
-          <div class="vertical-chart-progress" data-vertical-progress aria-label="Chart progress"></div>
-        </div>
-
-        <div class="demo-gallery" data-demo-gallery>
-          <div class="demo-gallery-copy">
-            <span class="eyebrow-label">Demo gallery</span>
-            <h3>Qualitative rollouts</h3>
-            <p>Use the controls to switch between representative demos, rollout views, and failure cases.</p>
-          </div>
-          <div class="demo-gallery-stage">
-            <button class="demo-gallery-arrow demo-gallery-prev" type="button" aria-label="Previous demo" data-demo-prev>
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M15.4 4.6 8 12l7.4 7.4-1.4 1.4L5.2 12 14 3.2z"></path>
-              </svg>
-            </button>
-            <div class="demo-gallery-viewport">
-              <div class="demo-gallery-track" data-demo-track>
-                <article class="demo-card is-active" data-demo-card>
-                  <video autoplay muted loop playsinline preload="metadata">
-                    <source src="static/videos/carousel1.mp4" type="video/mp4">
-                  </video>
-                  <div class="demo-card-caption">
-                    <span>Demo 1</span>
-                    <strong>Generalist rollout</strong>
-                  </div>
-                </article>
-                <article class="demo-card" data-demo-card>
-                  <video autoplay muted loop playsinline preload="metadata">
-                    <source src="static/videos/carousel2.mp4" type="video/mp4">
-                  </video>
-                  <div class="demo-card-caption">
-                    <span>Demo 2</span>
-                    <strong>Long-horizon execution</strong>
-                  </div>
-                </article>
-                <article class="demo-card" data-demo-card>
-                  <video autoplay muted loop playsinline preload="metadata">
-                    <source src="static/videos/carousel3.mp4" type="video/mp4">
-                  </video>
-                  <div class="demo-card-caption">
-                    <span>Demo 3</span>
-                    <strong>Out-of-distribution scene</strong>
-                  </div>
-                </article>
-                <article class="demo-card demo-card-player" data-demo-card data-demo-manual-video>
-                  <video controls playsinline preload="metadata">
-                    <source src="static/videos/banner_video.mp4" type="video/mp4">
-                  </video>
-                  <div class="demo-card-caption">
-                    <span>Playable demo</span>
-                    <strong>Scrubbable example video</strong>
-                  </div>
-                </article>
-              </div>
-            </div>
-            <button class="demo-gallery-arrow demo-gallery-next" type="button" aria-label="Next demo" data-demo-next>
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="m8.6 19.4 7.4-7.4-7.4-7.4L10 3.2 18.8 12 10 20.8z"></path>
-              </svg>
-            </button>
-          </div>
-          <div class="demo-gallery-dots" data-demo-dots></div>
-        </div>
-
-        <div class="tables-panel" data-enhanced-tables>
-          <div class="demo-gallery-copy tables-panel-copy">
-            <span class="eyebrow-label">Result tables</span>
-            <h3>Quantitative comparison</h3>
-            <p>Hover to scan rows and columns; click a row to pin it while comparing methods across settings.</p>
-          </div>
-          <div class="tables-wrap">
-            <div class="table-card">
-              <div class="table-scroll">
-                <table class="results-table results-table-compact">
-                  <thead>
-                    <tr>
-                      <th colspan="4" class="table-title">Zero-shot</th>
-                    </tr>
-                    <tr class="header-rule">
-                      <th></th>
-                      <th>Task A</th>
-                      <th>Task B</th>
-                      <th>Task C</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>Baseline 1</td>
-                      <td>0.20</td>
-                      <td>0.35</td>
-                      <td>0.60</td>
-                    </tr>
-                    <tr>
-                      <td>Baseline 2</td>
-                      <td class="is-best">0.50</td>
-                      <td>&mdash;</td>
-                      <td class="is-best">0.85</td>
-                    </tr>
-                    <tr class="strong-row bottom-rule">
-                      <td>Project Title</td>
-                      <td>0.50</td>
-                      <td>0.70</td>
-                      <td>0.80</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-
-            <div class="table-card table-card-wide">
-              <div class="table-scroll">
-                <table class="results-table results-table-wide">
-                  <thead>
-                    <tr>
-                      <th colspan="8" class="table-title">Finetuning</th>
-                    </tr>
-                    <tr class="header-rule">
-                      <th></th>
-                      <th>Setup 1</th>
-                      <th>Setup 2</th>
-                      <th>Setup 3<sup>*</sup></th>
-                      <th>Setup 4<sup>&dagger;</sup></th>
-                      <th>Setup 5<sup>&dagger;</sup></th>
-                      <th>Setup 6</th>
-                      <th>Average</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>From Scratch</td>
-                      <td>0.25</td>
-                      <td>0.45</td>
-                      <td>0.10</td>
-                      <td>0.00</td>
-                      <td>0.20</td>
-                      <td>0.20</td>
-                      <td>0.20</td>
-                    </tr>
-                    <tr>
-                      <td>Backbone Init</td>
-                      <td>0.30</td>
-                      <td>0.00</td>
-                      <td>0.05</td>
-                      <td>0.00</td>
-                      <td>0.50</td>
-                      <td>0.10</td>
-                      <td>0.15</td>
-                    </tr>
-                    <tr class="strong-row bottom-rule">
-                      <td>Project Title</td>
-                      <td>0.50</td>
-                      <td>0.75</td>
-                      <td>0.70</td>
-                      <td>0.60</td>
-                      <td>0.80</td>
-                      <td>1.00</td>
-                      <td>0.72</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-          <p class="table-caption">Table 1. Placeholder benchmark summary for zero-shot and finetuning settings.</p>
-          <div class="table-footnotes">
-            <span><sup>*</sup> New observation input placeholder</span>
-            <span><sup>&dagger;</sup> New action space placeholder</span>
-          </div>
-        </div>
-
-        <p class="body-paragraph body-paragraph-spaced">
-          Out-of-the-box, this placeholder page provides a large title treatment, compact author metadata, a horizontal
-          resource row, a full-width visual band, a single-column narrative, and two dense quantitative tables. The
-          remaining work is swapping in your real content.
+        <h2 class="section-title">Evaluation Results</h2>
+        <p class="body-paragraph">
+          Comprehensive evaluation shows that current MLLMs still struggle with continuous visual cues, subtle motion perception, future outcome prediction, and latent physical reasoning.
         </p>
+
+        <div class="result-key-grid">
+          <article class="result-key-card">
+            <span>Best MLLM</span>
+            <strong>59.8%</strong>
+            <p>Seed-2.0-Pro-thinking achieves the highest overall accuracy among evaluated models.</p>
+          </article>
+          <article class="result-key-card">
+            <span>Frequency Baseline</span>
+            <strong>57.2%</strong>
+            <p>The best model is only 2.6 percentage points above the answer-frequency baseline.</p>
+          </article>
+          <article class="result-key-card">
+            <span>Human Evaluation</span>
+            <strong>89.0%</strong>
+            <p>Human performance remains far above current MLLMs on dynamic spatial-temporal reasoning.</p>
+          </article>
+        </div>
+
+        <figure class="paper-figure-card paper-figure-wide">
+          <img src="static/images/radar-results-1.png" alt="Radar comparison across model groups">
+          <figcaption>
+            Radar comparison across representative model groups and human performance over the 12 subtasks.
+            <a href="static/images/radar-results-1.png" target="_blank">Open full figure</a>
+          </figcaption>
+        </figure>
+
+        <div class="tables-panel results-summary-panel" data-enhanced-tables>
+          <div class="demo-gallery-copy tables-panel-copy">
+            <span class="eyebrow-label">Main results</span>
+            <h3>Compact performance summary</h3>
+            <p>Overall accuracy is averaged over all video question-answer pairs in ViSTR-Bench.</p>
+          </div>
+          <div class="table-card table-card-wide">
+            <div class="table-scroll">
+              <table class="results-table results-table-wide">
+                <thead>
+                  <tr class="header-rule">
+                    <th>Group</th>
+                    <th>Representative Method</th>
+                    <th>Avg. Accuracy</th>
+                    <th>Takeaway</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td>Chance</td><td>Random</td><td>50.0</td><td>Expected accuracy under binary-choice guessing.</td></tr>
+                  <tr><td>Chance</td><td>Frequency</td><td>57.2</td><td>Captures answer-prior bias within each task.</td></tr>
+                  <tr class="strong-row"><td>Proprietary General MLLMs</td><td>Seed-2.0-Pro-thinking</td><td class="is-best">59.8</td><td>Best overall model, but still close to the frequency baseline.</td></tr>
+                  <tr><td>Open-source General MLLMs</td><td>Qwen3.5-27B-thinking</td><td>55.1</td><td>Best open-source result remains below the frequency baseline.</td></tr>
+                  <tr><td>Specialized Spatial MLLMs</td><td>GeoThinker-Qwen2.5VL-7B</td><td>52.0</td><td>Static or geometry-centric spatial training transfers poorly to dynamic reasoning.</td></tr>
+                  <tr class="strong-row bottom-rule"><td>Human Evaluation</td><td>Human</td><td class="is-best">89.0</td><td>Shows a large remaining gap to human-level spatial-temporal reasoning.</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div class="observation-grid">
+          <article class="observation-card">
+            <span>01</span>
+            <p>Current MLLMs remain far from human-level spatial-temporal reasoning.</p>
+          </article>
+          <article class="observation-card">
+            <span>02</span>
+            <p>Proprietary general-purpose MLLMs perform best overall, but the gains over simple baselines are small.</p>
+          </article>
+          <article class="observation-card">
+            <span>03</span>
+            <p>Specialized spatial MLLMs show limited generalization from static spatial training to dynamic scenes.</p>
+          </article>
+          <article class="observation-card">
+            <span>04</span>
+            <p>Outcome Prediction and Physical Dynamics are especially challenging because they require extrapolation and latent physical reasoning.</p>
+          </article>
+        </div>
       </div>
     </section>
 
@@ -843,14 +746,12 @@
             <span class="copy-text">Copy</span>
           </button>
         </div>
-        <p class="citation-note">Please replace the placeholder BibTeX below with your actual paper metadata.</p>
+        <p class="citation-note">Please cite ViSTR-Bench if you find the benchmark useful for your research.</p>
         <div class="references-mobile" data-reference-mobile aria-label="References"></div>
-        <pre id="bibtex-code"><code>@inproceedings{project2026,
-  title={Project Title: An Open-Source Generalist Research Project},
-  author={First Author and Second Author and Third Author and Fourth Author},
-  booktitle={Conference Name},
-  year={2026},
-  url={https://your-project-page.example}
+        <pre id="bibtex-code"><code>@misc{li2026vistrbench,
+  title={ViSTR-Bench: Can MLLMs Reason from Continuous Visual Cues in Dynamic Scenes?},
+  author={Li, Han and Huang, Zehao and Xu, Longfei and Fu, Jiahui and Tian, Daxin and Wang, Naiyan and Liu, Si},
+  year={2026}
 }</code></pre>
       </div>
     </section>
