@@ -1329,7 +1329,7 @@ function setupDistributionChart(distribution) {
     const activeKicker = activeTask ? activeTask.dimensionLabel : "Reasoning dimension";
     const activeDetail = activeTask
       ? getSourceText(activeTask)
-      : `${activeDimension.tasks.length} subtasks`;
+      : `${activeDimension.tasks.length} Subtasks`;
 
     const dimensionSegments = makeRingSegments(dimensions, {
       radius: 86,
@@ -1509,23 +1509,63 @@ function setupEnhancedTables() {
 
     const headerCells = Array.from(table.querySelectorAll("thead tr:last-child th"));
     const skippedBestColumns = table.classList.contains("results-table-wide") ? 2 : 1;
-    headerCells.forEach((_, columnIndex) => {
-      if (columnIndex < skippedBestColumns) {
-        return;
-      }
-      const columnCells = rows
-        .map((row) => row.cells[columnIndex])
-        .filter((cell) => cell && cell.dataset.value !== undefined);
-      if (columnCells.length === 0) {
-        return;
-      }
-      const bestValue = Math.max(...columnCells.map((cell) => Number.parseFloat(cell.dataset.value)));
-      columnCells.forEach((cell) => {
-        if (Number.parseFloat(cell.dataset.value) === bestValue) {
-          cell.classList.add("is-best");
-        }
-      });
+    bodyCells.forEach((cell) => {
+      cell.classList.remove("is-best");
     });
+
+    const resultGroups = [];
+    let currentGroupRows = [];
+    let currentGroupKey = "";
+    rows.forEach((row) => {
+      if (row.classList.contains("group-row")) {
+        if (currentGroupRows.length > 0) {
+          resultGroups.push({
+            key: currentGroupKey,
+            rows: currentGroupRows
+          });
+        }
+        currentGroupKey = Array.from(row.classList)
+          .find((className) => className.startsWith("group-row-"))
+          ?.replace("group-row-", "") || "";
+        currentGroupRows = [];
+        return;
+      }
+      currentGroupRows.push(row);
+    });
+    if (currentGroupRows.length > 0) {
+      resultGroups.push({
+        key: currentGroupKey,
+        rows: currentGroupRows
+      });
+    }
+
+    resultGroups
+      .filter((group) => group.key !== "baseline" && group.key !== "human")
+      .forEach((group) => {
+        headerCells.forEach((_, columnIndex) => {
+          if (columnIndex < skippedBestColumns) {
+            return;
+          }
+          const columnCells = group.rows
+            .map((row) => row.cells[columnIndex])
+            .filter((cell) => cell && cell.dataset.value !== undefined);
+          if (columnCells.length === 0) {
+            return;
+          }
+
+          const values = Array.from(new Set(
+            columnCells.map((cell) => Number.parseFloat(cell.dataset.value))
+          )).sort((a, b) => b - a);
+          const bestValue = values[0];
+
+          columnCells.forEach((cell) => {
+            const value = Number.parseFloat(cell.dataset.value);
+            if (value === bestValue) {
+              cell.classList.add("is-best");
+            }
+          });
+        });
+      });
 
     function clearColumnHover() {
       Array.from(table.querySelectorAll(".is-column-hovered")).forEach((cell) => {

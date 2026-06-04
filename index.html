@@ -282,12 +282,12 @@
                 <span>Vehicle Movement</span>
                 <div class="task-prompt-line">
                   <span class="qa-symbol" aria-hidden="true">?</span>
-                  <p>Determine whether the vehicle in the green box shows subtle movement during the video.</p>
+                  <p>This is a driving video. Please determine whether the vehicle in the green box shows subtle movement during the video. Answer Yes or <u>No</u>.</p>
                 </div>
                 <div class="model-answer-list">
-                  <span class="model-answer" aria-label="GPT answer"><iconify-icon icon="simple-icons:openai" aria-hidden="true"></iconify-icon><em>Pending.</em></span>
-                  <span class="model-answer" aria-label="Gemini answer"><iconify-icon icon="simple-icons:googlegemini" aria-hidden="true"></iconify-icon><em>Pending.</em></span>
-                  <span class="model-answer" aria-label="Claude answer"><iconify-icon icon="simple-icons:anthropic" aria-hidden="true"></iconify-icon><em>Pending.</em></span>
+                  <span class="model-answer" aria-label="Gemini answer"><iconify-icon icon="simple-icons:googlegemini" aria-hidden="true"></iconify-icon><em>Yes.</em></span>
+                  <span class="model-answer" aria-label="Claude answer"><iconify-icon icon="simple-icons:claude" aria-hidden="true"></iconify-icon><em>Yes.</em></span>
+                  <span class="model-answer" aria-label="GPT answer"><iconify-icon icon="simple-icons:openai" aria-hidden="true"></iconify-icon><em>Yes.</em></span>
                 </div>
               </div>
             </article>
@@ -303,12 +303,13 @@
                 <span>Relative Velocity</span>
                 <div class="task-prompt-line">
                   <span class="qa-symbol" aria-hidden="true">?</span>
-                  <p>Determine which prompted vehicle moves faster over time: the green vehicle or the blue vehicle.</p>
+                  <!-- <p>This is a driving video. Please determine which vehicle is moving faster based on their motion over time: the vehicle in the green box or the vehicle in the blue box. Answer Green or <u>Blue</u>.</p> -->
+                  <p>This is a driving video. Please determine which vehicle is moving faster based on their motion over time. Answer Green or <u>Blue</u>.</p>
                 </div>
                 <div class="model-answer-list">
-                  <span class="model-answer" aria-label="GPT answer"><iconify-icon icon="simple-icons:openai" aria-hidden="true"></iconify-icon><em>Pending.</em></span>
-                  <span class="model-answer" aria-label="Gemini answer"><iconify-icon icon="simple-icons:googlegemini" aria-hidden="true"></iconify-icon><em>Pending.</em></span>
-                  <span class="model-answer" aria-label="Claude answer"><iconify-icon icon="simple-icons:anthropic" aria-hidden="true"></iconify-icon><em>Pending.</em></span>
+                  <span class="model-answer" aria-label="Gemini answer"><iconify-icon icon="simple-icons:googlegemini" aria-hidden="true"></iconify-icon><em>Green.</em></span>
+                  <span class="model-answer" aria-label="Claude answer"><iconify-icon icon="simple-icons:claude" aria-hidden="true"></iconify-icon><em>Green.</em></span>
+                  <span class="model-answer" aria-label="GPT answer"><iconify-icon icon="simple-icons:openai" aria-hidden="true"></iconify-icon><em>Green.</em></span>
                 </div>
               </div>
             </article>
@@ -324,12 +325,13 @@
                 <span>Ego Motion</span>
                 <div class="task-prompt-line">
                   <span class="qa-symbol" aria-hidden="true">?</span>
-                  <p>Infer the final position of the target object relative to the moving camera.</p>
+                  <!-- <p>This is a video recorded by a moving camera in an indoor scene. The target object is the chair. Please determine the final position of the target object relative to the camera. Is it Front-left or Front-right? Answer Front-left or <u>Front-right</u>.</p> -->
+                  <p>This is a video recorded by a moving camera. The target object is the chair. Please determine the final position of the target object relative to the camera. Answer Front-left or <u>Front-right</u>.</p>
                 </div>
                 <div class="model-answer-list">
-                  <span class="model-answer" aria-label="GPT answer"><iconify-icon icon="simple-icons:openai" aria-hidden="true"></iconify-icon><em>Pending.</em></span>
-                  <span class="model-answer" aria-label="Gemini answer"><iconify-icon icon="simple-icons:googlegemini" aria-hidden="true"></iconify-icon><em>Pending.</em></span>
-                  <span class="model-answer" aria-label="Claude answer"><iconify-icon icon="simple-icons:anthropic" aria-hidden="true"></iconify-icon><em>Pending.</em></span>
+                  <span class="model-answer" aria-label="Gemini answer"><iconify-icon icon="simple-icons:googlegemini" aria-hidden="true"></iconify-icon><em>Front-left.</em></span>
+                  <span class="model-answer" aria-label="Claude answer"><iconify-icon icon="simple-icons:claude" aria-hidden="true"></iconify-icon><em>Front-left.</em></span>
+                  <span class="model-answer" aria-label="GPT answer"><iconify-icon icon="simple-icons:openai" aria-hidden="true"></iconify-icon><em>Front-left.</em></span>
                 </div>
               </div>
             </article>
@@ -345,12 +347,12 @@
                 <span>Passage Feasibility</span>
                 <div class="task-prompt-line">
                   <span class="qa-symbol" aria-hidden="true">?</span>
-                  <p>Predict whether the vehicle can pass the cone-constrained area without touching any cone.</p>
+                  <p>This is a video of a vehicle and traffic cones. Please predict whether the vehicle can pass the cone-constrained area without touching any cone. Answer Yes or <u>No</u>.</p>
                 </div>
                 <div class="model-answer-list">
-                  <span class="model-answer" aria-label="GPT answer"><iconify-icon icon="simple-icons:openai" aria-hidden="true"></iconify-icon><em>Pending.</em></span>
-                  <span class="model-answer" aria-label="Gemini answer"><iconify-icon icon="simple-icons:googlegemini" aria-hidden="true"></iconify-icon><em>Pending.</em></span>
-                  <span class="model-answer" aria-label="Claude answer"><iconify-icon icon="simple-icons:anthropic" aria-hidden="true"></iconify-icon><em>Pending.</em></span>
+                  <span class="model-answer" aria-label="Gemini answer"><iconify-icon icon="simple-icons:googlegemini" aria-hidden="true"></iconify-icon><em>No.</em></span>
+                  <span class="model-answer" aria-label="Claude answer"><iconify-icon icon="simple-icons:claude" aria-hidden="true"></iconify-icon><em>Yes.</em></span>
+                  <span class="model-answer" aria-label="GPT answer"><iconify-icon icon="simple-icons:openai" aria-hidden="true"></iconify-icon><em>Yes.</em></span>
                 </div>
               </div>
             </article>
@@ -366,12 +368,12 @@
                 <span>Basketball Shot</span>
                 <div class="task-prompt-line">
                   <span class="qa-symbol" aria-hidden="true">?</span>
-                  <p>Predict whether the basketball will go into the hoop from its observed trajectory.</p>
+                  <p>This is a video of a basketball shot. Please predict whether the basketball will go into the hoop. Answer <u>Yes</u> or No.</p>
                 </div>
                 <div class="model-answer-list">
-                  <span class="model-answer" aria-label="GPT answer"><iconify-icon icon="simple-icons:openai" aria-hidden="true"></iconify-icon><em>Pending.</em></span>
-                  <span class="model-answer" aria-label="Gemini answer"><iconify-icon icon="simple-icons:googlegemini" aria-hidden="true"></iconify-icon><em>Pending.</em></span>
-                  <span class="model-answer" aria-label="Claude answer"><iconify-icon icon="simple-icons:anthropic" aria-hidden="true"></iconify-icon><em>Pending.</em></span>
+                  <span class="model-answer" aria-label="Gemini answer"><iconify-icon icon="simple-icons:googlegemini" aria-hidden="true"></iconify-icon><em>No.</em></span>
+                  <span class="model-answer" aria-label="Claude answer"><iconify-icon icon="simple-icons:claude" aria-hidden="true"></iconify-icon><em>Yes.</em></span>
+                  <span class="model-answer" aria-label="GPT answer"><iconify-icon icon="simple-icons:openai" aria-hidden="true"></iconify-icon><em>Yes.</em></span>
                 </div>
               </div>
             </article>
@@ -387,12 +389,12 @@
                 <span>Soccer Shot</span>
                 <div class="task-prompt-line">
                   <span class="qa-symbol" aria-hidden="true">?</span>
-                  <p>Predict whether the ball will enter the goal based on its trajectory.</p>
+                  <p>This is a video of a soccer free kick. Please predict whether the ball will go into the goal based on its trajectory, ignoring the goalkeeper and any defensive interference. Answer Yes or <u>No</u>.</p>
                 </div>
                 <div class="model-answer-list">
-                  <span class="model-answer" aria-label="GPT answer"><iconify-icon icon="simple-icons:openai" aria-hidden="true"></iconify-icon><em>Pending.</em></span>
-                  <span class="model-answer" aria-label="Gemini answer"><iconify-icon icon="simple-icons:googlegemini" aria-hidden="true"></iconify-icon><em>Pending.</em></span>
-                  <span class="model-answer" aria-label="Claude answer"><iconify-icon icon="simple-icons:anthropic" aria-hidden="true"></iconify-icon><em>Pending.</em></span>
+                  <span class="model-answer" aria-label="Gemini answer"><iconify-icon icon="simple-icons:googlegemini" aria-hidden="true"></iconify-icon><em>No.</em></span>
+                  <span class="model-answer" aria-label="Claude answer"><iconify-icon icon="simple-icons:claude" aria-hidden="true"></iconify-icon><em>No.</em></span>
+                  <span class="model-answer" aria-label="GPT answer"><iconify-icon icon="simple-icons:openai" aria-hidden="true"></iconify-icon><em>Yes.</em></span>
                 </div>
               </div>
             </article>
@@ -408,12 +410,12 @@
                 <span>Golf Shot</span>
                 <div class="task-prompt-line">
                   <span class="qa-symbol" aria-hidden="true">?</span>
-                  <p>Predict whether the golf ball will go into the hole from the observed motion.</p>
+                  <p>This is a video of a golf shot. Please predict whether the golf ball will go into the hole based on its observed trajectory. Answer <u>Yes</u> or No.</p>
                 </div>
                 <div class="model-answer-list">
-                  <span class="model-answer" aria-label="GPT answer"><iconify-icon icon="simple-icons:openai" aria-hidden="true"></iconify-icon><em>Pending.</em></span>
-                  <span class="model-answer" aria-label="Gemini answer"><iconify-icon icon="simple-icons:googlegemini" aria-hidden="true"></iconify-icon><em>Pending.</em></span>
-                  <span class="model-answer" aria-label="Claude answer"><iconify-icon icon="simple-icons:anthropic" aria-hidden="true"></iconify-icon><em>Pending.</em></span>
+                  <span class="model-answer" aria-label="Gemini answer"><iconify-icon icon="simple-icons:googlegemini" aria-hidden="true"></iconify-icon><em>No.</em></span>
+                  <span class="model-answer" aria-label="Claude answer"><iconify-icon icon="simple-icons:claude" aria-hidden="true"></iconify-icon><em>No.</em></span>
+                  <span class="model-answer" aria-label="GPT answer"><iconify-icon icon="simple-icons:openai" aria-hidden="true"></iconify-icon><em>No.</em></span>
                 </div>
               </div>
             </article>
@@ -429,12 +431,12 @@
                 <span>Billiards Shot</span>
                 <div class="task-prompt-line">
                   <span class="qa-symbol" aria-hidden="true">?</span>
-                  <p>Predict whether the target ball will enter the pocket from its current trajectory.</p>
+                  <p>This is a video of billiards. Please predict whether the target ball will go into the pocket. Answer Yes or <u>No</u>.</p>
                 </div>
                 <div class="model-answer-list">
-                  <span class="model-answer" aria-label="GPT answer"><iconify-icon icon="simple-icons:openai" aria-hidden="true"></iconify-icon><em>Pending.</em></span>
-                  <span class="model-answer" aria-label="Gemini answer"><iconify-icon icon="simple-icons:googlegemini" aria-hidden="true"></iconify-icon><em>Pending.</em></span>
-                  <span class="model-answer" aria-label="Claude answer"><iconify-icon icon="simple-icons:anthropic" aria-hidden="true"></iconify-icon><em>Pending.</em></span>
+                  <span class="model-answer" aria-label="Gemini answer"><iconify-icon icon="simple-icons:googlegemini" aria-hidden="true"></iconify-icon><em>Yes.</em></span>
+                  <span class="model-answer" aria-label="Claude answer"><iconify-icon icon="simple-icons:claude" aria-hidden="true"></iconify-icon><em>No.</em></span>
+                  <span class="model-answer" aria-label="GPT answer"><iconify-icon icon="simple-icons:openai" aria-hidden="true"></iconify-icon><em>Yes.</em></span>
                 </div>
               </div>
             </article>
@@ -450,12 +452,12 @@
                 <span>Swimming Race</span>
                 <div class="task-prompt-line">
                   <span class="qa-symbol" aria-hidden="true">?</span>
-                  <p>Determine which swimmer will reach the finish line first between two candidate lanes.</p>
+                  <p>This is a video of a swimming race. The swimmer at the top of the frame is in lane 1. Please determine which swimmer will reach the finish line first between lane 4 and lane 6. Answer 4 or <u>6</u>.</p>
                 </div>
                 <div class="model-answer-list">
-                  <span class="model-answer" aria-label="GPT answer"><iconify-icon icon="simple-icons:openai" aria-hidden="true"></iconify-icon><em>Pending.</em></span>
-                  <span class="model-answer" aria-label="Gemini answer"><iconify-icon icon="simple-icons:googlegemini" aria-hidden="true"></iconify-icon><em>Pending.</em></span>
-                  <span class="model-answer" aria-label="Claude answer"><iconify-icon icon="simple-icons:anthropic" aria-hidden="true"></iconify-icon><em>Pending.</em></span>
+                  <span class="model-answer" aria-label="Gemini answer"><iconify-icon icon="simple-icons:googlegemini" aria-hidden="true"></iconify-icon><em>4.</em></span>
+                  <span class="model-answer" aria-label="Claude answer"><iconify-icon icon="simple-icons:claude" aria-hidden="true"></iconify-icon><em>4.</em></span>
+                  <span class="model-answer" aria-label="GPT answer"><iconify-icon icon="simple-icons:openai" aria-hidden="true"></iconify-icon><em>4.</em></span>
                 </div>
               </div>
             </article>
@@ -471,12 +473,12 @@
                 <span>Jenga Stability</span>
                 <div class="task-prompt-line">
                   <span class="qa-symbol" aria-hidden="true">?</span>
-                  <p>Predict whether the tower will remain stable after the target block is removed.</p>
+                  <p>This is a video of a golf shot. Please predict whether the golf ball will go into the hole based on its observed trajectory. Answer <u>Yes</u> or No.</p>
                 </div>
                 <div class="model-answer-list">
-                  <span class="model-answer" aria-label="GPT answer"><iconify-icon icon="simple-icons:openai" aria-hidden="true"></iconify-icon><em>Pending.</em></span>
-                  <span class="model-answer" aria-label="Gemini answer"><iconify-icon icon="simple-icons:googlegemini" aria-hidden="true"></iconify-icon><em>Pending.</em></span>
-                  <span class="model-answer" aria-label="Claude answer"><iconify-icon icon="simple-icons:anthropic" aria-hidden="true"></iconify-icon><em>Pending.</em></span>
+                  <span class="model-answer" aria-label="Gemini answer"><iconify-icon icon="simple-icons:googlegemini" aria-hidden="true"></iconify-icon><em>No.</em></span>
+                  <span class="model-answer" aria-label="Claude answer"><iconify-icon icon="simple-icons:claude" aria-hidden="true"></iconify-icon><em>Yes.</em></span>
+                  <span class="model-answer" aria-label="GPT answer"><iconify-icon icon="simple-icons:openai" aria-hidden="true"></iconify-icon><em>Yes.</em></span>
                 </div>
               </div>
             </article>
@@ -492,12 +494,12 @@
                 <span>Mikado Dependency</span>
                 <div class="task-prompt-line">
                   <span class="qa-symbol" aria-hidden="true">?</span>
-                  <p>Predict whether the indicated stick can be picked up without touching other sticks.</p>
+                  <p>This is a video of a Mikado game. Please predict whether the stick indicated by the pointing stick can be picked up without touching any other sticks. Answer <u>Yes</u> or No.</p>
                 </div>
                 <div class="model-answer-list">
-                  <span class="model-answer" aria-label="GPT answer"><iconify-icon icon="simple-icons:openai" aria-hidden="true"></iconify-icon><em>Pending.</em></span>
-                  <span class="model-answer" aria-label="Gemini answer"><iconify-icon icon="simple-icons:googlegemini" aria-hidden="true"></iconify-icon><em>Pending.</em></span>
-                  <span class="model-answer" aria-label="Claude answer"><iconify-icon icon="simple-icons:anthropic" aria-hidden="true"></iconify-icon><em>Pending.</em></span>
+                  <span class="model-answer" aria-label="Gemini answer"><iconify-icon icon="simple-icons:googlegemini" aria-hidden="true"></iconify-icon><em>No.</em></span>
+                  <span class="model-answer" aria-label="Claude answer"><iconify-icon icon="simple-icons:claude" aria-hidden="true"></iconify-icon><em>No.</em></span>
+                  <span class="model-answer" aria-label="GPT answer"><iconify-icon icon="simple-icons:openai" aria-hidden="true"></iconify-icon><em>Yes.</em></span>
                 </div>
               </div>
             </article>
@@ -513,12 +515,12 @@
                 <span>Knot Type</span>
                 <div class="task-prompt-line">
                   <span class="qa-symbol" aria-hidden="true">?</span>
-                  <p>Determine whether the manipulated knot is a slip knot or a fixed knot.</p>
+                  <p>This is a video of knot manipulation. Please determine whether the knot is a slip knot or a fixed knot. Answer Slip or <u>Fixed</u>.</p>
                 </div>
                 <div class="model-answer-list">
-                  <span class="model-answer" aria-label="GPT answer"><iconify-icon icon="simple-icons:openai" aria-hidden="true"></iconify-icon><em>Pending.</em></span>
-                  <span class="model-answer" aria-label="Gemini answer"><iconify-icon icon="simple-icons:googlegemini" aria-hidden="true"></iconify-icon><em>Pending.</em></span>
-                  <span class="model-answer" aria-label="Claude answer"><iconify-icon icon="simple-icons:anthropic" aria-hidden="true"></iconify-icon><em>Pending.</em></span>
+                  <span class="model-answer" aria-label="Gemini answer"><iconify-icon icon="simple-icons:googlegemini" aria-hidden="true"></iconify-icon><em>Slip.</em></span>
+                  <span class="model-answer" aria-label="Claude answer"><iconify-icon icon="simple-icons:claude" aria-hidden="true"></iconify-icon><em>Fixed.</em></span>
+                  <span class="model-answer" aria-label="GPT answer"><iconify-icon icon="simple-icons:openai" aria-hidden="true"></iconify-icon><em>Fixed.</em></span>
                 </div>
               </div>
             </article>
@@ -711,8 +713,8 @@
 
         <div class="tables-panel results-summary-panel" data-enhanced-tables>
           <div class="demo-gallery-copy tables-panel-copy">
-            <span class="eyebrow-label">Main results</span>
-            <h3>Compact performance summary</h3>
+            <!-- <span class="eyebrow-label">Main results</span> -->
+            <h3>Main results</h3>
             <p>Overall accuracy is averaged over all video question-answer pairs in ViSTR-Bench.</p>
           </div>
           <div class="table-card table-card-wide">
@@ -722,11 +724,11 @@
                   <tr class="header-rule">
                     <th>Method</th>
                     <th>Rank</th>
-                    <th>Avg.</th>
-                    <th>Motion</th>
-                    <th>Spatial</th>
-                    <th>Outcome</th>
-                    <th>Physical</th>
+                    <th>Average</th>
+                    <th>Motion<br>Perception</th>
+                    <th>Spatial<br>Relations</th>
+                    <th>Outcome<br>Prediction</th>
+                    <th>Physical<br>Dynamics</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -746,7 +748,7 @@
                   <tr class="result-group-proprietary"><td>Seed-2.0-Lite</td><td>7</td><td>56.0</td><td>62.5</td><td>57.4</td><td>51.0</td><td>56.2</td></tr>
                   <tr class="result-group-proprietary"><td>Seed-2.0-Lite-thinking</td><td>2</td><td>59.7</td><td>68.4</td><td>66.0</td><td>53.7</td><td>56.2</td></tr>
                   <tr class="result-group-proprietary"><td>Seed-2.0-Pro</td><td>5</td><td>56.6</td><td>62.5</td><td>64.5</td><td>53.0</td><td>53.2</td></tr>
-                  <tr class="strong-row result-group-proprietary"><td>Seed-2.0-Pro-thinking</td><td>1</td><td class="is-best">59.8</td><td>72.2</td><td>68.5</td><td>55.9</td><td>51.6</td></tr>
+                  <tr class="result-group-proprietary"><td>Seed-2.0-Pro-thinking</td><td>1</td><td>59.8</td><td>72.2</td><td>68.5</td><td>55.9</td><td>51.6</td></tr>
                   <tr class="result-group-proprietary"><td>MiMo-V2-Omni</td><td>14</td><td>52.1</td><td>57.8</td><td>58.5</td><td>45.1</td><td>55.5</td></tr>
                   <tr class="result-group-proprietary"><td>MiMo-V2-Omni-thinking</td><td>10</td><td>54.1</td><td>50.3</td><td>67.2</td><td>48.2</td><td>57.8</td></tr>
                   <tr class="result-group-proprietary"><td>MiMo-V2.5</td><td>15</td><td>52.0</td><td>50.2</td><td>57.9</td><td>49.0</td><td>51.9</td></tr>
@@ -754,7 +756,7 @@
                   <tr class="group-row group-row-open"><th colspan="7">Open-source General MLLMs</th></tr>
                   <tr class="result-group-open"><td>LLaVA-OneVision-1.5-4B</td><td>14</td><td>47.8</td><td>48.8</td><td>59.1</td><td>48.3</td><td>40.7</td></tr>
                   <tr class="result-group-open"><td>LLaVA-OneVision-1.5-8B</td><td>11</td><td>48.9</td><td>52.0</td><td>59.5</td><td>47.7</td><td>45.3</td></tr>
-                  <tr class="strong-row result-group-open"><td>Qwen3.5-27B-thinking</td><td>1</td><td>55.1</td><td>55.4</td><td>64.1</td><td>54.3</td><td>48.1</td></tr>
+                  <tr class="result-group-open"><td>Qwen3.5-27B-thinking</td><td>1</td><td>55.1</td><td>55.4</td><td>64.1</td><td>54.3</td><td>48.1</td></tr>
                   <tr class="result-group-open"><td>Qwen3.5-35B-A3B-thinking</td><td>13</td><td>48.7</td><td>45.8</td><td>60.8</td><td>45.4</td><td>48.1</td></tr>
                   <tr class="result-group-open"><td>Qwen3.5-122B-A10B-thinking</td><td>5</td><td>53.0</td><td>51.8</td><td>64.6</td><td>47.4</td><td>58.7</td></tr>
                   <tr class="result-group-open"><td>Qwen3.5-397B-A17B-thinking</td><td>3</td><td>54.3</td><td>57.1</td><td>64.6</td><td>49.6</td><td>53.2</td></tr>
@@ -775,10 +777,10 @@
                   <tr class="result-group-specialized"><td>SpatialLadder-3B</td><td>7</td><td>48.2</td><td>60.3</td><td>53.1</td><td>47.3</td><td>44.7</td></tr>
                   <tr class="result-group-specialized"><td>Spatial-SSRL-7B</td><td>6</td><td>49.5</td><td>46.7</td><td>62.2</td><td>48.2</td><td>53.9</td></tr>
                   <tr class="result-group-specialized"><td>VST-7B-RL</td><td>4</td><td>50.1</td><td>59.7</td><td>53.8</td><td>50.0</td><td>47.5</td></tr>
-                  <tr class="strong-row result-group-specialized"><td>GeoThinker-Qwen2.5VL-7B</td><td>1</td><td>52.0</td><td>54.2</td><td>54.1</td><td>48.2</td><td>61.6</td></tr>
+                  <tr class="result-group-specialized"><td>GeoThinker-Qwen2.5VL-7B</td><td>1</td><td>52.0</td><td>54.2</td><td>54.1</td><td>48.2</td><td>61.6</td></tr>
                   <tr class="result-group-specialized"><td>GeoThinker-Qwen3VL-8B</td><td>5</td><td>50.0</td><td>63.1</td><td>52.6</td><td>48.3</td><td>49.2</td></tr>
                   <tr class="group-row group-row-human"><th colspan="7">Human Evaluation</th></tr>
-                  <tr class="strong-row bottom-rule result-group-human"><td>Human</td><td>-</td><td class="is-best">89.0</td><td class="is-best">93.8</td><td class="is-best">92.6</td><td class="is-best">82.8</td><td class="is-best">90.3</td></tr>
+                  <tr class="bottom-rule result-group-human"><td>Human</td><td>-</td><td>89.0</td><td>93.8</td><td>92.6</td><td>82.8</td><td>90.3</td></tr>
                 </tbody>
               </table>
             </div>
