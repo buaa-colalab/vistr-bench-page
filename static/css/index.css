@@ -4501,6 +4501,7 @@ html[data-theme="dark"] .metric-tab.is-active {
 
 .distribution-nested-chart {
   min-height: 430px;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .distribution-chart-card {
@@ -4526,6 +4527,9 @@ html[data-theme="dark"] .metric-tab.is-active {
   height: auto;
   overflow: visible;
   filter: drop-shadow(0 18px 24px rgba(15, 23, 42, 0.12));
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
+  user-select: none;
 }
 
 .distribution-ring-track,
@@ -4556,6 +4560,15 @@ html[data-theme="dark"] .metric-tab.is-active {
   cursor: pointer;
   opacity: 0.55;
   transition: opacity 0.18s ease, stroke-width 0.18s ease, filter 0.18s ease;
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
+}
+
+.distribution-ring-segment:focus,
+.distribution-ring-segment:focus-visible,
+.distribution-donut-svg:focus,
+.distribution-donut-svg:focus-visible {
+  outline: none;
 }
 
 .distribution-ring-segment.is-active,
@@ -4655,12 +4668,22 @@ html[data-theme="dark"] .metric-tab.is-active {
   color: var(--heading);
   cursor: pointer;
   text-align: left;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .distribution-legend-item.is-active,
 .distribution-legend-item:hover {
   border-color: color-mix(in srgb, var(--slice-color) 36%, var(--panel-border));
   background: color-mix(in srgb, var(--slice-color) 12%, var(--panel-bg));
+}
+
+.distribution-legend-item:focus {
+  outline: none;
+}
+
+.distribution-legend-item:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--slice-color) 56%, var(--heading));
+  outline-offset: 3px;
 }
 
 .distribution-legend-item i {

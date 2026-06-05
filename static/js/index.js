@@ -1312,6 +1312,8 @@ function setupDistributionChart(distribution) {
           cy="160"
           r="${radius}"
           style="--slice-color:${item.color || "#737373"};--slice-size:${visible};stroke-dashoffset:${-offset};"
+          tabindex="-1"
+          focusable="false"
           ${attrs}>
           <title>${escapeHtml(label)}</title>
         </circle>
