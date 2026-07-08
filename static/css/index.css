@@ -4171,6 +4171,49 @@ html[data-theme="dark"] .metric-tab.is-active {
   object-fit: cover;
 }
 
+.task-video-placeholder {
+  width: 100%;
+  height: 100%;
+  background:
+    linear-gradient(135deg, rgba(148, 163, 184, 0.18), rgba(148, 163, 184, 0.04)),
+    repeating-linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0 1px, transparent 1px 12px),
+    #111827;
+}
+
+.task-example-placeholder {
+  cursor: default;
+}
+
+.task-example-placeholder .task-prompt-placeholder p {
+  display: grid;
+  align-content: start;
+  gap: 0.48rem;
+}
+
+.placeholder-line {
+  display: block;
+  width: 76%;
+  height: 0.72rem;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--muted) 24%, transparent);
+}
+
+.placeholder-line-long {
+  width: 92%;
+}
+
+.placeholder-line-short {
+  width: 54%;
+}
+
+.model-answer-placeholder .model-answer {
+  color: var(--muted);
+}
+
+.model-answer-placeholder .model-answer em {
+  min-width: 2rem;
+}
+
 .task-dimension-badge {
   position: absolute;
   left: 0.75rem;
@@ -4392,8 +4435,8 @@ html[data-theme="dark"] .metric-tab.is-active {
 
 .definition-copy {
   display: grid;
-  gap: 1rem;
-  padding-top: 0.8rem;
+  gap: 1.2rem;
+  padding-top: 0;
 }
 
 .definition-copy .body-paragraph {
@@ -4403,11 +4446,11 @@ html[data-theme="dark"] .metric-tab.is-active {
 
 .dimension-card-grid {
   display: grid;
-  gap: 0.75rem;
+  gap: 1.35rem;
 }
 
 .dimension-card {
-  padding: 0.95rem;
+  padding: 1.12rem;
   border-left: 5px solid var(--dimension-color);
 }
 
@@ -4434,10 +4477,32 @@ html[data-theme="dark"] .metric-tab.is-active {
 }
 
 .dimension-card p {
-  margin: 0.45rem 0 0;
+  margin: 0.55rem 0 0;
   color: var(--muted);
   font-size: 0.92rem;
-  line-height: 1.55;
+  line-height: 1.58;
+}
+
+.subtask-pill-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.38rem;
+  margin-top: 0.7rem;
+}
+
+.subtask-pill-list em {
+  display: inline-flex;
+  align-items: center;
+  min-height: 1.55rem;
+  padding: 0.28rem 0.48rem;
+  border: 1px solid color-mix(in srgb, var(--dimension-color) 34%, var(--panel-border));
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--dimension-color) 11%, var(--panel-bg));
+  color: var(--heading);
+  font-size: 0.72rem;
+  font-style: normal;
+  font-weight: 780;
+  line-height: 1;
 }
 
 .paper-figure-card {
@@ -4880,7 +4945,7 @@ html[data-theme="dark"] .metric-tab.is-active {
 
 .observation-grid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: 0.85rem;
   max-width: var(--content-measure);
   margin: 1rem auto 0;
@@ -4897,6 +4962,13 @@ html[data-theme="dark"] .metric-tab.is-active {
   font-size: 0.98rem;
   font-weight: 750;
   line-height: 1.48;
+}
+
+.observation-card p strong {
+  display: block;
+  margin-bottom: 0.35rem;
+  color: var(--heading);
+  font-weight: 850;
 }
 
 @media screen and (max-width: 1180px) {

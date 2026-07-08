@@ -4,9 +4,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="title" content="ViSTR-Bench | Project Homepage">
-  <meta name="description" content="ViSTR-Bench is a visual spatial-temporal reasoning benchmark for evaluating whether MLLMs can reason from continuous visual cues in dynamic scenes.">
+  <meta name="description" content="ViSTR-Bench is a visual spatial-temporal reasoning benchmark with 15 subtasks and 1,340 video QA pairs for evaluating whether MLLMs can reason from continuous visual cues in dynamic scenes.">
   <meta name="keywords" content="ViSTR-Bench, spatial-temporal reasoning, multimodal large language models, benchmark, video reasoning">
-  <meta name="author" content="Han Li, Zehao Huang, Longfei Xu, Jiahui Fu, Daxin Tian, Naiyan Wang, Si Liu">
+  <meta name="author" content="Han Li, Si Liu, Zehao Huang, Dongxin Lyu, Longfei Xu, Jiahui Fu, Daxin Tian, Yuliang Xiu, Naiyan Wang">
   <meta name="robots" content="index, follow">
 
   <meta property="og:type" content="website">
@@ -46,39 +46,42 @@
       },
       demoAutoplayInterval: 7000,
       distribution: {
-        total: 1093,
+        total: 1340,
         dimensions: [
           {
             key: "motion",
             label: "Motion Perception",
-            value: 196,
+            value: 341,
             color: "#ef6a5b",
             tasks: [
               { key: "vehicle-movement", label: "Vehicle Movement", value: 112, public: 112, web: 0, self: 0 },
-              { key: "relative-velocity", label: "Relative Velocity", value: 84, public: 84, web: 0, self: 0 }
+              { key: "relative-velocity", label: "Relative Velocity", value: 84, public: 84, web: 0, self: 0 },
+              { key: "rotation-direction", label: "Rotation Direction", value: 145, public: 41, web: 104, self: 0 }
             ]
           },
           {
             key: "spatial",
             label: "Spatial Relations",
-            value: 186,
+            value: 242,
             color: "#4f8cff",
             tasks: [
               { key: "ego-motion", label: "Ego Motion", value: 131, public: 131, web: 0, self: 0 },
-              { key: "passage-feasibility", label: "Passage Feasibility", value: 55, public: 0, web: 0, self: 55 }
+              { key: "passage-feasibility", label: "Passage Feasibility", value: 55, public: 0, web: 0, self: 55 },
+              { key: "interaction-direction", label: "Interaction Direction", value: 56, public: 56, web: 0, self: 0 }
             ]
           },
           {
             key: "outcome",
             label: "Outcome Prediction",
-            value: 482,
+            value: 528,
             color: "#2fbf8f",
             tasks: [
               { key: "basketball-shot", label: "Basketball Shot", value: 124, public: 124, web: 0, self: 0 },
               { key: "soccer-shot", label: "Soccer Shot", value: 158, public: 0, web: 158, self: 0 },
               { key: "golf-shot", label: "Golf Shot", value: 53, public: 0, web: 53, self: 0 },
               { key: "billiards-shot", label: "Billiards Shot", value: 75, public: 28, web: 47, self: 0 },
-              { key: "swimming-race", label: "Swimming Race", value: 72, public: 0, web: 72, self: 0 }
+              { key: "swimming-race", label: "Swimming Race", value: 72, public: 0, web: 72, self: 0 },
+              { key: "fall-direction", label: "Fall Direction", value: 46, public: 8, web: 38, self: 0 }
             ]
           },
           {
@@ -98,7 +101,7 @@
         title: "Data Sources",
         caption: "Distribution of video QA pairs by collection source.",
         labels: ["Public datasets", "Web videos", "Self-collected recordings"],
-        values: [479, 353, 261],
+        values: [584, 495, 261],
         colors: ["#4f8cff", "#2fbf8f", "#f2b84b"]
       },
       horizontalMetrics: {},
@@ -231,16 +234,19 @@
         <div class="authors-block">
           <div class="author-line author-line-blue">
             <span class="author-block">Han Li<sup>1,2</sup></span>
+            <span class="author-block">Si Liu<sup>1</sup></span>
             <span class="author-block">Zehao Huang</span>
+            <span class="author-block">Dongxin Lyu<sup>3</sup></span>
             <span class="author-block">Longfei Xu<sup>1</sup></span>
             <span class="author-block">Jiahui Fu<sup>1</sup></span>
-            <span class="author-block">Daxin Tian<sup>1</sup></span>
+            <span class="author-block">Daxin Tian<sup>1,2</sup></span>
+            <span class="author-block">Yuliang Xiu<sup>3</sup></span>
             <span class="author-block">Naiyan Wang</span>
-            <span class="author-block">Si Liu<sup>1</sup></span>
           </div>
           <div class="affiliation-line">
             <span>1. Beihang University</span>
             <span>2. Zhongguancun Academy</span>
+            <span>3. Westlake University</span>
           </div>
         </div>
 
@@ -314,6 +320,28 @@
               </div>
             </article>
 
+            <article class="media-tile task-example-card" data-carousel-slide data-answer-statuses="wrong correct correct">
+              <div class="task-video-wrap">
+                <!-- <div class="task-video-placeholder" aria-hidden="true"></div> -->
+                 <video autoplay muted loop playsinline preload="metadata">
+                  <source src="static/videos/rotation_direction_1182.mp4" type="video/mp4">
+                </video>
+                <span class="task-dimension-badge badge-motion">Motion Perception</span>
+              </div>
+              <div class="task-example-copy">
+                <span>Rotation Direction</span>
+                <div class="task-prompt-line" aria-hidden="true">
+                  <span class="qa-symbol">?</span>
+                  <p>This is a video of a person rotating. From a top-down view, determine whether the rotation is clockwise or counterclockwise. Answer Clockwise or <u>Counterclockwise</u>.</p>
+                </div>
+                <div class="model-answer-list model-answer-placeholder" aria-hidden="true">
+                  <span class="model-answer"><iconify-icon icon="simple-icons:googlegemini" aria-hidden="true"></iconify-icon><em>Clockwise.</em></span>
+                  <span class="model-answer"><iconify-icon icon="simple-icons:claude" aria-hidden="true"></iconify-icon><em>Counterclockwise.</em></span>
+                  <span class="model-answer"><iconify-icon icon="simple-icons:openai" aria-hidden="true"></iconify-icon><em>Counterclockwise.</em></span>
+                </div>
+              </div>
+            </article>
+
             <article class="media-tile task-example-card" data-carousel-slide data-answer-statuses="wrong wrong wrong">
               <div class="task-video-wrap">
                 <video autoplay muted loop playsinline preload="metadata">
@@ -353,6 +381,27 @@
                   <span class="model-answer" aria-label="Gemini answer"><iconify-icon icon="simple-icons:googlegemini" aria-hidden="true"></iconify-icon><em>No.</em></span>
                   <span class="model-answer" aria-label="Claude answer"><iconify-icon icon="simple-icons:claude" aria-hidden="true"></iconify-icon><em>Yes.</em></span>
                   <span class="model-answer" aria-label="GPT answer"><iconify-icon icon="simple-icons:openai" aria-hidden="true"></iconify-icon><em>Yes.</em></span>
+                </div>
+              </div>
+            </article>
+
+            <article class="media-tile task-example-card" data-carousel-slide data-answer-statuses="wrong correct correct">
+              <div class="task-video-wrap">
+                <video autoplay muted loop playsinline preload="metadata">
+                  <source src="static/videos/interaction_direction_1359.mp4" type="video/mp4">
+                </video>
+                <span class="task-dimension-badge badge-spatial">Spatial Relations</span>
+              </div>
+              <div class="task-example-copy">
+                <span>Interaction Direction</span>
+                <div class="task-prompt-line" aria-hidden="true">
+                  <span class="qa-symbol">?</span>
+                  <p>This is a video of an interaction between a person and a pole. Please determine the person's movement direction relative to the pole. Answer <u>Upward</u> or Downward.</p>
+                </div>
+                <div class="model-answer-list model-answer-placeholder" aria-hidden="true">
+                  <span class="model-answer"><iconify-icon icon="simple-icons:googlegemini" aria-hidden="true"></iconify-icon><em>Downward.</em></span>
+                  <span class="model-answer"><iconify-icon icon="simple-icons:claude" aria-hidden="true"></iconify-icon><em>Upward.</em></span>
+                  <span class="model-answer"><iconify-icon icon="simple-icons:openai" aria-hidden="true"></iconify-icon><em>Upward.</em></span>
                 </div>
               </div>
             </article>
@@ -462,6 +511,27 @@
               </div>
             </article>
 
+            <article class="media-tile task-example-card" data-carousel-slide data-answer-statuses="wrong wrong wrong">
+              <div class="task-video-wrap">
+                <video autoplay muted loop playsinline preload="metadata">
+                  <source src="static/videos/fall_direction_1293.mp4" type="video/mp4">
+                </video>
+                <span class="task-dimension-badge badge-outcome">Outcome Prediction</span>
+              </div>
+              <div class="task-example-copy">
+                <span>Fall Direction</span>
+                <div class="task-prompt-line" aria-hidden="true">
+                  <span class="qa-symbol">?</span>
+                  <p>This is a video of a person falling. Please determine the person's fall direction. Answer Left or <u>Right</u>.</p>
+                </div>
+                <div class="model-answer-list model-answer-placeholder" aria-hidden="true">
+                  <span class="model-answer"><iconify-icon icon="simple-icons:googlegemini" aria-hidden="true"></iconify-icon><em>Left.</em></span>
+                  <span class="model-answer"><iconify-icon icon="simple-icons:claude" aria-hidden="true"></iconify-icon><em>Left.</em></span>
+                  <span class="model-answer"><iconify-icon icon="simple-icons:openai" aria-hidden="true"></iconify-icon><em>Left.</em></span>
+                </div>
+              </div>
+            </article>
+
             <article class="media-tile task-example-card" data-carousel-slide data-answer-statuses="wrong correct correct">
               <div class="task-video-wrap">
                 <video autoplay muted loop playsinline preload="metadata">
@@ -550,16 +620,16 @@
             <span>reasoning dimensions</span>
           </article>
           <article class="overview-stat">
-            <strong>12</strong>
+            <strong>15</strong>
             <span>subtasks</span>
           </article>
           <article class="overview-stat">
-            <strong>1,093</strong>
+            <strong>1,340</strong>
             <span>video QA pairs</span>
           </article>
           <article class="overview-stat">
-            <strong>34</strong>
-            <span>evaluated MLLMs</span>
+            <strong>39</strong>
+            <span>evaluated model variants</span>
           </article>
         </div>
 
@@ -572,7 +642,7 @@
           <a href="#distribution" class="overview-link-card">
             <iconify-icon icon="mdi:chart-donut" aria-hidden="true"></iconify-icon>
             <span>Benchmark statistics</span>
-            <p>The benchmark comprises 12 distinct subtasks and 1,093 high-quality video question-answer pairs spanning diverse scenarios.</p>
+            <p>The benchmark comprises 15 distinct subtasks and 1,340 high-quality video question-answer pairs spanning diverse scenarios.</p>
           </a>
           <a href="#construction" class="overview-link-card">
             <iconify-icon icon="material-symbols:construction-rounded" aria-hidden="true"></iconify-icon>
@@ -593,26 +663,45 @@
         <h2 class="section-title">Task Definition</h2>
         <div class="definition-layout">
           <div class="definition-copy">
-            <p class="body-paragraph">
-              <!-- ViSTR-Bench evaluates whether MLLMs can reason from continuous visual cues in dynamic scenes.  -->
-              We organize ViSTR-Bench into four complementary dimensions, which comprise 12 subtasks in total.
-            </p>
             <div class="dimension-card-grid">
               <article class="dimension-card dimension-motion">
                 <span>Motion Perception</span>
                 <p>This dimension evaluates whether MLLMs can perceive and compare object motion from continuous visual observations. The core challenge is to distinguish true object motion from apparent visual changes caused by camera movement, viewpoint variation, or environmental distractors.</p>
+                <div class="subtask-pill-list" aria-label="Motion Perception subtasks">
+                  <!-- <em>Vehicle Movement</em>
+                  <em>Relative Velocity</em>
+                  <em>Rotation Direction</em> -->
+                </div>
               </article>
               <article class="dimension-card dimension-spatial">
                 <span>Spatial Relations</span>
                 <p>This dimension focuses on reasoning about evolving spatial relationships and geometric constraints in dynamic scenes, requiring models to account for camera motion, object positions, scene layout, and spatial clearance over time.</p>
+                <div class="subtask-pill-list" aria-label="Spatial Relations subtasks">
+                  <!-- <em>Ego Motion</em>
+                  <em>Passage Feasibility</em>
+                  <em>Interaction Direction</em> -->
+                </div>
               </article>
               <article class="dimension-card dimension-outcome">
                 <span>Outcome Prediction</span>
                 <p>This dimension evaluates whether MLLMs can infer future outcomes from historical motion cues before the final outcomes are directly observed.</p>
+                <div class="subtask-pill-list" aria-label="Outcome Prediction subtasks">
+                  <!-- <em>Basketball Shot</em>
+                  <em>Soccer Shot</em>
+                  <em>Golf Shot</em>
+                  <em>Billiards Shot</em>
+                  <em>Swimming Race</em>
+                  <em>Fall Direction</em> -->
+                </div>
               </article>
               <article class="dimension-card dimension-physical">
                 <span>Physical Dynamics</span>
                 <p>This dimension examines whether MLLMs can reason about latent physical properties, dependencies, and stability conditions revealed through dynamic interactions.</p>
+                <div class="subtask-pill-list" aria-label="Physical Dynamics subtasks">
+                  <!-- <em>Jenga Stability</em>
+                  <em>Mikado Dependency</em>
+                  <em>Knot Type</em> -->
+                </div>
               </article>
             </div>
           </div>
@@ -628,7 +717,7 @@
       <div class="container content-wide">
         <h2 class="section-title">Benchmark statistics</h2>
         <p class="body-paragraph">
-          ViSTR-Bench consists of 12 subtasks and 1,093 high-quality video question-answer pairs, spanning tabletop, indoor, and outdoor scenes. The data are collected from multiple sources, including public datasets, web videos, and self-collected recordings.
+          ViSTR-Bench consists of 15 subtasks and 1,340 high-quality video question-answer pairs, spanning tabletop, indoor, and outdoor scenes. The data are collected from multiple sources, including public datasets, web videos, and self-collected recordings.
         </p>
 
         <div class="distribution-dashboard">
@@ -691,18 +780,18 @@
         <div class="result-key-grid">
           <article class="result-key-card">
             <span>Best MLLM</span>
-            <strong>59.8%</strong>
-            <p>The best-performing model, Seed-2.0-Pro-thinking, obtains an overall accuracy of 59.8%.</p>
+            <strong>62.0%</strong>
+            <p>The best-performing model, GPT-5.4-thinking, obtains an overall accuracy of 62.0%.</p>
           </article>
           <article class="result-key-card">
             <span>Frequency Baseline</span>
-            <strong>57.2%</strong>
-            <p>The best-performing model is only 2.6% higher than Chance Level (Frequency).</p>
+            <strong>57.9%</strong>
+            <p>The best-performing model is only 4.1% higher than Chance Level (Frequency).</p>
           </article>
           <article class="result-key-card">
             <span>Human Evaluation</span>
-            <strong>89.0%</strong>
-            <p>Human results serve as an approximate upper-bound reference.</p>
+            <strong>91.0%</strong>
+            <p>Human evaluation remains 29.0% above the best-performing model.</p>
           </article>
         </div>
 
@@ -715,7 +804,7 @@
           <div class="demo-gallery-copy tables-panel-copy">
             <!-- <span class="eyebrow-label">Main results</span> -->
             <h3>Main results</h3>
-            <p>Overall accuracy is averaged over all video question-answer pairs in ViSTR-Bench.</p>
+            <p>Accuracy (%) summarized across the four reasoning dimensions in ViSTR-Bench. Overall accuracy is averaged over all video question-answer pairs.</p>
           </div>
           <div class="table-card table-card-wide">
             <div class="table-scroll">
@@ -734,53 +823,51 @@
                 <tbody>
                   <tr class="group-row group-row-baseline"><th colspan="7">Baseline</th></tr>
                   <tr class="result-group-baseline"><td>Chance Level (Random)</td><td>-</td><td>50.0</td><td>50.0</td><td>50.0</td><td>50.0</td><td>50.0</td></tr>
-                  <tr class="result-group-baseline"><td>Chance Level (Frequency)</td><td>-</td><td>57.2</td><td>61.9</td><td>59.5</td><td>53.6</td><td>59.3</td></tr>
+                  <tr class="result-group-baseline"><td>Chance Level (Frequency)</td><td>-</td><td>57.9</td><td>58.4</td><td>63.2</td><td>54.2</td><td>60.3</td></tr>
                   <tr class="group-row group-row-proprietary"><th colspan="7">Proprietary General MLLMs</th></tr>
-                  <tr class="result-group-proprietary"><td>GPT-5.4</td><td>9</td><td>54.9</td><td>66.8</td><td>64.5</td><td>49.2</td><td>48.9</td></tr>
-                  <tr class="result-group-proprietary"><td>GPT-5.4-thinking</td><td>3</td><td>59.0</td><td>64.8</td><td>70.4</td><td>51.5</td><td>60.7</td></tr>
-                  <tr class="result-group-proprietary"><td>Gemini-3-Flash-Preview</td><td>17</td><td>50.0</td><td>39.3</td><td>58.1</td><td>51.9</td><td>48.9</td></tr>
-                  <tr class="result-group-proprietary"><td>Gemini-3.1-Flash-Lite-Preview</td><td>13</td><td>52.4</td><td>47.4</td><td>62.9</td><td>49.0</td><td>55.5</td></tr>
-                  <tr class="result-group-proprietary"><td>Gemini-3.1-Pro-Preview</td><td>11</td><td>53.6</td><td>48.5</td><td>70.4</td><td>51.7</td><td>48.5</td></tr>
-                  <tr class="result-group-proprietary"><td>Claude-Sonnet-4.6</td><td>16</td><td>52.0</td><td>56.1</td><td>61.3</td><td>52.7</td><td>39.3</td></tr>
-                  <tr class="result-group-proprietary"><td>Claude-Sonnet-4.6-thinking</td><td>8</td><td>55.4</td><td>55.6</td><td>62.4</td><td>55.8</td><td>48.9</td></tr>
-                  <tr class="result-group-proprietary"><td>Claude-Opus-4.6</td><td>4</td><td>57.0</td><td>56.6</td><td>66.1</td><td>52.7</td><td>59.0</td></tr>
-                  <tr class="result-group-proprietary"><td>Claude-Opus-4.6-thinking</td><td>6</td><td>56.1</td><td>54.6</td><td>70.4</td><td>50.4</td><td>57.6</td></tr>
-                  <tr class="result-group-proprietary"><td>Seed-2.0-Lite</td><td>7</td><td>56.0</td><td>62.8</td><td>54.8</td><td>52.1</td><td>59.4</td></tr>
-                  <tr class="result-group-proprietary"><td>Seed-2.0-Lite-thinking</td><td>2</td><td>59.7</td><td>68.4</td><td>66.1</td><td>54.4</td><td>58.5</td></tr>
-                  <tr class="result-group-proprietary"><td>Seed-2.0-Pro</td><td>5</td><td>56.6</td><td>61.7</td><td>61.8</td><td>52.9</td><td>55.9</td></tr>
-                  <tr class="result-group-proprietary"><td>Seed-2.0-Pro-thinking</td><td>1</td><td>59.8</td><td>70.9</td><td>68.3</td><td>55.6</td><td>52.4</td></tr>
-                  <tr class="result-group-proprietary"><td>MiMo-V2-Omni</td><td>14</td><td>52.1</td><td>58.7</td><td>58.6</td><td>45.0</td><td>55.9</td></tr>
-                  <tr class="result-group-proprietary"><td>MiMo-V2-Omni-thinking</td><td>10</td><td>54.1</td><td>51.0</td><td>65.6</td><td>49.2</td><td>57.6</td></tr>
-                  <tr class="result-group-proprietary"><td>MiMo-V2.5</td><td>15</td><td>52.0</td><td>51.5</td><td>60.8</td><td>50.0</td><td>49.3</td></tr>
-                  <tr class="result-group-proprietary"><td>MiMo-V2.5-thinking</td><td>12</td><td>52.5</td><td>45.9</td><td>59.7</td><td>50.2</td><td>57.2</td></tr>
+                  <tr class="result-group-proprietary"><td>GPT-5.4</td><td>5</td><td>56.1</td><td>63.0</td><td>67.8</td><td>49.4</td><td>48.9</td></tr>
+                  <tr class="result-group-proprietary"><td>GPT-5.4-thinking</td><td>1</td><td>62.0</td><td>69.8</td><td>74.4</td><td>51.9</td><td>60.7</td></tr>
+                  <tr class="result-group-proprietary"><td>Gemini-3-Flash-Preview-thinking</td><td>15</td><td>50.7</td><td>44.0</td><td>61.2</td><td>50.9</td><td>48.9</td></tr>
+                  <tr class="result-group-proprietary"><td>Gemini-3.1-Flash-Lite-Preview-thinking</td><td>12</td><td>52.6</td><td>49.3</td><td>63.6</td><td>48.5</td><td>55.5</td></tr>
+                  <tr class="result-group-proprietary"><td>Gemini-3.1-Pro-Preview-thinking</td><td>9</td><td>53.6</td><td>49.3</td><td>71.1</td><td>50.6</td><td>48.5</td></tr>
+                  <tr class="result-group-proprietary"><td>Claude-Sonnet-4.6</td><td>14</td><td>51.0</td><td>52.2</td><td>59.9</td><td>51.1</td><td>39.3</td></tr>
+                  <tr class="result-group-proprietary"><td>Claude-Sonnet-4.6-thinking</td><td>11</td><td>53.4</td><td>51.9</td><td>59.9</td><td>53.4</td><td>48.9</td></tr>
+                  <tr class="result-group-proprietary"><td>Claude-Opus-4.6</td><td>6</td><td>55.4</td><td>52.5</td><td>64.0</td><td>51.9</td><td>59.0</td></tr>
+                  <tr class="result-group-proprietary"><td>Claude-Opus-4.6-thinking</td><td>7</td><td>54.7</td><td>51.3</td><td>68.6</td><td>49.2</td><td>57.6</td></tr>
+                  <tr class="result-group-proprietary"><td>Seed-2.0-Lite</td><td>8</td><td>54.4</td><td>53.7</td><td>57.4</td><td>51.3</td><td>59.4</td></tr>
+                  <tr class="result-group-proprietary"><td>Seed-2.0-Lite-thinking</td><td>3</td><td>58.8</td><td>61.6</td><td>66.9</td><td>53.4</td><td>58.5</td></tr>
+                  <tr class="result-group-proprietary"><td>Seed-2.0-Pro</td><td>4</td><td>56.8</td><td>57.8</td><td>66.5</td><td>52.1</td><td>55.9</td></tr>
+                  <tr class="result-group-proprietary"><td>Seed-2.0-Pro-thinking</td><td>2</td><td>60.1</td><td>65.1</td><td>71.5</td><td>55.1</td><td>52.4</td></tr>
+                  <tr class="result-group-proprietary"><td>MiMo-V2.5</td><td>13</td><td>52.4</td><td>50.7</td><td>63.6</td><td>49.6</td><td>49.3</td></tr>
+                  <tr class="result-group-proprietary"><td>MiMo-V2.5-thinking</td><td>10</td><td>53.6</td><td>48.4</td><td>64.5</td><td>50.4</td><td>57.2</td></tr>
                   <tr class="group-row group-row-open"><th colspan="7">Open-source General MLLMs</th></tr>
-                  <tr class="result-group-open"><td>LLaVA-OneVision-1.5-4B</td><td>14</td><td>47.8</td><td>50.5</td><td>56.5</td><td>47.3</td><td>39.7</td></tr>
-                  <tr class="result-group-open"><td>LLaVA-OneVision-1.5-8B</td><td>11</td><td>48.9</td><td>53.6</td><td>57.0</td><td>46.9</td><td>42.8</td></tr>
-                  <tr class="result-group-open"><td>Qwen3.5-27B-thinking</td><td>1</td><td>55.1</td><td>56.1</td><td>63.4</td><td>55.2</td><td>47.2</td></tr>
-                  <tr class="result-group-open"><td>Qwen3.5-35B-A3B-thinking</td><td>13</td><td>48.7</td><td>45.9</td><td>59.7</td><td>47.1</td><td>45.4</td></tr>
-                  <tr class="result-group-open"><td>Qwen3.5-122B-A10B-thinking</td><td>5</td><td>53.0</td><td>52.0</td><td>63.4</td><td>48.3</td><td>55.0</td></tr>
-                  <tr class="result-group-open"><td>Qwen3.5-397B-A17B-thinking</td><td>3</td><td>54.3</td><td>57.1</td><td>65.1</td><td>51.2</td><td>49.3</td></tr>
-                  <tr class="result-group-open"><td>InternVL3.5-8B</td><td>7</td><td>50.5</td><td>57.1</td><td>66.7</td><td>46.7</td><td>39.7</td></tr>
-                  <tr class="result-group-open"><td>InternVL3.5-14B</td><td>8</td><td>50.0</td><td>54.1</td><td>57.0</td><td>49.0</td><td>43.2</td></tr>
-                  <tr class="result-group-open"><td>InternVL3.5-38B</td><td>2</td><td>54.5</td><td>48.5</td><td>61.8</td><td>51.9</td><td>59.4</td></tr>
-                  <tr class="result-group-open"><td>InternVL3.5-30B-A3B</td><td>9</td><td>49.6</td><td>55.1</td><td>60.2</td><td>44.6</td><td>46.7</td></tr>
-                  <tr class="result-group-open"><td>InternVL3.5-241B-A28B</td><td>4</td><td>54.1</td><td>57.1</td><td>67.2</td><td>47.7</td><td>54.1</td></tr>
-                  <tr class="result-group-open"><td>Intern-S1-thinking</td><td>6</td><td>50.8</td><td>52.0</td><td>59.7</td><td>47.9</td><td>48.5</td></tr>
-                  <tr class="result-group-open"><td>Intern-S1-Pro-thinking</td><td>10</td><td>49.2</td><td>48.0</td><td>61.3</td><td>46.1</td><td>47.2</td></tr>
-                  <tr class="result-group-open"><td>GLM-4.6V-thinking</td><td>12</td><td>48.9</td><td>51.0</td><td>59.1</td><td>46.1</td><td>44.5</td></tr>
+                  <tr class="result-group-open"><td>LLaVA-OneVision-1.5-4B</td><td>14</td><td>47.6</td><td>46.0</td><td>58.7</td><td>47.0</td><td>39.7</td></tr>
+                  <tr class="result-group-open"><td>LLaVA-OneVision-1.5-8B</td><td>11</td><td>49.7</td><td>54.5</td><td>57.9</td><td>47.2</td><td>39.7</td></tr>
+                  <tr class="result-group-open"><td>Qwen3.5-27B-thinking</td><td>1</td><td>55.0</td><td>54.0</td><td>66.5</td><td>53.8</td><td>47.2</td></tr>
+                  <tr class="result-group-open"><td>Qwen3.5-35B-A3B-thinking</td><td>13</td><td>49.0</td><td>46.3</td><td>61.6</td><td>46.4</td><td>45.4</td></tr>
+                  <tr class="result-group-open"><td>Qwen3.5-122B-A10B-thinking</td><td>3</td><td>53.4</td><td>51.3</td><td>67.8</td><td>47.5</td><td>55.0</td></tr>
+                  <tr class="result-group-open"><td>Qwen3.5-397B-A17B-thinking</td><td>2</td><td>54.4</td><td>54.8</td><td>68.6</td><td>49.8</td><td>49.3</td></tr>
+                  <tr class="result-group-open"><td>InternVL3.5-8B</td><td>8</td><td>50.9</td><td>55.4</td><td>64.5</td><td>46.0</td><td>41.0</td></tr>
+                  <tr class="result-group-open"><td>InternVL3.5-14B</td><td>7</td><td>51.3</td><td>52.2</td><td>59.5</td><td>48.9</td><td>46.7</td></tr>
+                  <tr class="result-group-open"><td>InternVL3.5-38B</td><td>5</td><td>52.3</td><td>42.8</td><td>64.5</td><td>49.6</td><td>59.8</td></tr>
+                  <tr class="result-group-open"><td>InternVL3.5-30B-A3B</td><td>9</td><td>50.1</td><td>51.3</td><td>62.8</td><td>45.6</td><td>45.4</td></tr>
+                  <tr class="result-group-open"><td>InternVL3.5-241B-A28B</td><td>4</td><td>53.4</td><td>51.0</td><td>69.4</td><td>47.2</td><td>54.1</td></tr>
+                  <tr class="result-group-open"><td>Intern-S1</td><td>6</td><td>51.7</td><td>52.5</td><td>62.4</td><td>47.7</td><td>48.5</td></tr>
+                  <tr class="result-group-open"><td>Intern-S1-Pro</td><td>12</td><td>49.7</td><td>48.1</td><td>64.0</td><td>45.3</td><td>47.2</td></tr>
+                  <tr class="result-group-open"><td>GLM-4.6V-thinking</td><td>10</td><td>49.9</td><td>49.3</td><td>63.6</td><td>46.2</td><td>44.5</td></tr>
                   <tr class="group-row group-row-specialized"><th colspan="7">Specialized Spatial MLLMs</th></tr>
-                  <tr class="result-group-specialized"><td>SpaceR-SFT-7B</td><td>2</td><td>50.7</td><td>52.6</td><td>65.1</td><td>47.3</td><td>44.5</td></tr>
-                  <tr class="result-group-specialized"><td>VG-LLM-4B</td><td>8</td><td>46.8</td><td>44.9</td><td>48.9</td><td>47.5</td><td>45.0</td></tr>
-                  <tr class="result-group-specialized"><td>VG-LLM-8B</td><td>10</td><td>45.3</td><td>37.8</td><td>46.2</td><td>49.8</td><td>41.5</td></tr>
-                  <tr class="result-group-specialized"><td>Spatial-MLLM-135K-4B</td><td>9</td><td>45.7</td><td>44.4</td><td>49.5</td><td>46.3</td><td>42.8</td></tr>
-                  <tr class="result-group-specialized"><td>Spatial-MLLM-820K-4B</td><td>3</td><td>50.5</td><td>63.8</td><td>49.5</td><td>47.3</td><td>46.7</td></tr>
-                  <tr class="result-group-specialized"><td>SpatialLadder-3B</td><td>7</td><td>48.2</td><td>59.2</td><td>47.3</td><td>46.5</td><td>43.2</td></tr>
-                  <tr class="result-group-specialized"><td>Spatial-SSRL-7B</td><td>6</td><td>49.5</td><td>46.4</td><td>60.8</td><td>47.7</td><td>46.7</td></tr>
-                  <tr class="result-group-specialized"><td>VST-7B-RL</td><td>4</td><td>50.1</td><td>60.2</td><td>48.9</td><td>48.5</td><td>45.9</td></tr>
-                  <tr class="result-group-specialized"><td>GeoThinker-Qwen2.5VL-7B</td><td>1</td><td>52.0</td><td>55.6</td><td>49.5</td><td>47.1</td><td>61.1</td></tr>
-                  <tr class="result-group-specialized"><td>GeoThinker-Qwen3VL-8B</td><td>5</td><td>50.0</td><td>63.3</td><td>47.3</td><td>47.3</td><td>46.3</td></tr>
+                  <tr class="result-group-specialized"><td>Spacer-SFT-7B</td><td>2</td><td>51.6</td><td>49.6</td><td>65.7</td><td>49.8</td><td>44.1</td></tr>
+                  <tr class="result-group-specialized"><td>VG-LLM-4B</td><td>7</td><td>48.2</td><td>49.9</td><td>57.0</td><td>47.5</td><td>38.0</td></tr>
+                  <tr class="result-group-specialized"><td>VG-LLM-8B</td><td>9</td><td>47.6</td><td>46.3</td><td>52.5</td><td>48.3</td><td>42.8</td></tr>
+                  <tr class="result-group-specialized"><td>Spatial-MLLM-135K-4B</td><td>10</td><td>47.3</td><td>46.0</td><td>56.2</td><td>45.8</td><td>43.2</td></tr>
+                  <tr class="result-group-specialized"><td>Spatial-MLLM-820K-4B</td><td>3</td><td>51.3</td><td>55.7</td><td>56.6</td><td>48.5</td><td>45.9</td></tr>
+                  <tr class="result-group-specialized"><td>SpatialLadder-3B</td><td>8</td><td>47.8</td><td>49.9</td><td>47.9</td><td>48.7</td><td>42.8</td></tr>
+                  <tr class="result-group-specialized"><td>Spatial-SSRL-7B</td><td>5</td><td>50.3</td><td>44.9</td><td>64.9</td><td>49.1</td><td>45.9</td></tr>
+                  <tr class="result-group-specialized"><td>VST-7B-RL</td><td>6</td><td>49.4</td><td>51.9</td><td>50.0</td><td>48.5</td><td>47.2</td></tr>
+                  <tr class="result-group-specialized"><td>GeoThinker-Qwen2.5VL-7B</td><td>1</td><td>52.8</td><td>51.0</td><td>56.6</td><td>48.5</td><td>61.6</td></tr>
+                  <tr class="result-group-specialized"><td>GeoThinker-Qwen3VL-8B</td><td>4</td><td>50.5</td><td>55.4</td><td>52.1</td><td>49.1</td><td>45.0</td></tr>
                   <tr class="group-row group-row-human"><th colspan="7">Human Evaluation</th></tr>
-                  <tr class="bottom-rule result-group-human"><td>Human</td><td>-</td><td>89.0</td><td>93.8</td><td>92.6</td><td>82.8</td><td>90.3</td></tr>
+                  <tr class="bottom-rule result-group-human"><td>Human</td><td>-</td><td>91.0</td><td>96.2</td><td>96.5</td><td>84.0</td><td>93.9</td></tr>
                 </tbody>
               </table>
             </div>
@@ -790,19 +877,23 @@
         <div class="observation-grid">
           <article class="observation-card">
             <span>01</span>
-            <p>Current MLLMs remain far from human-level spatial-temporal reasoning.</p>
+            <p><strong>Current MLLMs remain far from human-level spatial-temporal reasoning.</strong></p>
           </article>
           <article class="observation-card">
             <span>02</span>
-            <p>Proprietary general-purpose MLLMs perform best overall.</p>
+            <p><strong>Proprietary general-purpose MLLMs perform best overall.</strong></p>
           </article>
           <article class="observation-card">
             <span>03</span>
-            <p>Spatial MLLMs show limited generalization to dynamic reasoning.</p>
+            <p><strong>Spatial MLLMs show limited generalization to dynamic reasoning.</strong></p>
           </article>
           <article class="observation-card">
             <span>04</span>
-            <p>Outcome Prediction and Physical Dynamics remain more challenging.</p>
+            <p><strong>Thinking mode is helpful but not consistently reliable.</strong></p>
+          </article>
+          <article class="observation-card">
+            <span>05</span>
+            <p><strong>Performance varies substantially across reasoning dimensions.</strong></p>
           </article>
         </div>
       </div>
