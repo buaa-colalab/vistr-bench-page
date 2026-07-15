@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="title" content="ViSTR-Bench | Project Homepage">
+  <meta name="title" content="Overview | ViSTR-Bench">
   <meta name="description" content="ViSTR-Bench is a visual spatial-temporal reasoning benchmark with 15 subtasks and 1,340 video QA pairs for evaluating whether MLLMs can reason from continuous visual cues in dynamic scenes.">
   <meta name="keywords" content="ViSTR-Bench, spatial-temporal reasoning, multimodal large language models, benchmark, video reasoning">
   <meta name="author" content="Han Li, Si Liu, Zehao Huang, Dongxin Lyu, Longfei Xu, Jiahui Fu, Daxin Tian, Yuliang Xiu, Naiyan Wang">
@@ -20,7 +20,7 @@
   <meta name="twitter:description" content="Can MLLMs reason from continuous visual cues in dynamic scenes?">
   <meta name="twitter:image" content="static/images/task-definition-1.png">
 
-  <title>ViSTR-Bench</title>
+  <title>Overview | ViSTR-Bench</title>
 
   <link rel="icon" type="image/png" href="cologo/cologo.png">
   <link rel="apple-touch-icon" href="cologo/cologo.png">
@@ -120,20 +120,16 @@
   <script defer src="static/js/index.js"></script>
   <script defer src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
 </head>
-<body>
-  <nav class="page-nav" aria-label="Page sections">
+<body class="overview-page">
+  <nav class="page-nav" aria-label="Primary navigation">
     <div class="page-nav-inner">
-      <a href="#top" class="page-nav-brand">
+      <a href="index.html" class="page-nav-brand">
         <img src="cologo/cologo.png" alt="Colalab logo">
         <span>ViSTR-Bench</span>
       </a>
       <div class="page-nav-links">
-        <a href="#overview" data-nav-link>Overview</a>
-        <a href="#tasks" data-nav-link>Task Definition</a>
-        <a href="#distribution" data-nav-link>Benchmark statistics</a>
-        <a href="#construction" data-nav-link>Construction pipeline</a>
-        <a href="#results" data-nav-link>Evaluation Results</a>
-        <a href="#citation" data-nav-link>Citation</a>
+        <a href="index.html" class="is-active" aria-current="page">Overview</a>
+        <a href="leaderboard.html">Leaderboard</a>
       </div>
       <button class="theme-toggle" type="button" data-theme-toggle aria-label="Toggle dark mode" title="Toggle dark mode">
         <svg class="theme-icon theme-icon-sun" viewBox="0 0 24 24" aria-hidden="true">
@@ -259,7 +255,7 @@
             <iconify-icon class="resource-icon resource-icon-code" icon="simple-icons:github" aria-hidden="true"></iconify-icon>
             <span>Code</span>
           </a>
-          <a href="https://huggingface.co/datasets/homothetic/ViSTR-Bench" target="_blank" class="resource-card">
+          <a href="https://huggingface.co/datasets/homothetic/ViSTR-Bench-Public" target="_blank" class="resource-card">
             <iconify-icon class="resource-icon resource-icon-datasets" icon="devicon:huggingface" aria-hidden="true"></iconify-icon>
             <span>Dataset</span>
           </a>
@@ -279,7 +275,7 @@
           <div class="media-carousel-track" data-carousel-track>
             <article class="media-tile task-example-card" data-carousel-slide data-answer-statuses="wrong wrong wrong">
               <div class="task-video-wrap">
-                <video autoplay muted loop playsinline preload="metadata">
+                <video muted loop playsinline preload="none">
                   <source src="static/videos/segment-454855130179746819_1_gqtk.mp4" type="video/mp4">
                 </video>
                 <span class="task-dimension-badge badge-motion">Motion Perception</span>
@@ -300,7 +296,7 @@
 
             <article class="media-tile task-example-card" data-carousel-slide data-answer-statuses="wrong wrong wrong">
               <div class="task-video-wrap">
-                <video autoplay muted loop playsinline preload="metadata">
+                <video muted loop playsinline preload="none">
                   <source src="static/videos/segment-16034875274658204340_1_-dfs_ff6g.mp4" type="video/mp4">
                 </video>
                 <span class="task-dimension-badge badge-motion">Motion Perception</span>
@@ -323,28 +319,28 @@
             <article class="media-tile task-example-card" data-carousel-slide data-answer-statuses="wrong correct correct">
               <div class="task-video-wrap">
                 <!-- <div class="task-video-placeholder" aria-hidden="true"></div> -->
-                 <video autoplay muted loop playsinline preload="metadata">
+                 <video muted loop playsinline preload="none">
                   <source src="static/videos/rotation_direction_1182.mp4" type="video/mp4">
                 </video>
                 <span class="task-dimension-badge badge-motion">Motion Perception</span>
               </div>
               <div class="task-example-copy">
                 <span>Rotation Direction</span>
-                <div class="task-prompt-line" aria-hidden="true">
-                  <span class="qa-symbol">?</span>
+                <div class="task-prompt-line">
+                  <span class="qa-symbol" aria-hidden="true">?</span>
                   <p>This is a video of a person rotating. From a top-down view, determine whether the rotation is clockwise or counterclockwise. Answer Clockwise or <u>Counterclockwise</u>.</p>
                 </div>
-                <div class="model-answer-list model-answer-placeholder" aria-hidden="true">
-                  <span class="model-answer"><iconify-icon icon="simple-icons:googlegemini" aria-hidden="true"></iconify-icon><em>Clockwise.</em></span>
-                  <span class="model-answer"><iconify-icon icon="simple-icons:claude" aria-hidden="true"></iconify-icon><em>Counterclockwise.</em></span>
-                  <span class="model-answer"><iconify-icon icon="simple-icons:openai" aria-hidden="true"></iconify-icon><em>Counterclockwise.</em></span>
+                <div class="model-answer-list model-answer-placeholder">
+                  <span class="model-answer" aria-label="Gemini answer"><iconify-icon icon="simple-icons:googlegemini" aria-hidden="true"></iconify-icon><em>Clockwise.</em></span>
+                  <span class="model-answer" aria-label="Claude answer"><iconify-icon icon="simple-icons:claude" aria-hidden="true"></iconify-icon><em>Counterclockwise.</em></span>
+                  <span class="model-answer" aria-label="GPT answer"><iconify-icon icon="simple-icons:openai" aria-hidden="true"></iconify-icon><em>Counterclockwise.</em></span>
                 </div>
               </div>
             </article>
 
             <article class="media-tile task-example-card" data-carousel-slide data-answer-statuses="wrong wrong wrong">
               <div class="task-video-wrap">
-                <video autoplay muted loop playsinline preload="metadata">
+                <video muted loop playsinline preload="none">
                   <source src="static/videos/c49a8c6cff-1.mp4" type="video/mp4">
                 </video>
                 <span class="task-dimension-badge badge-spatial">Spatial Relations</span>
@@ -366,7 +362,7 @@
 
             <article class="media-tile task-example-card" data-carousel-slide data-answer-statuses="correct wrong wrong">
               <div class="task-video-wrap">
-                <video autoplay muted loop playsinline preload="metadata">
+                <video muted loop playsinline preload="none">
                   <source src="static/videos/VID20260430162224-1.mp4" type="video/mp4">
                 </video>
                 <span class="task-dimension-badge badge-spatial">Spatial Relations</span>
@@ -387,28 +383,28 @@
 
             <article class="media-tile task-example-card" data-carousel-slide data-answer-statuses="wrong correct correct">
               <div class="task-video-wrap">
-                <video autoplay muted loop playsinline preload="metadata">
+                <video muted loop playsinline preload="none">
                   <source src="static/videos/interaction_direction_1359.mp4" type="video/mp4">
                 </video>
                 <span class="task-dimension-badge badge-spatial">Spatial Relations</span>
               </div>
               <div class="task-example-copy">
                 <span>Interaction Direction</span>
-                <div class="task-prompt-line" aria-hidden="true">
-                  <span class="qa-symbol">?</span>
+                <div class="task-prompt-line">
+                  <span class="qa-symbol" aria-hidden="true">?</span>
                   <p>This is a video of an interaction between a person and a pole. Please determine the person's movement direction relative to the pole. Answer <u>Upward</u> or Downward.</p>
                 </div>
-                <div class="model-answer-list model-answer-placeholder" aria-hidden="true">
-                  <span class="model-answer"><iconify-icon icon="simple-icons:googlegemini" aria-hidden="true"></iconify-icon><em>Downward.</em></span>
-                  <span class="model-answer"><iconify-icon icon="simple-icons:claude" aria-hidden="true"></iconify-icon><em>Upward.</em></span>
-                  <span class="model-answer"><iconify-icon icon="simple-icons:openai" aria-hidden="true"></iconify-icon><em>Upward.</em></span>
+                <div class="model-answer-list model-answer-placeholder">
+                  <span class="model-answer" aria-label="Gemini answer"><iconify-icon icon="simple-icons:googlegemini" aria-hidden="true"></iconify-icon><em>Downward.</em></span>
+                  <span class="model-answer" aria-label="Claude answer"><iconify-icon icon="simple-icons:claude" aria-hidden="true"></iconify-icon><em>Upward.</em></span>
+                  <span class="model-answer" aria-label="GPT answer"><iconify-icon icon="simple-icons:openai" aria-hidden="true"></iconify-icon><em>Upward.</em></span>
                 </div>
               </div>
             </article>
 
             <article class="media-tile task-example-card" data-carousel-slide data-answer-statuses="wrong correct correct">
               <div class="task-video-wrap">
-                <video autoplay muted loop playsinline preload="metadata">
+                <video muted loop playsinline preload="none">
                   <source src="static/videos/652f0590-aab5-4de1-b578-238adb54fa0e-1-4.mp4" type="video/mp4">
                 </video>
                 <span class="task-dimension-badge badge-outcome">Outcome Prediction</span>
@@ -429,7 +425,7 @@
 
             <article class="media-tile task-example-card" data-carousel-slide data-answer-statuses="correct correct wrong">
               <div class="task-video-wrap">
-                <video autoplay muted loop playsinline preload="metadata">
+                <video muted loop playsinline preload="none">
                   <source src="static/videos/videoplayback-4-4.mp4" type="video/mp4">
                 </video>
                 <span class="task-dimension-badge badge-outcome">Outcome Prediction</span>
@@ -450,7 +446,7 @@
 
             <article class="media-tile task-example-card" data-carousel-slide data-answer-statuses="wrong wrong wrong">
               <div class="task-video-wrap">
-                <video autoplay muted loop playsinline preload="metadata">
+                <video muted loop playsinline preload="none">
                   <source src="static/videos/videoplayback_1-9.mp4" type="video/mp4">
                 </video>
                 <span class="task-dimension-badge badge-outcome">Outcome Prediction</span>
@@ -471,7 +467,7 @@
 
             <article class="media-tile task-example-card" data-carousel-slide data-answer-statuses="wrong correct wrong">
               <div class="task-video-wrap">
-                <video autoplay muted loop playsinline preload="metadata">
+                <video muted loop playsinline preload="none">
                   <source src="static/videos/1214765667_x1-1-100144-2.mp4" type="video/mp4">
                 </video>
                 <span class="task-dimension-badge badge-outcome">Outcome Prediction</span>
@@ -492,7 +488,7 @@
 
             <article class="media-tile task-example-card" data-carousel-slide data-answer-statuses="wrong wrong wrong">
               <div class="task-video-wrap">
-                <video autoplay muted loop playsinline preload="metadata">
+                <video muted loop playsinline preload="none">
                   <source src="static/videos/406834878_x1-1-30102-4.mp4" type="video/mp4">
                 </video>
                 <span class="task-dimension-badge badge-outcome">Outcome Prediction</span>
@@ -513,28 +509,28 @@
 
             <article class="media-tile task-example-card" data-carousel-slide data-answer-statuses="wrong wrong wrong">
               <div class="task-video-wrap">
-                <video autoplay muted loop playsinline preload="metadata">
+                <video muted loop playsinline preload="none">
                   <source src="static/videos/fall_direction_1293.mp4" type="video/mp4">
                 </video>
                 <span class="task-dimension-badge badge-outcome">Outcome Prediction</span>
               </div>
               <div class="task-example-copy">
                 <span>Fall Direction</span>
-                <div class="task-prompt-line" aria-hidden="true">
-                  <span class="qa-symbol">?</span>
+                <div class="task-prompt-line">
+                  <span class="qa-symbol" aria-hidden="true">?</span>
                   <p>This is a video of a person falling. Please determine the person's fall direction. Answer Left or <u>Right</u>.</p>
                 </div>
-                <div class="model-answer-list model-answer-placeholder" aria-hidden="true">
-                  <span class="model-answer"><iconify-icon icon="simple-icons:googlegemini" aria-hidden="true"></iconify-icon><em>Left.</em></span>
-                  <span class="model-answer"><iconify-icon icon="simple-icons:claude" aria-hidden="true"></iconify-icon><em>Left.</em></span>
-                  <span class="model-answer"><iconify-icon icon="simple-icons:openai" aria-hidden="true"></iconify-icon><em>Left.</em></span>
+                <div class="model-answer-list model-answer-placeholder">
+                  <span class="model-answer" aria-label="Gemini answer"><iconify-icon icon="simple-icons:googlegemini" aria-hidden="true"></iconify-icon><em>Left.</em></span>
+                  <span class="model-answer" aria-label="Claude answer"><iconify-icon icon="simple-icons:claude" aria-hidden="true"></iconify-icon><em>Left.</em></span>
+                  <span class="model-answer" aria-label="GPT answer"><iconify-icon icon="simple-icons:openai" aria-hidden="true"></iconify-icon><em>Left.</em></span>
                 </div>
               </div>
             </article>
 
             <article class="media-tile task-example-card" data-carousel-slide data-answer-statuses="wrong correct correct">
               <div class="task-video-wrap">
-                <video autoplay muted loop playsinline preload="metadata">
+                <video muted loop playsinline preload="none">
                   <source src="static/videos/20260115-164002-23.mp4" type="video/mp4">
                 </video>
                 <span class="task-dimension-badge badge-physical">Physical Dynamics</span>
@@ -543,7 +539,7 @@
                 <span>Jenga Stability</span>
                 <div class="task-prompt-line">
                   <span class="qa-symbol" aria-hidden="true">?</span>
-                  <p>This is a video of a golf shot. Please predict whether the golf ball will go into the hole based on its observed trajectory. Answer <u>Yes</u> or No.</p>
+                  <p>This is a video of a Jenga game. Please predict whether the tower will remain stable after the block that the hand is trying to pull out is removed. Answer <u>Yes</u> or No.</p>
                 </div>
                 <div class="model-answer-list">
                   <span class="model-answer" aria-label="Gemini answer"><iconify-icon icon="simple-icons:googlegemini" aria-hidden="true"></iconify-icon><em>No.</em></span>
@@ -555,7 +551,7 @@
 
             <article class="media-tile task-example-card" data-carousel-slide data-answer-statuses="wrong wrong correct">
               <div class="task-video-wrap">
-                <video autoplay muted loop playsinline preload="metadata">
+                <video muted loop playsinline preload="none">
                   <source src="static/videos/VID20260419163455-15.mp4" type="video/mp4">
                 </video>
                 <span class="task-dimension-badge badge-physical">Physical Dynamics</span>
@@ -576,7 +572,7 @@
 
             <article class="media-tile task-example-card" data-carousel-slide data-answer-statuses="wrong correct correct">
               <div class="task-video-wrap">
-                <video autoplay muted loop playsinline preload="metadata">
+                <video muted loop playsinline preload="none">
                   <source src="static/videos/6.mp4" type="video/mp4">
                 </video>
                 <span class="task-dimension-badge badge-physical">Physical Dynamics</span>
@@ -706,7 +702,7 @@
             </div>
           </div>
           <figure class="paper-figure-card">
-            <img src="static/images/task-definition-1.png" alt="Representative task examples from ViSTR-Bench">
+            <img src="static/images/task-definition-1.png" alt="Representative task examples from ViSTR-Bench" width="6178" height="7093" loading="lazy" decoding="async">
             <figcaption>Representative task examples from ViSTR-Bench.</figcaption>
           </figure>
         </div>
@@ -741,7 +737,7 @@
         </p>
 
         <figure class="paper-figure-card paper-figure-wide">
-          <img src="static/images/construction-pipeline-1.png" alt="Benchmark construction pipeline">
+          <img src="static/images/construction-pipeline-1.png" alt="Benchmark construction pipeline" width="3356" height="864" loading="lazy" decoding="async">
           <figcaption>Benchmark construction pipeline.</figcaption>
         </figure>
 
@@ -796,7 +792,7 @@
         </div>
 
         <figure class="paper-figure-card paper-figure-wide">
-          <img src="static/images/radar-results-1.png" alt="Radar comparison across model groups">
+          <img src="static/images/radar-results-1.png" alt="Radar comparison across model groups" width="5763" height="2546" loading="lazy" decoding="async">
           <figcaption>Radar comparison across model groups.</figcaption>
         </figure>
 

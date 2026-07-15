@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="title" content="ViSTR-Bench Leaderboard">
+  <meta name="description" content="Compare model performance across the ViSTR-Bench overall, public, and private evaluation splits.">
+  <meta name="robots" content="index, follow">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="ViSTR-Bench">
+  <meta property="og:title" content="ViSTR-Bench Leaderboard">
+  <meta property="og:description" content="Model rankings across all four reasoning dimensions and 15 ViSTR-Bench subtasks.">
+  <meta property="og:image" content="static/images/radar-results-1.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="ViSTR-Bench Leaderboard">
+  <meta name="twitter:description" content="Model rankings across all four reasoning dimensions and 15 ViSTR-Bench subtasks.">
+  <meta name="twitter:image" content="static/images/radar-results-1.png">
+
+  <title>Leaderboard | ViSTR-Bench</title>
+
+  <link rel="icon" type="image/png" href="cologo/cologo.png">
+  <link rel="apple-touch-icon" href="cologo/cologo.png">
+  <script>
+    (function () {
+      var storageKey = "colalab-project-theme";
+      var savedTheme = null;
+      try {
+        savedTheme = window.localStorage.getItem(storageKey);
+      } catch (error) {}
+      var systemTheme = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      var theme = savedTheme === "light" || savedTheme === "dark" ? savedTheme : systemTheme;
+      document.documentElement.dataset.theme = theme;
+    }());
+  </script>
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+  <link rel="stylesheet" href="static/css/leaderboard.css">
+  <script>
+    window.ProjectPageConfig = {
+      theme: {
+        defaultMode: "system",
+        storageKey: "colalab-project-theme"
+      },
+      references: [],
+      footer: {
+        organization: "Colalab",
+        year: 2026
+      }
+    };
+  </script>
+  <script defer src="static/js/index.js"></script>
+  <script defer src="static/js/leaderboard.js"></script>
+</head>
+<body class="leaderboard-page">
+  <nav class="page-nav" aria-label="Primary navigation">
+    <div class="page-nav-inner">
+      <a href="index.html" class="page-nav-brand">
+        <img src="cologo/cologo.png" alt="Colalab logo">
+        <span>ViSTR-Bench</span>
+      </a>
+      <div class="page-nav-links">
+        <a href="index.html">Overview</a>
+        <a href="leaderboard.html" class="is-active" aria-current="page">Leaderboard</a>
+      </div>
+      <button class="theme-toggle" type="button" data-theme-toggle aria-label="Toggle dark mode" title="Toggle dark mode">
+        <svg class="theme-icon theme-icon-sun" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12 4V1h-1v3zm0 19v-3h-1v3zm8-11h3v-1h-3zM1 12h3v-1H1zm17.1-6.4 2.1-2.1-.7-.7-2.1 2.1zM3.5 20.2l2.1-2.1-.7-.7-2.1 2.1zm14.6-2.8-.7.7 2.1 2.1.7-.7zM4.9 5.6l.7-.7-2.1-2.1-.7.7zM11.5 7A4.5 4.5 0 1 0 16 11.5 4.5 4.5 0 0 0 11.5 7z"></path>
+        </svg>
+        <svg class="theme-icon theme-icon-moon" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M20.4 15.1A7.7 7.7 0 0 1 8.9 3.6 9.3 9.3 0 1 0 20.4 15.1z"></path>
+        </svg>
+      </button>
+    </div>
+    <div class="reading-progress" aria-hidden="true">
+      <span data-reading-progress></span>
+    </div>
+  </nav>
+
+  <button class="scroll-to-top" onclick="scrollToTop()" title="Scroll to top" aria-label="Scroll to top">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M12 5l-7 7 1.4 1.4 4.6-4.6V19h2V8.8l4.6 4.6L19 12z"></path>
+    </svg>
+  </button>
+
+  <main
+    class="leaderboard-main"
+    data-leaderboard-root
+    data-leaderboard-overall-source="summary_all.csv"
+    data-leaderboard-public-source="summary_public.csv"
+    data-leaderboard-private-source="summary_private.csv"
+  >
+    <section class="section content-section leaderboard-section" aria-labelledby="leaderboard-page-title">
+      <div class="container content-wide">
+        <div class="tables-panel results-summary-panel leaderboard-results-panel">
+          <div class="demo-gallery-copy tables-panel-copy">
+            <h1 id="leaderboard-page-title">Leaderboard</h1>
+            <p>To evaluate a model on the private test set of ViSTR-Bench, please contact us at <a href="mailto:lihan0620@buaa.edu.cn">lihan0620@buaa.edu.cn</a>.</p>
+          </div>
+
+          <div class="leaderboard-controls">
+            <div class="metric-tabs leaderboard-tabs" role="tablist" aria-label="Leaderboard data split">
+              <button type="button" role="tab" id="overall-tab" aria-controls="leaderboard-table-region" aria-selected="true" tabindex="0" class="metric-tab is-active" data-leaderboard-split="overall">
+                Overall <span data-split-count="overall">—</span>
+              </button>
+              <button type="button" role="tab" id="public-tab" aria-controls="leaderboard-table-region" aria-selected="false" tabindex="-1" class="metric-tab" data-leaderboard-split="public">
+                Public <span data-split-count="public">—</span>
+              </button>
+              <button type="button" role="tab" id="private-tab" aria-controls="leaderboard-table-region" aria-selected="false" tabindex="-1" class="metric-tab" data-leaderboard-split="private">
+                Private <span data-split-count="private">—</span>
+              </button>
+            </div>
+            <label class="leaderboard-search">
+              <input type="search" placeholder="Search models" aria-label="Search models" autocomplete="off" data-leaderboard-search>
+            </label>
+          </div>
+
+          <div id="leaderboard-table-region" class="table-card table-card-wide leaderboard-table-region" role="tabpanel" aria-labelledby="overall-tab">
+            <div class="leaderboard-top-scroll" data-leaderboard-top-scroll aria-label="Horizontal leaderboard scroll" aria-controls="leaderboard-table-scroll" tabindex="0" hidden>
+              <div class="leaderboard-top-scroll-spacer" data-leaderboard-top-scroll-spacer></div>
+            </div>
+            <div id="leaderboard-table-scroll" class="table-scroll leaderboard-table-scroll" data-leaderboard-table-wrap aria-busy="true" tabindex="0" aria-label="Scrollable leaderboard results table">
+              <table class="results-table results-table-wide leaderboard-table">
+                <thead>
+                  <tr class="header-rule">
+                    <th scope="col">Method</th>
+                    <th scope="col">Rank</th>
+                    <th scope="col">Average</th>
+                    <th scope="col">Motion<br>Perception</th>
+                    <th scope="col">Spatial<br>Relations</th>
+                    <th scope="col">Outcome<br>Prediction</th>
+                    <th scope="col">Physical<br>Dynamics</th>
+                    <th scope="col">Vehicle<br>Movement</th>
+                    <th scope="col">Relative<br>Velocity</th>
+                    <th scope="col">Rotation<br>Direction</th>
+                    <th scope="col">Ego<br>Motion</th>
+                    <th scope="col">Passage<br>Feasibility</th>
+                    <th scope="col">Interaction<br>Direction</th>
+                    <th scope="col">Basketball<br>Shot</th>
+                    <th scope="col">Soccer<br>Shot</th>
+                    <th scope="col">Golf<br>Shot</th>
+                    <th scope="col">Billiards<br>Shot</th>
+                    <th scope="col">Swimming<br>Race</th>
+                    <th scope="col">Fall<br>Direction</th>
+                    <th scope="col">Jenga<br>Stability</th>
+                    <th scope="col">Mikado<br>Dependency</th>
+                    <th scope="col">Knot<br>Type</th>
+                  </tr>
+                </thead>
+                <tbody data-leaderboard-body>
+                  <tr>
+                    <td colspan="22" class="leaderboard-loading">Loading leaderboard results…</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="leaderboard-empty" data-leaderboard-empty hidden>
+              <h3>No results available</h3>
+              <p>Results for this data split have not been published yet.</p>
+            </div>
+          </div>
+
+          <p class="leaderboard-status sr-only" data-leaderboard-status aria-live="polite"></p>
+          <noscript>
+            <p class="leaderboard-noscript">JavaScript is required to load the leaderboard data.</p>
+          </noscript>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer leaderboard-footer">
+    <div class="container content-wide">
+      <div class="content has-text-centered">
+        <p data-footer-copy>&copy; 2026 Colalab. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

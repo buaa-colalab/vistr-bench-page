@@ -1,609 +1,294 @@
-# Colalab 项目主页说明
+# ViSTR-Bench 项目网站
 
-这是一个面向论文、模型、数据集、实验结果和项目展示的静态项目主页模板。它使用原生 `HTML + CSS + JavaScript` 实现，不需要 React、Vue 或 npm 构建流程；你可以直接编辑 `index.html`、`static/css/index.css` 和 `static/js/index.js` 来替换内容、调整样式和扩展交互。
+这是 ViSTR-Bench 的静态项目网站，包含两个页面：
 
+- `Overview`：论文与基准概览。
+- `Leaderboard`：Overall、Public 和 Private 三套模型排行榜。
 
-## 快速预览
+网站使用原生 HTML、CSS 和 JavaScript，不需要 npm、React、Vue 或构建流程。页面之间通过顶部导航栏切换，并共享主题、导航、表格和响应式样式。
 
-在仓库根目录运行：
+## 本地预览
 
-```powershell
-python -m http.server 8000
+在仓库根目录启动静态文件服务器：
+
+```bash
+python3 -m http.server 8000
 ```
 
-然后打开：
+然后访问：
 
 ```text
-http://localhost:8000
+http://localhost:8000/index.html
+http://localhost:8000/leaderboard.html
 ```
 
-建议使用本地服务器预览，不要直接双击打开 `index.html`。有些浏览器在 `file://` 模式下会限制视频、脚本或资源加载行为。
+也可以直接打开 `http://localhost:8000/` 进入 Overview。
 
-## 文件结构说明
+Leaderboard 使用浏览器 `fetch` 读取本地 CSV。请通过本地服务器或正式网站访问，不要使用 `file://` 直接打开 HTML，否则浏览器可能阻止 CSV 加载。
 
-### `index.html`
-
-主页主体文件。页面中的标题、作者、段落、按钮、图表容器、表格、引用、视频和模块结构大多在这里。
-
-常改内容：
-
-- 项目标题
-- 作者和机构
-- 资源按钮链接
-- 段落文案
-- demo 视频
-- 表格数据
-- YouTube 视频
-- BibTeX
-- References
-
-### `static/css/index.css`
-
-页面样式文件。控制布局、颜色、夜间模式、hero 动画、carousel、卡片、表格、引用、图表容器和响应式设计。
-
-常改内容：
-
-- 全局字体
-- 页面宽度
-- 颜色主题
-- 卡片圆角和阴影
-- 表格样式
-- demo gallery 样式
-- hero 可乐动画
-- 夜间模式适配
-
-### `static/js/index.js`
-
-页面交互文件。控制主题切换、carousel、图表渲染、表格增强、引用跳转、视频预览和 footer 文案。
-
-常改内容：
-
-- 图表渲染逻辑
-- carousel 自动播放逻辑
-- 表格自动高亮规则
-- 引用侧栏行为
-- demo 预览弹窗
-
-### `static/images/`
-
-图片资源目录。可以放 teaser、方法图、数据图、项目截图等。
-
-### `static/videos/`
-
-视频资源目录。顶部 carousel、下方 demo gallery 和可播放示例视频都可以从这里读取。
-
-### `static/pdfs/`
-
-PDF 资源目录。适合放论文、补充材料、技术报告等。
-
-### `cologo/cologo.png`
-
-Hero 和导航中使用的 logo。替换同名文件即可快速更换 logo。
-
-## 页面模块说明
-
-## 1. 首屏 Hero
-
-Hero 是进入页面后的第一视觉焦点，包含项目 logo、标题和动态背景效果。
-
-它的作用：
-
-- 让项目名称一眼可见
-- 给页面建立品牌感
-- 通过动画让静态论文主页更有记忆点
-
-相关位置：
-
-- HTML：`index.html` 中的 `project-hero`
-- CSS：`static/css/index.css` 中的 hero、cola、bubble 相关样式
-- JS：`setupHeroCollapse()`
-
-如果要修改项目名称，搜索：
+## 文件结构
 
 ```text
-Project Title:
+.
+├── index.html                    # Overview 页面
+├── leaderboard.html              # Leaderboard 页面与表格结构
+├── summary_all.csv               # Overall 排行榜数据
+├── summary_public.csv            # Public 排行榜数据
+├── summary_private.csv           # Private 排行榜数据
+├── cologo/
+│   └── cologo.png                # 导航栏和 Hero 使用的 Logo
+└── static/
+    ├── css/
+    │   ├── bulma.min.css         # 基础样式
+    │   ├── index.css             # 两个页面共享的主要样式
+    │   └── leaderboard.css       # Leaderboard 补充样式
+    ├── js/
+    │   ├── index.js              # 共享交互与 Overview 交互
+    │   └── leaderboard.js        # CSV 解析、排行榜与搜索
+    ├── images/                   # 任务、流程和结果图片
+    ├── videos/                   # 顶部任务示例视频
+    └── pdfs/
+        └── main.pdf              # Paper 按钮打开的论文 PDF
 ```
 
-## 2. 作者、机构与资源入口
+## Overview 页面
 
-Hero 下方有作者、机构和资源按钮区域。资源按钮适合链接到：
+Overview 的主体内容位于 `index.html`，当前包含：
 
-- Paper
-- Supplementary
-- Code
-- Weights
-- Datasets
+1. 项目 Hero、Logo 和论文标题。
+2. 作者、机构以及 Paper、Code、Dataset 资源入口。
+3. 15 个任务示例组成的视频 Carousel。
+4. 基准概览：4 个推理维度、15 个子任务、1,340 个视频问答对和 39 个模型变体。
+5. Task Definition：Motion Perception、Spatial Relations、Outcome Prediction 和 Physical Dynamics。
+6. Benchmark statistics：任务数量与数据来源的交互式分布图。
+7. Construction pipeline：数据收集、视频预处理、QA 生成和人工质量控制。
+8. Evaluation Results：关键结果、结果图片、按模型类别整理的主结果表格和结论。
+9. Citation 区域与 BibTeX 复制按钮。
 
-修改方式：
-
-在 `index.html` 搜索：
-
-```html
-class="resource-card"
-```
-
-替换每个 `<a>` 的 `href`。
-
-图标来自 Iconify，例如：
-
-```html
-<iconify-icon class="resource-icon resource-icon-paper" icon="academicons:arxiv"></iconify-icon>
-```
-
-想换图标，可以去 Iconify 搜索图标名，然后替换 `icon="..."`。
-
-## 3. 顶部 Demo Carousel
-
-顶部 demo carousel 用于快速展示项目效果，可以放机器人执行视频、模型输出、图像结果、GIF 或短视频。
-
-功能特点：
-
-- 自动滚动
-- 左右切换
-- 下方进度点
-- 点击 demo 可放大预览
-- 预览时背景虚化
-- 支持视频播放控制
-
-
-修改位置：
-
-```html
-<div class="media-carousel-track" data-carousel-track>
-```
-
-每个 demo 类似：
-
-```html
-<article class="media-tile" data-carousel-slide>
-  <video autoplay muted loop playsinline preload="metadata">
-    <source src="static/videos/carousel1.mp4" type="video/mp4">
-  </video>
-  <span class="media-speed-badge">1x</span>
-</article>
-```
-
-替换视频路径即可：
-
-```html
-<source src="static/videos/your_demo.mp4" type="video/mp4">
-```
-
-## 4. 正文介绍与段落引用
-
-正文段落用于解释项目动机、方法、数据和结果。段落中可以加入引用，例如：
-
-```html
-<a class="inline-ref" href="#ref-main" data-ref="ref-main">[1]</a>
-```
-
-页面会在对应段落旁边显示 reference 卡片。
-
-引用数据在 `window.ProjectPageConfig.references` 中配置。
-
-每条引用包含：
+页面中的统计配置位于 `index.html` 的 `window.ProjectPageConfig`：
 
 ```js
-{
-  id: "ref-main",
-  label: "[1]",
-  title: "Paper Title",
-  authors: "Author et al.",
-  venue: "Conference",
-  year: "2026",
-  url: "https://example.com"
-}
+window.ProjectPageConfig = {
+  demoAutoplayInterval: 7000,
+  distribution: { /* 维度、子任务和数量 */ },
+  dataPie: { /* 数据来源数量 */ },
+  references: [],
+  footer: {
+    organization: "Colalab",
+    year: 2026
+  }
+};
 ```
 
-## 5. 交互式方法图
+修改任务数量或数据来源时，应同时检查总数是否仍为 1,340，并保证图表配置、正文和表格中的数字一致。
 
-方法图区域包含一张可交互的流程图和一组步骤说明卡片。
+## Leaderboard 页面
 
-当前结构包含：
+Leaderboard 的页面结构位于 `leaderboard.html`，数据和交互由 `static/js/leaderboard.js` 生成。页面提供：
+
+- Overall、Public、Private 三个标签页。
+- 按模型名称搜索。
+- 每个数据范围内的全局排名。
+- Average、4 个推理维度和 15 个子任务的完整成绩。
+- 每一项最高分自动高亮。
+- 键盘可操作的标签切换，以及上下同步的横向滚动条。
+- 滚动时固定表头和 Method 列，便于浏览右侧任务成绩。
+- Public 和 Private 的可分享地址：
 
 ```text
-data -> model -> deployment -> feedback
+leaderboard.html?split=public
+leaderboard.html?split=private
 ```
 
-特点：
-
-- 鼠标滚动或点击步骤可以切换高亮
-- 图中节点、连线和文字说明同步变化
-- 适合解释 pipeline、模型流程、训练流程或系统部署流程
-
-相关位置：
+三个 CSV 的路径直接配置在 `leaderboard.html`：
 
 ```html
-<div class="method-diagram-scroll" data-method-diagram>
+<main
+  data-leaderboard-root
+  data-leaderboard-overall-source="summary_all.csv"
+  data-leaderboard-public-source="summary_public.csv"
+  data-leaderboard-private-source="summary_private.csv"
+>
 ```
 
-如果要新增步骤，需要同时保持三类名字一致：
-
-```html
-data-method-node="encoder"
-data-method-link="encoder"
-data-method-step="encoder"
-```
-
-并在 `static/js/index.js` 的 `stepThemes` 中添加对应颜色。
-
-## 6. 可替换模型结构图
-
-模型结构图使用 HTML 模块 + SVG 线条构成，不是普通图片。
-
-特点：
-
-- 模块位置可用 CSS 调整
-- 箭头可以用 SVG path 调整
-- 支持 MathJax LaTeX 公式
-- 支持夜间模式适配
-- 可以替换成自己的架构图
-
-相关位置：
-
-```html
-<div class="model-architecture" data-model-architecture>
-```
-
-如果想快速替换成图片，可以把内部内容换成：
-
-```html
-<img src="static/images/model-architecture.svg" alt="Model architecture diagram" class="section-figure section-figure-wide">
-```
-
-如果想继续使用可编辑结构，则修改：
-
-- HTML 模块：`.system-panel-*`、`.system-chip-*`
-- SVG 连线：`.system-architecture-lines`、`.system-model-lines`
-- CSS 位置：`static/css/index.css` 中的 `.system-panel-*` 和 `.system-chip-*`
-
-## 7. Project Video 模块
-
-视频模块用于嵌入项目介绍视频、论文讲解、demo montage 或补充展示。
-
-相关位置：
-
-```html
-<div class="video-card">
-```
-
-当前使用 YouTube iframe：
-
-```html
-src="https://www.youtube.com/embed/JkaxUblCGz0"
-```
-
-替换成自己的视频 ID 即可。
-
-
-## 8. The Data 数据展示
-
-Data 区域包含两种可视化：
-
-### 3D t-SNE / Scatter Visualization
-
-这是一个 Plotly 3D scatter 占位图，用于展示数据分布、任务簇、模型 rollout 或 embedding。
-
-相关函数：
-
-```js
-setupTsnePlot()
-```
-
-### Interactive Composition Chart
-
-这是一个交互式圆环图，用于展示数据组成比例。
-
-特点：
-
-- 鼠标 hover 可高亮扇区
-- 中心显示当前类别和比例
-- 图例在外侧，不挤占圆环
-- 夜间模式颜色适配
-
-相关配置：
-
-```js
-window.ProjectPageConfig.dataPie
-```
-
-
-## 9. The Results 实验结果
-
-Results 区域是页面的信息密度核心，包含多个实验展示方式。
-
-### 横向指标图
-
-横向图用于展示成功率、泛化能力、效率等指标。
-
-特点：
-
-- tab 切换不同指标组
-- hover 可查看数值
-- 保留横向柱状图，适合快速比较
-
-相关配置：
-
-```js
-window.ProjectPageConfig.horizontalMetrics
-```
-
-### 纵向柱状图 Carousel
-
-纵向柱状图用于展示 task-by-task 对比。
-
-特点：
-
-- 单独模块，不替代横向图
-- 左右按钮切换
-- 下方进度条
-- 自动播放
-- 鼠标 hover 显示具体数值
-- 支持夜间模式
-- 动画为柔和滑入滑出
-
-相关配置：
-
-```js
-window.ProjectPageConfig.verticalCharts
-```
-
-### Demo Gallery
-
-下方 demo gallery 用于展示 qualitative rollouts。
-
-特点：
-
-- 卡片式 3D 层叠效果
-- 左右按钮
-- 进度条
-- 自动播放
-- 支持一个可播放、可暂停、可拖动进度条的视频示例
-
-
-### 实验表格模块
-
-表格现在被包在一个完整的 `tables-panel` 中，风格和 demo gallery 一致。
-
-特点：
-
-- 有标题、说明和 caption
-- 表格外层卡片化
-- hover 行列高亮
-- 点击行可固定高亮
-- 最佳值自动或手动高亮
-- 窄屏时变成一列
-- 宽表在卡片内部横向滚动
-
-
-表格位置：
-
-```html
-<div class="tables-panel" data-enhanced-tables>
-```
-
-最佳值可以手动添加：
-
-```html
-<td class="is-best">0.85</td>
-```
-
-## 10. Citation 与 BibTeX
-
-页面底部包含 BibTeX 引用区和复制按钮。
-
-相关位置：
-
-```html
-<pre id="bibtex-code"><code>...</code></pre>
-```
-
-## 11. 夜间模式
-
-页面支持夜间模式：
-
-- 默认跟随系统主题
-- 用户切换后写入 `localStorage`
-- 刷新后记住用户选择
-- 图表、表格、引用、demo、视频卡片都做了深色适配
-
-相关配置：
-
-```js
-theme: {
-  defaultMode: "system",
-  storageKey: "colalab-project-theme"
-}
-```
-
-## 12. Footer
-
-Footer 默认文案为：
+当前每个文件包含 39 个模型。Overall 使用全部 1,340 道题，Public 和 Private 各使用 670 道题。
+
+## CSV 数据格式
+
+`summary_all.csv`、`summary_public.csv` 和 `summary_private.csv` 必须使用相同的表头和列顺序。每一行代表一个模型在对应数据范围内的一套完整结果。
+
+### 基本信息与计数
+
+| 字段 | 说明 |
+| --- | --- |
+| `suite` | 原始实验标识；当前可以保持为 `main` |
+| `run_name` | 实验运行名称 |
+| `model_id` | 模型或运行标识 |
+| `model` | 页面显示的模型名称 |
+| `source_kind` | 原始结果来源类型 |
+| `total_questions` | 对应数据范围的问题总数 |
+| `evaluated_questions` | 实际完成评测的问题数 |
+| `missing_questions` | 未完成评测的问题数 |
+| `correct` | 回答正确的问题数 |
+| `overall_accuracy` | 页面显示的 Average accuracy (%) |
+| `evaluated_accuracy` | 原始统计中的已评测准确率 |
+
+页面根据文件来源确定 Overall、Public 或 Private，因此三个文件中的 `suite` 均可继续使用 `main`。
+
+### 四个推理维度
 
 ```text
-© 2026 Colalab. All rights reserved.
+Motion_Perception
+Spatial_Relations
+Outcome_Prediction
+Physical_Dynamics
 ```
 
-相关配置：
-
-```js
-footer: {
-  organization: "Colalab",
-  year: 2026
-}
-```
-
-## 常用修改指南
-
-## 修改字体
-
-当前全局字体是 Arial：
-
-```css
-body {
-  font-family: Arial, sans-serif;
-}
-```
-
-如果要换字体，修改 `static/css/index.css` 中的 `body` 即可。
-
-如果要使用 Google Fonts，需要在 `index.html` 重新加入字体 `<link>`，再修改 CSS。
-
-## 修改页面宽度
-
-主内容宽度变量：
-
-```css
---content-measure: 1080px;
-```
-
-位置在 `static/css/index.css` 的 `:root` 中。
-
-## 修改自动播放时间
-
-在 `window.ProjectPageConfig` 中修改：
-
-```js
-demoAutoplayInterval: 6000,
-verticalChartAutoplayInterval: 7000
-```
-
-单位是毫秒。
-
-## 替换图片
-
-图片一般放在：
+### 十五个子任务
 
 ```text
-static/images/
+Vehicle_Movement
+Relative_Velocity
+Rotation_Direction
+Ego_Motion
+Passage_Feasibility
+Interaction_Direction
+Basketball_Shot
+Soccer_Shot
+Golf_Shot
+Billiards_Shot
+Swimming_Race
+Fall_Direction
+Jenga_Stability
+Mikado_Dependency
+Knot_Type
 ```
 
-可以直接替换同名文件，也可以在 `index.html` 中修改 `src` 路径。
+`result_dir` 和 `warnings` 用于保留原始实验信息，当前页面不会展示它们。
 
-建议：
+所有 Average、维度和子任务成绩都应为有效数字。缺少任意成绩的行会被排行榜过滤，并在浏览器控制台产生警告。
 
-- 截图用 `.jpg` 或 `.webp`
-- 透明图用 `.png`
-- SVG 图尽量保留矢量格式
-- 文件名使用小写英文和短横线
+## 排名规则
 
-## 替换视频
+每个标签页分别对自身的全部模型排名：
 
-视频一般放在：
+1. 优先使用 `correct / evaluated_questions` 计算未四舍五入的精确准确率。
+2. 按精确准确率从高到低排序。
+3. 精确准确率完全相同的模型并列，后续名次采用竞赛排名方式。例如 `1, 2, 2, 4`。
+4. 精确准确率相同的模型按模型名称排序，保证展示顺序稳定。
+5. 表格中的 Average 仍读取 `overall_accuracy`，并显示一位小数。
+
+因此，两个模型即使显示相同的一位小数 Average，也可能因为精确正确率不同而具有不同排名。为保证排名准确，新数据必须填写正确的 `correct` 和 `evaluated_questions`。
+
+## 添加新模型
+
+完成一个新模型的 Overall、Public 和 Private 评测后：
+
+1. 分别在 `summary_all.csv`、`summary_public.csv` 和 `summary_private.csv` 末尾追加一行。
+2. 三个文件使用完全一致的 `model` 名称。
+3. 填写对应范围的 `total_questions`、`evaluated_questions`、`missing_questions` 和 `correct`。
+4. 填写 `overall_accuracy`、4 个推理维度和 15 个子任务的全部成绩。
+5. 保持 CSV 表头、字段顺序和逗号转义格式不变。
+6. 启动本地服务器并刷新 Leaderboard，检查三个标签页的模型数量、排名和成绩。
+
+不需要修改 `leaderboard.html` 或 JavaScript；页面会自动读取新行、重新排名并计算每列最高分。
+
+建议同时检查：
+
+- Overall、Public 和 Private 中没有重复模型名称。
+- `evaluated_questions + missing_questions = total_questions`。
+- Overall 的 `correct` 与 Public、Private 的结果关系符合评测数据定义。
+- 所有准确率均在合理范围内，并与原始实验结果一致。
+
+## 修改文字、链接和资源
+
+### 导航与页面文字
+
+- 两个页面的导航分别位于 `index.html` 和 `leaderboard.html`。
+- 修改导航名称或链接时，要同步修改两个文件。
+- Overview 的标题、作者、机构、正文和结果表格直接在 `index.html` 中编辑。
+- Leaderboard 的标题、联系邮箱和表头直接在 `leaderboard.html` 中编辑。
+
+### Logo
+
+导航栏和 Hero 使用：
 
 ```text
-static/videos/
+cologo/cologo.png
 ```
 
-推荐格式：
+可以替换同名文件，也可以同步修改两个 HTML 中的路径。
 
-- `.mp4`
-- H.264 编码
-- 控制文件大小
-- autoplay 视频保留 `muted` 和 `playsinline`
+### 图片
 
-示例：
+当前 Overview 使用：
+
+```text
+static/images/task-definition-1.png
+static/images/construction-pipeline-1.png
+static/images/radar-results-1.png
+```
+
+替换图片时应保留清晰的 `alt` 文本，并检查浅色和深色主题下的可读性。
+
+### 视频
+
+任务示例视频位于 `static/videos/`。每个示例在 `index.html` 中使用：
 
 ```html
-<video autoplay muted loop playsinline preload="metadata">
-  <source src="static/videos/your-demo.mp4" type="video/mp4">
+<video muted loop playsinline preload="none">
+  <source src="static/videos/example.mp4" type="video/mp4">
 </video>
 ```
 
-## 修改图表数据
+Carousel 会只为当前可见的示例加载并播放视频；离开可视区域或打开预览时，后台视频会暂停。替换视频时同步更新任务名称、问题、正确答案和三个模型的回答状态。推荐使用 MP4/H.264，并控制文件大小。
 
-主要图表数据在 `index.html` 里的：
+### 论文和外部资源
 
-```js
-window.ProjectPageConfig
+- Paper 按钮指向 `static/pdfs/main.pdf`。
+- Code 和 Dataset 地址位于 `index.html` 的 `.resource-card` 链接中。
+- 发布前确认外部仓库和数据集允许匿名访问。
+- Citation 的 BibTeX 内容位于 `index.html` 的 `#bibtex-code` 中。
+
+## 主题与响应式布局
+
+网站默认跟随系统浅色或深色主题，用户选择保存在：
+
+```text
+localStorage["colalab-project-theme"]
 ```
 
-常改字段：
+两个页面共享 `static/css/index.css`。`static/css/leaderboard.css` 仅补充排行榜标签、搜索框、超宽表格和移动端布局。
 
-```js
-horizontalMetrics
-verticalCharts
-dataPie
-references
-footer
-```
+响应式行为包括：
 
-这样做的好处是不用深入改渲染逻辑，就能替换大部分展示数据。
+- 桌面端导航相对页面居中。
+- 小屏幕下导航和控件重新排列。
+- Overview 卡片和内容区按屏幕宽度调整列数。
+- Leaderboard 在窄屏中保留横向滚动和固定 Method 列，避免压缩任务列或丢失模型名称。
 
-## 修改表格数据
+修改颜色、间距或导航时，应同时检查 Overview 与 Leaderboard，避免两个页面出现不一致。
 
-搜索：
+## 发布前检查
 
-```html
-<div class="tables-panel" data-enhanced-tables>
-```
-
-直接编辑 `<table>` 里的 `<th>`、`<td>`。
-
-如果某个单元格是最佳值，可以加：
-
-```html
-class="is-best"
-```
-
-## 修改引用
-
-正文引用写法：
-
-```html
-<a class="inline-ref" href="#ref-main" data-ref="ref-main">[1]</a>
-```
-
-引用卡片数据写在：
-
-```js
-references: [
-  {
-    id: "ref-main",
-    label: "[1]",
-    title: "Paper Title",
-    authors: "Author et al.",
-    venue: "Conference",
-    year: "2026",
-    url: "https://example.com"
-  }
-]
-```
-
-注意：`data-ref` 和 `id` 必须一致。
+- [ ] Overview 和 Leaderboard 的导航链接、激活状态与标题正确。
+- [ ] Paper、Code、Dataset 和联系邮箱可用。
+- [ ] Citation 区域包含最终 BibTeX，复制按钮能够复制有效内容。
+- [ ] 三个 CSV 均可加载，字段完整，且模型数量符合预期。
+- [ ] Overall、Public 和 Private 排名与精确正确率一致。
+- [ ] Overview 的统计数字、图表和结果表格与论文一致。
+- [ ] 任务示例的视频、问题、答案和正确/错误状态一致。
+- [ ] 浅色模式和深色模式下文字、标签、表格均清晰可见。
+- [ ] 桌面端和移动端布局均无重叠或溢出问题。
+- [ ] 浏览器控制台没有 CSV、脚本或资源加载错误。
 
 ## 发布到 GitHub Pages
 
-1. 把仓库推送到 GitHub。
-2. 打开仓库页面。
-3. 进入 `Settings`。
-4. 打开 `Pages`。
-5. Source 选择对应分支，例如 `master` 或 `main`。
-6. Folder 选择 `/`。
-7. 保存后等待部署。
+1. 将网站文件提交并推送到 GitHub 仓库。
+2. 打开仓库的 `Settings` → `Pages`。
+3. 在 `Build and deployment` 中选择 `Deploy from a branch`。
+4. 选择用于发布的分支，例如 `main`，目录选择 `/ (root)`。
+5. 保存设置并等待部署完成。
+6. 使用公开地址重新执行发布前检查，尤其确认 CSV、视频、PDF 和外部链接可以访问。
 
-## 推荐替换顺序
-
-如果你要把这个模板改成真实项目主页，推荐按这个顺序：
-
-1. 替换项目标题、作者、机构。
-2. 替换资源按钮链接。
-3. 替换 logo。
-4. 替换顶部 demo 视频。
-5. 替换 overview、model、data、results 文案。
-6. 替换模型结构图。
-7. 替换数据图和图表配置。
-8. 替换实验表格。
-9. 替换下方 demo gallery。
-10. 替换引用和 BibTeX。
-11. 检查夜间模式。
-12. 本地预览并发布。
-
-## 维护建议
-
-- 保持视频文件尽量小，避免主页加载过慢。
-- 不使用的图片、视频和 PDF 应及时删除。
-- 重要图片添加清晰的 `alt` 文本。
-- 修改 CSS 前优先搜索已有类名，尽量沿用现有设计系统。
-- 修改 JS 前优先查看是否已有配置项可以满足需求。
-- 发布前同时检查浅色模式、夜间模式、移动端和桌面端。
+项目已经包含 `.nojekyll`，GitHub Pages 会直接按当前静态文件结构发布。所有页面和资源使用相对路径，因此应保持现有目录结构和文件名大小写。

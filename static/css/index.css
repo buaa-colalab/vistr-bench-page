@@ -72,6 +72,18 @@ html {
   box-sizing: border-box;
 }
 
+.sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
 body {
   margin: 0;
   font-family: Arial, sans-serif;
@@ -105,6 +117,21 @@ body.page-nav-visible .page-nav {
   transform: translateY(0);
 }
 
+body.overview-page .page-nav,
+body.leaderboard-page .page-nav {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+body.overview-page {
+  --overview-nav-height: calc(4rem + 3px);
+}
+
+body.overview-page .page-nav {
+  position: sticky;
+}
+
 .page-nav-inner {
   position: relative;
   display: flex;
@@ -134,9 +161,12 @@ body.page-nav-visible .page-nav {
 }
 
 .page-nav-links {
+  position: absolute;
+  left: 50%;
   display: flex;
   align-items: center;
   gap: 0.2rem;
+  transform: translateX(-50%);
 }
 
 .page-nav-links a {
@@ -231,6 +261,11 @@ a:hover {
     radial-gradient(circle at 50% 18%, rgba(255, 244, 214, 0.95) 0%, rgba(255, 244, 214, 0.45) 18%, transparent 34%),
     linear-gradient(to bottom, var(--hero-sky-top), var(--hero-sky-bottom));
   transition: height 0.65s ease, min-height 0.65s ease;
+}
+
+body.overview-page .project-hero:not(.is-collapsed) {
+  height: calc(100vh - var(--overview-nav-height));
+  min-height: calc(700px - var(--overview-nav-height));
 }
 
 .project-hero.is-collapsed {
@@ -600,7 +635,11 @@ body.logo-flight-active .page-nav-brand img {
   max-height: 0;
   overflow: hidden;
   transform: translateY(-0.8rem);
-  transition: opacity 0.35s ease, transform 0.35s ease, max-height 0.35s ease, margin-bottom 0.35s ease;
+  transition:
+    opacity 0.35s ease,
+    transform 0.35s ease,
+    max-height 0.35s ease,
+    margin-bottom 0.35s ease;
 }
 
 body.hero-collapsed .collapsed-title-bar {
@@ -3374,6 +3413,10 @@ code {
 }
 
 @media screen and (max-width: 768px) {
+  body.overview-page {
+    --overview-nav-height: 6.25rem;
+  }
+
   .page-nav-inner {
     align-items: flex-start;
     flex-direction: column;
@@ -3389,10 +3432,13 @@ code {
   }
 
   .page-nav-links {
-    width: calc(100% - 3rem);
+    position: static;
+    justify-content: center;
+    width: 100%;
     overflow-x: auto;
     padding-bottom: 0.2rem;
     scrollbar-width: none;
+    transform: none;
   }
 
   .page-nav-links::-webkit-scrollbar {
@@ -3414,6 +3460,10 @@ code {
 
   .project-hero {
     min-height: 560px;
+  }
+
+  body.overview-page .project-hero:not(.is-collapsed) {
+    min-height: calc(560px - var(--overview-nav-height));
   }
 
   .project-hero.is-collapsed {
@@ -3469,6 +3519,10 @@ code {
   .collapsed-title-bar {
     padding: 0.85rem 0.85rem 1rem;
     border-radius: 18px;
+  }
+
+  body.hero-collapsed .collapsed-title-bar {
+    max-height: 18rem;
   }
   .authors-block {
     font-size: 1rem;
