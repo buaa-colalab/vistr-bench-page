@@ -1812,6 +1812,37 @@ function setupReferenceSidebar(references) {
   });
 }
 
+function setupTeaserPlayer() {
+  const player = document.querySelector("[data-teaser-player]");
+  const video = player ? player.querySelector("video") : null;
+  const source = video ? video.querySelector("source[data-src]") : null;
+  const playButton = player ? player.querySelector("[data-teaser-play]") : null;
+
+  if (!player || !video || !source || !playButton) {
+    return;
+  }
+
+  playButton.addEventListener("click", () => {
+    const sourceUrl = source.dataset.src;
+    if (!sourceUrl) {
+      return;
+    }
+
+    source.src = sourceUrl;
+    source.removeAttribute("data-src");
+    video.preload = "metadata";
+    video.controls = true;
+    video.load();
+    player.classList.add("is-loaded");
+    playButton.hidden = true;
+
+    const playPromise = video.play();
+    if (playPromise && typeof playPromise.catch === "function") {
+      playPromise.catch(() => {});
+    }
+  }, { once: true });
+}
+
 function setupFooter(footerConfig = {}) {
   const footer = document.querySelector("[data-footer-copy]");
   if (!footer) {
@@ -1844,6 +1875,7 @@ setupThemeToggle(config.theme);
 resetPageToHero();
 setupAnswerStatuses();
 setupPageNavigation();
+setupTeaserPlayer();
 setupMediaCarousel();
 setupMediaPreviewModal();
 setupHeroCollapse();

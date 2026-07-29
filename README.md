@@ -46,7 +46,7 @@ Leaderboard 使用浏览器 `fetch` 读取本地 CSV。请通过本地服务器�
     │   ├── index.js              # 共享交互与 Overview 交互
     │   └── leaderboard.js        # CSV 解析、排行榜与搜索
     ├── images/                   # 任务、流程和结果图片
-    ├── videos/                   # 顶部任务示例视频
+    ├── videos/                   # Teaser 与顶部任务示例视频
     └── pdfs/
         └── main.pdf              # Paper 按钮打开的论文 PDF
 ```
@@ -57,13 +57,14 @@ Overview 的主体内容位于 `index.html`，当前包含：
 
 1. 项目 Hero、Logo 和论文标题。
 2. 作者、机构以及 Paper、Code、Dataset 资源入口。
-3. 15 个任务示例组成的视频 Carousel。
-4. 基准概览：4 个推理维度、15 个子任务、1,340 个视频问答对和 39 个模型变体。
-5. Task Definition：Motion Perception、Spatial Relations、Outcome Prediction 和 Physical Dynamics。
-6. Benchmark statistics：任务数量与数据来源的交互式分布图。
-7. Construction pipeline：数据收集、视频预处理、QA 生成和人工质量控制。
-8. Evaluation Results：关键结果、结果图片、按模型类别整理的主结果表格和结论。
-9. Citation 区域与 BibTeX 复制按钮。
+3. Overview 内点击后按需加载的论文 Teaser Video。
+4. 15 个任务示例组成的视频 Carousel。
+5. 基准概览：4 个推理维度、15 个子任务、1,340 个视频问答对和 39 个模型变体。
+6. Task Definition：Motion Perception、Spatial Relations、Outcome Prediction 和 Physical Dynamics。
+7. Benchmark statistics：任务数量与数据来源的交互式分布图。
+8. Construction pipeline：数据收集、视频预处理、QA 生成和人工质量控制。
+9. Evaluation Results：关键结果、结果图片、按模型类别整理的主结果表格和结论。
+10. Citation 区域与 BibTeX 复制按钮。
 
 页面中的统计配置位于 `index.html` 的 `window.ProjectPageConfig`：
 
