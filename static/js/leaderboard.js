@@ -136,6 +136,8 @@
         split: splitOverride || normalizeSplit(record.suite || record.split),
         name: String(record.model || "").trim(),
         modelId: String(record.model_id || record.run_name || sourceIndex).trim(),
+        isHuman: [record.model, record.model_id].some((value) => String(value || "").trim().toLowerCase() === "human")
+          || record.source_kind === "human_evaluation",
         totalQuestions: toNumber(record.total_questions),
         evaluatedQuestions: toNumber(record.evaluated_questions),
         correct: toNumber(record.correct),
@@ -170,7 +172,8 @@
       return left.scores.overall_accuracy === right.scores.overall_accuracy;
     }
 
-    const sorted = rows.slice().sort((left, right) => {
+    const humanRows = rows.filter((row) => row.isHuman).map((row) => ({ ...row, rank: "-" }));
+    const sorted = rows.filter((row) => !row.isHuman).sort((left, right) => {
       const scoreDifference = compareAccuracy(left, right);
       if (scoreDifference !== 0) {
         return scoreDifference;
@@ -180,12 +183,13 @@
 
     let previousRow = null;
     let previousRank = 0;
-    return sorted.map((row, index) => {
+    const rankedRows = sorted.map((row, index) => {
       const rank = previousRow && hasEqualAccuracy(row, previousRow) ? previousRank : index + 1;
       previousRow = row;
       previousRank = rank;
       return { ...row, rank };
     });
+    return [...humanRows, ...rankedRows];
   }
 
   function formatScore(value) {
@@ -195,6 +199,7 @@
   function getBestValues(rows) {
     return METRICS.reduce((bestValues, metric) => {
       const values = rows
+        .filter((row) => !row.isHuman)
         .map((row) => row.scores[metric.key])
         .filter((value) => Number.isFinite(value));
       bestValues[metric.key] = values.length > 0 ? Math.max(...values) : null;
@@ -204,7 +209,7 @@
 
   function renderScoreCell(row, metric, bestValues) {
     const value = row.scores[metric.key];
-    const isBest = Number.isFinite(value) && value === bestValues[metric.key];
+    const isBest = !row.isHuman && Number.isFinite(value) && value === bestValues[metric.key];
     const classes = ["leaderboard-score-cell"];
     if (metric.key === "overall_accuracy") {
       classes.push("leaderboard-average-cell");
@@ -259,7 +264,7 @@
 
     function updateSplitCounts() {
       SPLITS.forEach((split) => {
-        const count = allRows.filter((row) => row.split === split).length;
+        const count = allRows.filter((row) => row.split === split && !row.isHuman).length;
         const badge = root.querySelector(`[data-split-count="${split}"]`);
         if (badge) {
           badge.textContent = String(count);
@@ -355,7 +360,9 @@
         `;
       }).join("");
       table.setAttribute("aria-rowcount", String(visibleRows.length + 1));
-      status.textContent = `Showing ${visibleRows.length} of ${splitRows.length} models on the ${label} leaderboard.`;
+      const visibleModelCount = visibleRows.filter((row) => !row.isHuman).length;
+      const totalModelCount = splitRows.filter((row) => !row.isHuman).length;
+      status.textContent = `Showing ${visibleModelCount} of ${totalModelCount} models on the ${label} leaderboard.`;
       scheduleHorizontalScrollerUpdate();
     }
 
