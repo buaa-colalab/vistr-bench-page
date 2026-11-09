@@ -273,6 +273,7 @@
     }
 
     function updateHorizontalScroller() {
+      tableWrap.style.setProperty("--leaderboard-header-height", `${table.tHead.getBoundingClientRect().height}px`);
       if (!topScroll || !topScrollSpacer || tableWrap.hidden) {
         if (topScroll) {
           topScroll.hidden = true;
@@ -352,7 +353,7 @@
       body.innerHTML = visibleRows.map((row) => {
         const metricCells = METRICS.map((metric) => renderScoreCell(row, metric, bestValues)).join("");
         return `
-          <tr>
+          <tr${row.isHuman && activeSplit === "overall" ? ' class="leaderboard-human-row"' : ""}>
             <th scope="row" class="leaderboard-model-cell">${escapeHtml(row.name)}</th>
             <td>${row.rank}</td>
             ${metricCells}
@@ -425,6 +426,7 @@
       const resizeObserver = new ResizeObserver(scheduleHorizontalScrollerUpdate);
       resizeObserver.observe(tableWrap);
       resizeObserver.observe(table);
+      resizeObserver.observe(table.tHead);
     }
     updateTabs();
 
