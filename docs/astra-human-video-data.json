@@ -1,0 +1,681 @@
+{
+  "version": 8,
+  "date": "2026-11-12",
+  "status": "Final verified: 4K, 99.666667 seconds; ego-motion narration refers to this task; fall-direction narration explicitly states GPT-6-Astra predicts left and the answer is right, followed by the overall conclusion; 14 cues aligned within 1 ms; page pauses at least 1.5 seconds; 4K video stream unchanged.",
+  "width": 1920,
+  "height": 1080,
+  "fps": 30,
+  "duration_seconds": 99.66666666666667,
+  "audio_track": true,
+  "screen_language": "en",
+  "scope": "Overall = Public + Private",
+  "acts": [
+    {
+      "id": 1,
+      "title": "Model Performance on ViSTR-Bench",
+      "start_seconds": 0,
+      "end_seconds": 8.8,
+      "conclusions": [
+        "GPT-6-Astra ranks first among the evaluated models."
+      ]
+    },
+    {
+      "id": 2,
+      "title": "Where Does Astra Still Fall Short of Humans?",
+      "start_seconds": 8.8,
+      "end_seconds": 16.6,
+      "conclusions": [
+        "Astra performs well in motion perception and spatial reasoning.",
+        "Gaps remain in outcome prediction and physical dynamics."
+      ]
+    },
+    {
+      "id": 3,
+      "title": "Tasks Where Astra Performs Well",
+      "start_seconds": 16.6,
+      "end_seconds": 60.63333333333333,
+      "cases": [
+        "relative-velocity",
+        "rotation-direction",
+        "ego-motion"
+      ]
+    },
+    {
+      "id": 4,
+      "title": "Where Large Gaps Remain",
+      "start_seconds": 60.63333333333333,
+      "end_seconds": 99.66666666666667,
+      "cases": [
+        "basketball-shot",
+        "soccer-shot",
+        "fall-direction"
+      ]
+    }
+  ],
+  "phases": [
+    {
+      "start_seconds": 0,
+      "end_seconds": 3.2,
+      "key": "ranking-draw"
+    },
+    {
+      "start_seconds": 3.2,
+      "end_seconds": 5,
+      "key": "astra-highlight"
+    },
+    {
+      "start_seconds": 5,
+      "end_seconds": 8.8,
+      "key": "ranking-conclusion"
+    },
+    {
+      "start_seconds": 8.8,
+      "end_seconds": 16.6,
+      "key": "four-dimensions-with-conclusions"
+    },
+    {
+      "start_seconds": 16.6,
+      "end_seconds": 31.9,
+      "key": "relative-velocity"
+    },
+    {
+      "start_seconds": 31.9,
+      "end_seconds": 43.53333333333333,
+      "key": "rotation-direction"
+    },
+    {
+      "start_seconds": 43.53333333333333,
+      "end_seconds": 60.63333333333333,
+      "key": "ego-motion"
+    },
+    {
+      "start_seconds": 60.63333333333333,
+      "end_seconds": 75.93333333333334,
+      "key": "basketball-shot"
+    },
+    {
+      "start_seconds": 75.93333333333334,
+      "end_seconds": 86.63333333333334,
+      "key": "soccer-shot"
+    },
+    {
+      "start_seconds": 86.63333333333334,
+      "end_seconds": 99.66666666666667,
+      "key": "fall-direction"
+    }
+  ],
+  "ranking": {
+    "models": [
+      {
+        "name": "GPT-6-Astra-thinking",
+        "rank": 1,
+        "accuracy": 80.2,
+        "correct": 1075,
+        "total": 1340
+      },
+      {
+        "name": "GPT-6.1-Sol-thinking",
+        "rank": 2,
+        "accuracy": 76.2,
+        "correct": 1021,
+        "total": 1340
+      },
+      {
+        "name": "GPT-5.6-Sol",
+        "rank": 3,
+        "accuracy": 63,
+        "provenance": "User supplied"
+      },
+      {
+        "name": "Seed-2.0-Pro-thinking",
+        "rank": 4,
+        "accuracy": 60.1,
+        "correct": 806,
+        "total": 1340
+      },
+      {
+        "name": "Seed-2.0-Lite-thinking",
+        "rank": 5,
+        "accuracy": 58.8,
+        "correct": 788,
+        "total": 1340
+      },
+      {
+        "name": "Claude-Opus-5.5-thinking",
+        "rank": 6,
+        "accuracy": 58.1,
+        "correct": 779,
+        "total": 1340
+      },
+      {
+        "name": "Claude-Fable-5.1-thinking",
+        "rank": 7,
+        "accuracy": 58,
+        "correct": 777,
+        "total": 1340
+      }
+    ],
+    "human_accuracy": 91
+  },
+  "dimensions": [
+    {
+      "key": "Motion_Perception",
+      "name": "运动感知",
+      "astra": 93.3,
+      "human": 96.2,
+      "delta_pp": -2.9
+    },
+    {
+      "key": "Spatial_Relations",
+      "name": "空间关系",
+      "astra": 88.8,
+      "human": 96.5,
+      "delta_pp": -7.7
+    },
+    {
+      "key": "Outcome_Prediction",
+      "name": "结果预测",
+      "astra": 67.8,
+      "human": 84,
+      "delta_pp": -16.2
+    },
+    {
+      "key": "Physical_Dynamics",
+      "name": "物理动态",
+      "astra": 80.3,
+      "human": 93.9,
+      "delta_pp": -13.6
+    }
+  ],
+  "tasks": [
+    {
+      "key": "Vehicle_Movement",
+      "name": "车辆运动",
+      "dimension": "Motion_Perception",
+      "astra": 82.1,
+      "human": 90.6,
+      "delta_pp": -8.5,
+      "astra_correct": 92,
+      "astra_total": 112,
+      "category": "仍有差距"
+    },
+    {
+      "key": "Relative_Velocity",
+      "name": "相对速度",
+      "dimension": "Motion_Perception",
+      "astra": 97.6,
+      "human": 97,
+      "delta_pp": 0.6,
+      "astra_correct": 82,
+      "astra_total": 84,
+      "category": "数值略高"
+    },
+    {
+      "key": "Rotation_Direction",
+      "name": "旋转方向",
+      "dimension": "Motion_Perception",
+      "astra": 99.3,
+      "human": 100,
+      "delta_pp": -0.7,
+      "astra_correct": 144,
+      "astra_total": 145,
+      "category": "数值接近"
+    },
+    {
+      "key": "Ego_Motion",
+      "name": "自运动",
+      "dimension": "Spatial_Relations",
+      "astra": 93.9,
+      "human": 99.6,
+      "delta_pp": -5.7,
+      "astra_correct": 123,
+      "astra_total": 131,
+      "category": "仍有差距"
+    },
+    {
+      "key": "Passage_Feasibility",
+      "name": "通行可行性",
+      "dimension": "Spatial_Relations",
+      "astra": 72.7,
+      "human": 85.5,
+      "delta_pp": -12.8,
+      "astra_correct": 40,
+      "astra_total": 55,
+      "category": "仍有差距"
+    },
+    {
+      "key": "Interaction_Direction",
+      "name": "交互方向",
+      "dimension": "Spatial_Relations",
+      "astra": 92.9,
+      "human": 100,
+      "delta_pp": -7.1,
+      "astra_correct": 52,
+      "astra_total": 56,
+      "category": "仍有差距"
+    },
+    {
+      "key": "Basketball_Shot",
+      "name": "篮球投篮预测",
+      "dimension": "Outcome_Prediction",
+      "astra": 61.3,
+      "human": 81.5,
+      "delta_pp": -20.2,
+      "astra_correct": 76,
+      "astra_total": 124,
+      "category": "差距突出"
+    },
+    {
+      "key": "Soccer_Shot",
+      "name": "足球射门预测",
+      "dimension": "Outcome_Prediction",
+      "astra": 69.6,
+      "human": 82.9,
+      "delta_pp": -13.3,
+      "astra_correct": 110,
+      "astra_total": 158,
+      "category": "仍有差距"
+    },
+    {
+      "key": "Golf_Shot",
+      "name": "高尔夫进洞预测",
+      "dimension": "Outcome_Prediction",
+      "astra": 83,
+      "human": 87.7,
+      "delta_pp": -4.7,
+      "astra_correct": 44,
+      "astra_total": 53,
+      "category": "数值接近"
+    },
+    {
+      "key": "Billiards_Shot",
+      "name": "台球进袋预测",
+      "dimension": "Outcome_Prediction",
+      "astra": 66.7,
+      "human": 77.3,
+      "delta_pp": -10.6,
+      "astra_correct": 50,
+      "astra_total": 75,
+      "category": "仍有差距"
+    },
+    {
+      "key": "Swimming_Race",
+      "name": "游泳比赛预测",
+      "dimension": "Outcome_Prediction",
+      "astra": 65.3,
+      "human": 84.7,
+      "delta_pp": -19.4,
+      "astra_correct": 47,
+      "astra_total": 72,
+      "category": "差距突出"
+    },
+    {
+      "key": "Fall_Direction",
+      "name": "摔倒方向",
+      "dimension": "Outcome_Prediction",
+      "astra": 67.4,
+      "human": 100,
+      "delta_pp": -32.6,
+      "astra_correct": 31,
+      "astra_total": 46,
+      "category": "差距突出"
+    },
+    {
+      "key": "Jenga_Stability",
+      "name": "积木塔稳定性",
+      "dimension": "Physical_Dynamics",
+      "astra": 87.2,
+      "human": 94.4,
+      "delta_pp": -7.2,
+      "astra_correct": 102,
+      "astra_total": 117,
+      "category": "仍有差距"
+    },
+    {
+      "key": "Mikado_Dependency",
+      "name": "挑棒依赖判断",
+      "dimension": "Physical_Dynamics",
+      "astra": 71.1,
+      "human": 98.8,
+      "delta_pp": -27.7,
+      "astra_correct": 59,
+      "astra_total": 83,
+      "category": "差距突出"
+    },
+    {
+      "key": "Knot_Type",
+      "name": "绳结类型",
+      "dimension": "Physical_Dynamics",
+      "astra": 79.3,
+      "human": 77.6,
+      "delta_pp": 1.7,
+      "astra_correct": 23,
+      "astra_total": 29,
+      "category": "数值略高"
+    }
+  ],
+  "cases": [
+    {
+      "key": "relative-velocity",
+      "split": "public",
+      "id": 111,
+      "task_title": "Relative Velocity",
+      "question": "This is a driving video. Please determine which vehicle is moving faster based on their motion over time: the vehicle in the green box or the vehicle in the blue box. Answer Green or Blue.",
+      "original_question": "This is a driving video. Please determine which vehicle is moving faster based on their motion over time: the vehicle in the green box or the vehicle in the blue box. Answer Green or Blue.",
+      "astra_accuracy": 97.6,
+      "human_accuracy": 97,
+      "astra_answer": "Blue",
+      "correct_answer": "Blue",
+      "is_correct": true,
+      "status_text": "Correct",
+      "detail_path": "/Users/han.li/Documents/Codex/2026-10-19/chatgpt-pro-api-https-github-com-4/outputs/results_api/cliproxy_gpt-6-astra_prompt-direct_media-image_e10305f7a52a/details/111.json",
+      "video_path": "/Users/han.li/Documents/Code/ViSTR-Bench-Public/data/Motion_Perception/Relative_Velocity/Waymo/segment-16102220208346880_1_0sfh_9fen.mp4",
+      "source_duration_seconds": 4.086009,
+      "crop_bottom": 0,
+      "start_seconds": 16.6,
+      "play_start_seconds": 19.8,
+      "answer_reveal_seconds": 24.133333333333333,
+      "replay_start_seconds": 26.433333333333334,
+      "end_seconds": 31.9,
+      "replay_end_seconds": 30.5,
+      "pause_settings": {
+        "question_seconds": 3.2,
+        "before_answer_seconds": 0.25,
+        "answer_seconds": 2,
+        "replay_lead_in_seconds": 0.3,
+        "after_replay_seconds": 1.4
+      },
+      "display_question": "Which vehicle is moving faster: the green-boxed vehicle or the blue-boxed vehicle?",
+      "first_play_end_seconds": 23.866666666666667,
+      "replay_ready_seconds": 26.133333333333333
+    },
+    {
+      "key": "rotation-direction",
+      "split": "public",
+      "id": 1139,
+      "task_title": "Rotation Direction",
+      "question": "This is a video of a person performing a rotational action. From a top-down perspective, please determine whether the motion is clockwise or counterclockwise. Answer Clockwise or Counterclockwise.",
+      "original_question": "This is a video of a person performing a rotational action. From a top-down perspective, please determine whether the motion is clockwise or counterclockwise. Answer Clockwise or Counterclockwise.",
+      "astra_accuracy": 99.3,
+      "human_accuracy": 100,
+      "astra_answer": "Counterclockwise",
+      "correct_answer": "Counterclockwise",
+      "is_correct": true,
+      "status_text": "Correct",
+      "detail_path": "/Users/han.li/Documents/Codex/2026-10-19/chatgpt-pro-api-https-github-com-4/outputs/results_api/cliproxy_gpt-6-astra_prompt-direct_media-image_e10305f7a52a/details/1139.json",
+      "video_path": "/Users/han.li/Documents/Code/ViSTR-Bench-Public/data/Motion_Perception/Rotation_Direction/MotionX/Ways_to_Jump_Sit_Fall_3608_clip1_00_00_00_000_00_00_02_286.mp4",
+      "source_duration_seconds": 2.434783,
+      "crop_bottom": 100,
+      "start_seconds": 31.9,
+      "play_start_seconds": 34.7,
+      "answer_reveal_seconds": 37.4,
+      "replay_start_seconds": 39.7,
+      "end_seconds": 43.53333333333333,
+      "replay_end_seconds": 42.13333333333333,
+      "pause_settings": {
+        "question_seconds": 2.8,
+        "before_answer_seconds": 0.25,
+        "answer_seconds": 2,
+        "replay_lead_in_seconds": 0.3,
+        "after_replay_seconds": 1.4
+      },
+      "display_question": "From a top-down view, is the person rotating clockwise or counterclockwise?",
+      "first_play_end_seconds": 37.13333333333333,
+      "replay_ready_seconds": 39.4
+    },
+    {
+      "key": "ego-motion",
+      "split": "public",
+      "id": 228,
+      "task_title": "Ego Motion",
+      "question": "This is a video recorded by a moving camera in an indoor scene. The target object is the dining-table. Please determine the final position of the target object relative to the camera. Is it Front-left or Front-right? Answer Front-left or Front-right.",
+      "original_question": "This is a video recorded by a moving camera in an indoor scene. The target object is the dining-table. Please determine the final position of the target object relative to the camera. Is it Front-left or Front-right? Answer Front-left or Front-right.",
+      "astra_accuracy": 93.9,
+      "human_accuracy": 99.6,
+      "astra_answer": "Front-left",
+      "correct_answer": "Front-left",
+      "is_correct": true,
+      "status_text": "Correct",
+      "detail_path": "/Users/han.li/Documents/Codex/2026-10-19/chatgpt-pro-api-https-github-com-4/outputs/results_api/cliproxy_gpt-6-astra_prompt-direct_media-image_e10305f7a52a/details/228.json",
+      "video_path": "/Users/han.li/Documents/Code/ViSTR-Bench-Public/data/Spatial_Relations/Ego_Motion/ARKitScenes/44358499-1.mp4",
+      "source_duration_seconds": 4.969002,
+      "crop_bottom": 0,
+      "start_seconds": 43.53333333333333,
+      "play_start_seconds": 46.733333333333334,
+      "answer_reveal_seconds": 51.96666666666667,
+      "replay_start_seconds": 54.266666666666666,
+      "end_seconds": 60.63333333333333,
+      "replay_end_seconds": 59.233333333333334,
+      "pause_settings": {
+        "question_seconds": 3.2,
+        "before_answer_seconds": 0.25,
+        "answer_seconds": 2,
+        "replay_lead_in_seconds": 0.3,
+        "after_replay_seconds": 1.4
+      },
+      "crop_focus_y": 0.25,
+      "display_question": "Where does the dining table end up relative to the camera: front-left or front-right?",
+      "first_play_end_seconds": 51.7,
+      "replay_ready_seconds": 53.96666666666667
+    },
+    {
+      "key": "basketball-shot",
+      "split": "public",
+      "id": 812,
+      "task_title": "Basketball Shot",
+      "question": "This is a video of a basketball shot. Please predict whether the basketball will go into the hoop. Answer Yes or No.",
+      "original_question": "This is a video of a basketball shot. Please predict whether the basketball will go into the hoop. Answer Yes or No.",
+      "astra_accuracy": 61.3,
+      "human_accuracy": 81.5,
+      "astra_answer": "Yes",
+      "correct_answer": "No",
+      "is_correct": false,
+      "status_text": "Incorrect",
+      "detail_path": "/Users/han.li/Documents/Codex/2026-10-19/chatgpt-pro-api-https-github-com-4/outputs/results_api/cliproxy_gpt-6-astra_prompt-direct_media-image_e10305f7a52a/details/812.json",
+      "video_path": "/Users/han.li/Documents/Code/ViSTR-Bench-Public/data/Outcome_Prediction/Basketball_Shot/Ego4D/c48a70f7-44a3-44aa-ac14-baf35e696e5c-1-5.mp4",
+      "source_duration_seconds": 4.4,
+      "crop_bottom": 0,
+      "start_seconds": 60.63333333333333,
+      "play_start_seconds": 63.233333333333334,
+      "answer_reveal_seconds": 67.86666666666666,
+      "replay_start_seconds": 70.16666666666667,
+      "end_seconds": 75.93333333333334,
+      "replay_end_seconds": 74.53333333333333,
+      "pause_settings": {
+        "question_seconds": 2.6,
+        "before_answer_seconds": 0.25,
+        "answer_seconds": 2,
+        "replay_lead_in_seconds": 0.3,
+        "after_replay_seconds": 1.4
+      },
+      "crop_focus_y": 0.25,
+      "display_question": "Will the basketball go into the hoop?",
+      "first_play_end_seconds": 67.6,
+      "replay_ready_seconds": 69.86666666666666,
+      "end_frame_exclusive": 131,
+      "temporal_edit": "Remove only the final frame from the original 132-frame, 30 fps clip; show frames 0–130 in both passes."
+    },
+    {
+      "key": "soccer-shot",
+      "split": "public",
+      "id": 629,
+      "task_title": "Soccer Shot",
+      "question": "This is a video of a soccer free kick. Please predict whether the ball will go into the goal based on its trajectory, ignoring the goalkeeper and any defensive interference. Answer Yes or No.",
+      "original_question": "This is a video of a soccer free kick. Please predict whether the ball will go into the goal based on its trajectory, ignoring the goalkeeper and any defensive interference. Answer Yes or No.",
+      "astra_accuracy": 69.6,
+      "human_accuracy": 82.9,
+      "astra_answer": "Yes",
+      "correct_answer": "No",
+      "is_correct": false,
+      "status_text": "Incorrect",
+      "detail_path": "/Users/han.li/Documents/Codex/2026-10-19/chatgpt-pro-api-https-github-com-4/outputs/results_api/cliproxy_gpt-6-astra_prompt-direct_media-image_e10305f7a52a/details/629.json",
+      "video_path": "/Users/han.li/Documents/Code/ViSTR-Bench-Public/data/Outcome_Prediction/Soccer_Shot/YouTube/videoplayback-2-23.mp4",
+      "source_duration_seconds": 1.766667,
+      "crop_bottom": 0,
+      "start_seconds": 75.93333333333334,
+      "play_start_seconds": 79.13333333333334,
+      "answer_reveal_seconds": 81.16666666666667,
+      "replay_start_seconds": 83.46666666666667,
+      "end_seconds": 86.63333333333334,
+      "visual_review": "Adult football free-kick training scene in black tracksuit, sampled throughout at 5 fps.",
+      "replay_end_seconds": 85.23333333333333,
+      "pause_settings": {
+        "question_seconds": 3.2,
+        "before_answer_seconds": 0.25,
+        "answer_seconds": 2,
+        "replay_lead_in_seconds": 0.3,
+        "after_replay_seconds": 1.4
+      },
+      "display_question": "Will the free kick go into the goal? Ignore the goalkeeper and defenders.",
+      "first_play_end_seconds": 80.9,
+      "replay_ready_seconds": 83.16666666666667
+    },
+    {
+      "key": "fall-direction",
+      "split": "public",
+      "id": 1288,
+      "task_title": "Fall Direction",
+      "question": "This is a video of a person falling. Please determine the person's fall direction. Answer Left-hand side or Right-hand side.",
+      "original_question": "This is a video of a person falling. Please determine the person's fall direction. Answer Left-hand side or Right-hand side.",
+      "astra_accuracy": 67.4,
+      "human_accuracy": 100,
+      "astra_answer": "Left-hand side",
+      "correct_answer": "Right-hand side",
+      "is_correct": false,
+      "status_text": "Incorrect",
+      "detail_path": "/Users/han.li/Documents/Codex/2026-10-19/chatgpt-pro-api-https-github-com-4/outputs/results_api/cliproxy_gpt-6-astra_prompt-direct_media-image_e10305f7a52a/details/1288.json",
+      "video_path": "/Users/han.li/Documents/Code/ViSTR-Bench-Public/data/Outcome_Prediction/Fall_Direction/MotionX/Ways_to_Jump_Sit_Fall_Basketball_Fake_Out_clip1_00_00_00_000_00_00_03_013.mp4",
+      "source_duration_seconds": 3.216967,
+      "crop_bottom": 116,
+      "start_seconds": 86.63333333333334,
+      "play_start_seconds": 89.23333333333333,
+      "answer_reveal_seconds": 92.73333333333333,
+      "replay_start_seconds": 95.03333333333333,
+      "end_seconds": 99.66666666666667,
+      "replay_end_seconds": 98.26666666666667,
+      "pause_settings": {
+        "question_seconds": 2.6,
+        "before_answer_seconds": 0.25,
+        "answer_seconds": 2,
+        "replay_lead_in_seconds": 0.3,
+        "after_replay_seconds": 1.4
+      },
+      "display_question": "Will the person fall to their own left or right?",
+      "first_play_end_seconds": 92.46666666666667,
+      "replay_ready_seconds": 94.73333333333333,
+      "display_astra_answer": "Left",
+      "display_correct_answer": "Right"
+    }
+  ],
+  "case_layout": {
+    "video": {
+      "x": 96,
+      "y": 250,
+      "width": 1120,
+      "height": 630
+    },
+    "qa": {
+      "x": 1280,
+      "y": 255,
+      "width": 544
+    },
+    "metrics_y": 950
+  },
+  "colors": {
+    "background": "#FFFFFF",
+    "astra": "#20252B",
+    "human": "#A58C5E",
+    "other_models": "#C9D1DC",
+    "positive": "#2F7D57",
+    "negative": "#BF5947"
+  },
+  "animation": {
+    "fade_seconds": 0.35,
+    "bar_draw_seconds": 0.8,
+    "easing": "easeOutCubic"
+  },
+  "excluded": [
+    "four-bin-classification",
+    "standalone-outro",
+    "thinking-name-suffix",
+    "music",
+    "text-only-conclusion-page",
+    "methodology-scene",
+    "knot-case",
+    "closest-human-small-caption",
+    "sound-effects",
+    "Chinese-overlays",
+    "swimming-case",
+    "error-cause-discussion",
+    "gray-video-background",
+    "mikado-case"
+  ],
+  "timing": {
+    "rankingDraw": 0.7,
+    "rankingFocus": 3.2,
+    "rankingConclusion": 5,
+    "dimensionsDraw": 9.4,
+    "dimensionsConclusion": 12.2
+  },
+  "highlight_groups": {
+    "good": [
+      "Relative_Velocity",
+      "Rotation_Direction",
+      "Ego_Motion"
+    ],
+    "gaps": [
+      "Basketball_Shot",
+      "Soccer_Shot",
+      "Fall_Direction"
+    ]
+  },
+  "cases_start_seconds": 16.6,
+  "case_sequence": {
+    "pause_config": "video.config.json",
+    "play_count": 2,
+    "ending_hold_config": "examples.after_replay_seconds"
+  },
+  "ranking_display_overrides": [
+    {
+      "replaces": "GPT-5.4-thinking",
+      "display_name": "GPT-5.6-Sol",
+      "display_accuracy": 63,
+      "provenance": "User-supplied presentation value; source benchmark CSV unchanged."
+    }
+  ],
+  "total_frames": 2990,
+  "pause_config_file": "video.config.json",
+  "video_frame": {
+    "width": 2560,
+    "height": 1600,
+    "aspect_ratio": "8:5"
+  },
+  "animations": {
+    "scene_fade_in_seconds": 0.4666666666666667,
+    "scene_fade_out_seconds": 0.36666666666666664,
+    "ranking_draw_seconds": 0.8,
+    "ranking_highlight_seconds": 0.5666666666666667,
+    "dimensions_draw_seconds": 0.8,
+    "conclusion_fade_seconds": 0.4666666666666667,
+    "case_fade_in_seconds": 0.4666666666666667,
+    "case_fade_out_seconds": 0.36666666666666664,
+    "question_fade_seconds": 0.4,
+    "answer_fade_seconds": 0.4
+  },
+  "presentation_colors": {
+    "gap": "#808080"
+  },
+  "export": {
+    "width": 3840,
+    "height": 2160,
+    "fps": 30,
+    "crf": 16
+  },
+  "audio": {
+    "enabled": true,
+    "language": "en-US",
+    "voice": "en-US-AndrewNeural",
+    "asset": "outputs/astra-human/astra-human-narration.wav",
+    "engine": "edge-tts"
+  }
+}

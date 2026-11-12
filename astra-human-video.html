@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Astra vs. Human — Video Preview</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; background: #f3f4f6; color: #20252b; font: 14px Arial, sans-serif; }
+    main { max-width: 1500px; margin: 28px auto; padding: 0 24px 24px; }
+    .top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; gap: 16px; }
+    h1 { font-size: 18px; margin: 0; font-weight: 600; }
+    .muted { color: #687382; font-size: 12px; }
+    #stage { position: relative; aspect-ratio: 16 / 9; background: #fff; overflow: hidden; box-shadow: 0 6px 30px #20252b0d; }
+    #stage:fullscreen { width: 100vw; height: 100vh; aspect-ratio: auto; display: grid; place-items: center; background: #14171c; }
+    #composition { position: relative; width: 100%; aspect-ratio: 16 / 9; overflow: hidden; background: #fff; }
+    #stage:fullscreen #composition { width: min(100vw, calc(100vh * 16 / 9)); }
+    #art, #art > svg { display: block; width: 100%; height: 100%; }
+    .clip { position: absolute; object-fit: cover; background: transparent; pointer-events: none; display: none; }
+    .controls { background: #fff; padding: 18px; border: 1px solid #e5e9ef; border-top: 0; }
+    .transport { display: flex; align-items: center; gap: 10px; }
+    button, a.button { border: 1px solid #dce1e8; border-radius: 6px; background: #fff; color: #20252b; padding: 9px 14px; font: inherit; cursor: pointer; text-decoration: none; white-space: nowrap; }
+    button:hover, a.button:hover { background: #f2f4f8; }
+    button.primary { background: #20252b; color: #fff; min-width: 76px; }
+    #seek { width: 100%; margin: 18px 0 14px; accent-color: #20252b; }
+    #time { font-variant-numeric: tabular-nums; margin-right: auto; }
+    .chapters { display: flex; flex-wrap: wrap; gap: 8px; }
+    .chapters button { font-size: 12px; padding: 8px 11px; }
+    .chapters button[aria-pressed="true"] { background: #eef1f5; border-color: #a7b1c0; }
+    .bottom { display: flex; justify-content: space-between; gap: 12px; margin-top: 14px; line-height: 1.5; }
+    #error { color: #a33a2f; }
+    :focus-visible { outline: 3px solid #91acf0; outline-offset: 3px; }
+    @media(max-width: 650px) { main { padding: 0 10px 16px; margin: 14px auto; } .top .muted, #download { display: none; } .transport { gap: 6px; } button { padding: 8px 10px; } .bottom { flex-direction: column; } }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="top"><h1>Astra vs. Human</h1><span class="muted">Four acts · English narration · 4K · 3840 × 2160</span></div>
+    <div id="stage"><div id="composition"><div id="art"></div></div></div>
+    <div class="controls">
+      <div class="transport">
+        <button id="play" class="primary" type="button">Play</button>
+        <button id="restart" type="button">Restart</button>
+        <span id="time" aria-live="off">00:00</span>
+        <a id="download" class="button" href="outputs/astra-human/astra-human-final.mp4" download>Download MP4</a>
+        <button id="fullscreen" type="button">Full screen</button>
+      </div>
+      <input id="seek" type="range" min="0" value="0" step="0.01" aria-label="Video timeline">
+      <nav class="chapters" aria-label="Jump to act">
+        <button type="button" data-time="0" data-act="1">1 · Model performance</button>
+        <button type="button" data-time="8.8" data-act="2">2 · Dimensions</button>
+        <button type="button" data-time="16.6" data-act="3">3 · Tasks Where Astra Performs Well</button>
+        <button type="button" data-time="60.63333333333333" data-act="4">4 · Large gaps</button>
+      </nav>
+      <div class="bottom muted"><span id="status">Loading local clips…</span><span>Space: play/pause · Arrow keys: ±1s · F: full screen</span></div>
+      <p id="error" role="alert" hidden></p>
+    </div>
+  </main>
+  <script src="static/video-story/data.js"></script>
+  <script src="static/js/astra-human-scene.js"></script>
+  <script src="static/js/astra-human-player.js"></script>
+</body>
+</html>

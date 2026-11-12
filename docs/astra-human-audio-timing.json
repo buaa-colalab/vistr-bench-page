@@ -1,0 +1,280 @@
+{
+  "engine": "edge-tts",
+  "voice": "en-US-AndrewNeural",
+  "language": "en-US",
+  "sample_rate": 48000,
+  "duration_seconds": 99.66666666666667,
+  "sample_count": 4784000,
+  "alignment": "Each spoken cue fits within its video time window; no answer precedes its reveal",
+  "cues": [
+    {
+      "start": 0.0,
+      "end": 8.8,
+      "scene": "榜单与开场",
+      "text": "How close is GPT-6-Astra to humans? It leads the evaluated models, but still trails human performance.",
+      "speech_start": 0.65,
+      "speech_end": 7.483270833333333,
+      "rate": 106,
+      "rate_unit": "percent_of_default",
+      "voice": "en-US-AndrewNeural"
+    },
+    {
+      "start": 8.8,
+      "end": 16.6,
+      "scene": "四维度比较",
+      "text": "Motion perception and spatial reasoning are strong. Outcome prediction and physical dynamics still lag behind.",
+      "speech_start": 9.45,
+      "speech_end": 15.664395833333334,
+      "rate": 111,
+      "rate_unit": "percent_of_default",
+      "voice": "en-US-AndrewNeural"
+    },
+    {
+      "start": 16.6,
+      "end": 24.133,
+      "scene": "相对速度｜观察与提问",
+      "text": "Which vehicle is moving faster: green or blue? Watch how their positions change over time.",
+      "speech_start": 17.25,
+      "speech_end": 22.370666666666665,
+      "rate": 106,
+      "rate_unit": "percent_of_default",
+      "voice": "en-US-AndrewNeural"
+    },
+    {
+      "start": 24.133,
+      "end": 31.9,
+      "scene": "相对速度｜答案与重播",
+      "text": "GPT-6-Astra chooses blue, correctly. Its score on relative velocity is slightly above the human baseline.",
+      "speech_start": 24.333,
+      "speech_end": 30.950541666666666,
+      "rate": 115,
+      "rate_unit": "percent_of_default",
+      "voice": "en-US-AndrewNeural"
+    },
+    {
+      "start": 31.9,
+      "end": 37.4,
+      "scene": "旋转方向｜观察与提问",
+      "text": "Viewed from above, is the person turning clockwise or counterclockwise?",
+      "speech_start": 32.55,
+      "speech_end": 36.709,
+      "rate": 106,
+      "rate_unit": "percent_of_default",
+      "voice": "en-US-AndrewNeural"
+    },
+    {
+      "start": 37.4,
+      "end": 43.533,
+      "scene": "旋转方向｜答案与重播",
+      "text": "Counterclockwise is correct. GPT-6-Astra nearly matches human performance on this task.",
+      "speech_start": 37.6,
+      "speech_end": 42.62575,
+      "rate": 126,
+      "rate_unit": "percent_of_default",
+      "voice": "en-US-AndrewNeural"
+    },
+    {
+      "start": 43.533,
+      "end": 51.967,
+      "scene": "自运动｜观察与提问",
+      "text": "As the camera moves, where does the table end up? Track its position relative to the moving camera.",
+      "speech_start": 44.183,
+      "speech_end": 49.48970833333333,
+      "rate": 106,
+      "rate_unit": "percent_of_default",
+      "voice": "en-US-AndrewNeural"
+    },
+    {
+      "start": 51.967,
+      "end": 60.633,
+      "scene": "自运动｜答案与重播",
+      "text": "Front-left is correct. On this task, GPT-6-Astra is close to human performance.",
+      "speech_start": 52.167,
+      "speech_end": 57.5805,
+      "rate": 106,
+      "rate_unit": "percent_of_default",
+      "voice": "en-US-AndrewNeural"
+    },
+    {
+      "start": 60.633,
+      "end": 67.867,
+      "scene": "篮球投篮｜观察与提问",
+      "text": "Now predict the outcome. Will this basketball shot go in? Watch the ball's trajectory.",
+      "speech_start": 61.283,
+      "speech_end": 65.893875,
+      "rate": 106,
+      "rate_unit": "percent_of_default",
+      "voice": "en-US-AndrewNeural"
+    },
+    {
+      "start": 67.867,
+      "end": 75.93299999999999,
+      "scene": "篮球投篮｜答案与重播",
+      "text": "GPT-6-Astra says yes; the answer is no. Humans score much higher on this task.",
+      "speech_start": 68.067,
+      "speech_end": 73.4603125,
+      "rate": 106,
+      "rate_unit": "percent_of_default",
+      "voice": "en-US-AndrewNeural"
+    },
+    {
+      "start": 75.93299999999999,
+      "end": 81.167,
+      "scene": "足球射门｜观察与提问",
+      "text": "Ignoring the goalkeeper and defenders, will this free kick go in?",
+      "speech_start": 76.583,
+      "speech_end": 80.14558333333333,
+      "rate": 106,
+      "rate_unit": "percent_of_default",
+      "voice": "en-US-AndrewNeural"
+    },
+    {
+      "start": 81.167,
+      "end": 86.633,
+      "scene": "足球射门｜答案与重播",
+      "text": "GPT-6-Astra predicts a goal. The correct answer is no.",
+      "speech_start": 81.367,
+      "speech_end": 85.08016666666667,
+      "rate": 106,
+      "rate_unit": "percent_of_default",
+      "voice": "en-US-AndrewNeural"
+    },
+    {
+      "start": 86.633,
+      "end": 92.733,
+      "scene": "摔倒方向｜观察与提问",
+      "text": "Will they fall left or right? Use the person's own perspective.",
+      "speech_start": 87.283,
+      "speech_end": 90.557375,
+      "rate": 106,
+      "rate_unit": "percent_of_default",
+      "voice": "en-US-AndrewNeural"
+    },
+    {
+      "start": 92.733,
+      "end": 99.667,
+      "scene": "摔倒方向｜答案与重播",
+      "text": "GPT-6-Astra predicts left, but the answer is right. Overall, it still struggles to predict the future.",
+      "speech_start": 92.933,
+      "speech_end": 98.71839583333333,
+      "rate": 120,
+      "rate_unit": "percent_of_default",
+      "voice": "en-US-AndrewNeural"
+    }
+  ],
+  "reused_audio": false,
+  "page_gaps": [
+    {
+      "next_scene": "四维度比较",
+      "silence_seconds": 1.9667291666666662
+    },
+    {
+      "next_scene": "相对速度｜观察与提问",
+      "silence_seconds": 1.5856041666666663
+    },
+    {
+      "next_scene": "旋转方向｜观察与提问",
+      "silence_seconds": 1.599458333333331
+    },
+    {
+      "next_scene": "自运动｜观察与提问",
+      "silence_seconds": 1.5572500000000034
+    },
+    {
+      "next_scene": "篮球投篮｜观察与提问",
+      "silence_seconds": 3.7025000000000006
+    },
+    {
+      "next_scene": "足球射门｜观察与提问",
+      "silence_seconds": 3.122687499999998
+    },
+    {
+      "next_scene": "摔倒方向｜观察与提问",
+      "silence_seconds": 2.2028333333333308
+    }
+  ],
+  "minimum_page_gap_seconds": 1.5,
+  "mux_verification": {
+    "video": "outputs/astra-human/astra-human-final.mp4",
+    "resolution": [
+      3840,
+      2160
+    ],
+    "audio_codec": "aac",
+    "audio_language": "eng",
+    "video_stream_unchanged": true,
+    "minimum_page_silence_seconds": 1.5572500000000034,
+    "decoded_audio_sync_checks": [
+      {
+        "scene": "榜单与开场",
+        "offset_ms": 0,
+        "correlation": 0.999997
+      },
+      {
+        "scene": "四维度比较",
+        "offset_ms": 0,
+        "correlation": 0.999996
+      },
+      {
+        "scene": "相对速度｜观察与提问",
+        "offset_ms": 0,
+        "correlation": 0.999989
+      },
+      {
+        "scene": "相对速度｜答案与重播",
+        "offset_ms": 0,
+        "correlation": 0.999996
+      },
+      {
+        "scene": "旋转方向｜观察与提问",
+        "offset_ms": 0,
+        "correlation": 0.999992
+      },
+      {
+        "scene": "旋转方向｜答案与重播",
+        "offset_ms": 0,
+        "correlation": 0.999967
+      },
+      {
+        "scene": "自运动｜观察与提问",
+        "offset_ms": 0,
+        "correlation": 0.999993
+      },
+      {
+        "scene": "自运动｜答案与重播",
+        "offset_ms": 0,
+        "correlation": 0.999987
+      },
+      {
+        "scene": "篮球投篮｜观察与提问",
+        "offset_ms": 0,
+        "correlation": 0.999985
+      },
+      {
+        "scene": "篮球投篮｜答案与重播",
+        "offset_ms": 0,
+        "correlation": 0.999996
+      },
+      {
+        "scene": "足球射门｜观察与提问",
+        "offset_ms": 0,
+        "correlation": 0.999997
+      },
+      {
+        "scene": "足球射门｜答案与重播",
+        "offset_ms": 0,
+        "correlation": 0.999996
+      },
+      {
+        "scene": "摔倒方向｜观察与提问",
+        "offset_ms": 0,
+        "correlation": 0.999996
+      },
+      {
+        "scene": "摔倒方向｜答案与重播",
+        "offset_ms": 0,
+        "correlation": 0.999994
+      }
+    ]
+  }
+}

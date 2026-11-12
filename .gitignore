@@ -1,0 +1,6 @@
+node_modules/
+outputs/
+.video-cache/
+.DS_Store
+.venv-audio/
+__pycache__/

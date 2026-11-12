@@ -1,0 +1,24 @@
+{
+  "_说明": "使用在线神经男声生成英文旁白，并与最终 4K 视频对齐；需要联网。时间码读取 docs/astra-human-video-narration.md。",
+  "voice": "en-US-AndrewNeural",
+  "_voice": "美式神经男声，采用清晰、有对话感和轻微活力的科研讲解风格。",
+  "sample_rate": 48000,
+  "cue_start_padding_seconds": 0.2,
+  "cue_end_padding_seconds": 0.2,
+  "target_lufs": -16,
+  "pronunciations": {
+    "GPT-6-Astra": "G P T six Astra"
+  },
+  "language": "en-US",
+  "engine": "edge-tts",
+  "rate_percent": 6,
+  "max_rate_percent": 28,
+  "_rate_percent": "相对于语音服务默认语速的增量；超时句子单独适度加速，保持画面对齐。",
+  "pitch_hz": 2,
+  "page_start_padding_seconds": 0.65,
+  "_page_start_padding_seconds": "每一页出现后先静置多久再开口，给标题和画面留出阅读时间。",
+  "page_end_padding_seconds": 0.85,
+  "_page_end_padding_seconds": "切页前至少保留的句尾静音，避免上一句贴着下一页。",
+  "minimum_page_gap_seconds": 1.5,
+  "_minimum_page_gap_seconds": "相邻页面两句旁白之间的最短静音，生成和合并时会校验。"
+}

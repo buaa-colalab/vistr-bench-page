@@ -1,0 +1,20 @@
+{
+  "name": "vistr-bench-video",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Deterministic rendering of the four-act Astra\u2013Human video",
+  "scripts": {
+    "video:prepare": "node scripts/prepare-astra-human-video.cjs",
+    "video:stills": "npm run video:prepare && node scripts/render-astra-human-video.cjs --stills",
+    "video:render": "npm run video:prepare && node scripts/render-astra-human-video.cjs",
+    "test:video": "node --test tests/astra-human-video.test.cjs",
+    "audio:render": ".venv-audio/bin/python scripts/render-astra-human-narration.py",
+    "video:mux": "node scripts/mux-astra-human-video.cjs"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "devDependencies": {
+    "@resvg/resvg-js": "2.6.2"
+  }
+}

@@ -1,0 +1,79 @@
+{
+  "_说明": "全部时长单位为秒，可用小数；自动对齐 30 fps。先调 pages 和 examples；animations 只控制过渡的柔和程度。预览：npm run video:prepare 后刷新；成片：npm run video:render。",
+  "pages": {
+    "ranking": {
+      "_intro_seconds": "本页入场到柱条开始生长；含页面淡入，不额外相加。",
+      "intro_seconds": 0.7,
+      "_all_models_seconds": "柱条开始生长到 Astra 开始高亮；含柱条生长，越大则榜单阅读越久。",
+      "all_models_seconds": 2.5,
+      "_highlight_seconds": "Astra 开始高亮到结论开始出现；含高亮变色动画。",
+      "highlight_seconds": 1.8,
+      "_conclusion_seconds": "结论开始出现到离开本页；含结论淡入及页尾淡出。",
+      "conclusion_seconds": 3.8
+    },
+    "dimensions": {
+      "_intro_seconds": "本页入场到柱条开始生长；含页面淡入，不额外相加。",
+      "intro_seconds": 0.6,
+      "_comparison_seconds": "四维度柱条开始生长到结论出现；含柱条生长。",
+      "comparison_seconds": 2.8,
+      "_conclusion_seconds": "结论开始出现到离开本页；含结论淡入及页尾淡出。",
+      "conclusion_seconds": 4.4
+    }
+  },
+  "examples": {
+    "_说明": "每个案例：首帧读题 → 第一遍播放 → 末帧短停 → 答案出现并阅读 → 回到首帧短停 → 第二遍播放 → 末帧收尾。视频不变速，两个播放阶段始终完整。",
+    "_question_seconds": "从案例入场到开始第一遍播放；包含案例/问题淡入，读题阶段始终显示首帧。",
+    "question_seconds": 2.8,
+    "_before_answer_seconds": "第一遍完整播放结束后，停在末帧多久才揭晓答案。",
+    "before_answer_seconds": 0.25,
+    "_answer_seconds": "答案开始淡入到视频回到首帧的阅读时间；包含 answer_fade_seconds。",
+    "answer_seconds": 2.0,
+    "_replay_lead_in_seconds": "答案保持显示，视频回到首帧后短停多久再播放第二遍，避免瞬间跳回并运动。",
+    "replay_lead_in_seconds": 0.3,
+    "_after_replay_seconds": "第二遍播完后保留末帧的收尾时间；案例淡出只发生在此段，避免动作没播完就淡出。",
+    "after_replay_seconds": 1.4,
+    "overrides": {
+      "_说明": "下方每个案例支持覆盖上面五个数字，不写的字段沿用通用值。可在对象中加 _说明。",
+      "relative-velocity": {
+        "_说明": "问题略长，首帧读题稍久。",
+        "question_seconds": 3.2
+      },
+      "rotation-direction": {},
+      "ego-motion": {
+        "question_seconds": 3.2
+      },
+      "basketball-shot": {
+        "question_seconds": 2.6
+      },
+      "soccer-shot": {
+        "question_seconds": 3.2
+      },
+      "fall-direction": {
+        "question_seconds": 2.6
+      }
+    }
+  },
+  "animations": {
+    "_说明": "这些动画时长包含在上面的阶段停留里，不会重复增加总片长。0 为立即出现。入场/高亮采用两端减速的平滑曲线；淡出不会遮掉案例的最后动作。",
+    "_scene_fade_in_seconds": "图表页整页淡入。",
+    "scene_fade_in_seconds": 0.45,
+    "_scene_fade_out_seconds": "图表页整页淡出；自动限制在该页面时长内。",
+    "scene_fade_out_seconds": 0.35,
+    "_ranking_draw_seconds": "首页所有柱条从 0 生长到目标值。",
+    "ranking_draw_seconds": 0.8,
+    "_ranking_highlight_seconds": "Astra 柱条由普通灰色变深色，同时其他模型淡化。",
+    "ranking_highlight_seconds": 0.55,
+    "_dimensions_draw_seconds": "四维度比较柱条的生长时长。",
+    "dimensions_draw_seconds": 0.8,
+    "_conclusion_fade_seconds": "图下结论的淡入时长。",
+    "conclusion_fade_seconds": 0.45,
+    "_case_fade_in_seconds": "案例整页淡入，包含视频第一帧。",
+    "case_fade_in_seconds": 0.45,
+    "_case_fade_out_seconds": "案例末帧的淡出时长，最多为 after_replay_seconds；不会削短播放。",
+    "case_fade_out_seconds": 0.35,
+    "_question_fade_seconds": "问题文字淡入；包含在读题停顿里。",
+    "question_fade_seconds": 0.4,
+    "_answer_fade_seconds": "预测、符号及标准答案淡入；包含在答案阅读停顿里。",
+    "answer_fade_seconds": 0.4
+  }
+}

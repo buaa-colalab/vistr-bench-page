@@ -7,6 +7,15 @@
 
 网站使用原生 HTML、CSS 和 JavaScript，不需要 npm、React、Vue 或构建流程。页面之间通过顶部导航栏切换，并共享主题、导航、表格和响应式样式。
 
+## 图表与视频工具
+
+- `model-chart.html`：选择模型、数据范围和指标，生成带厂商图标的比较图。
+- `astra-human-video.html`：预览 GPT-6-Astra 与人类的比较视频，支持播放、拖动、章节跳转和英文旁白。
+- `video.config.json` 与 `narration.config.json`：调整页面停留、切页静音及语音参数。
+- [英文讲稿](docs/astra-human-video-narration.md)、[配置说明](docs/video-config.md)、[导出与配音说明](docs/astra-human-video-implementation.md)。
+
+视频导出工具需要 Node.js 20+、Python 3 和 FFmpeg；安装步骤见导出说明。生成的最终视频、独立音轨及可重建的依赖和缓存不纳入 Git，预览所需的六段案例素材保留在仓库中。
+
 ## 本地预览
 
 在仓库根目录启动静态文件服务器：

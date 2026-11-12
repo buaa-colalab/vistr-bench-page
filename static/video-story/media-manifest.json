@@ -1,0 +1,68 @@
+{
+  "relative-velocity": {
+    "filename": "relative-velocity.mp4",
+    "source_signature": "8178972:1792293944818.2603:crop-bottom-0:frame-2560x1600:focus-y-0.5:end-frame-full:crf-16",
+    "crop_bottom": 0,
+    "crop_focus_y": 0.5,
+    "end_frame_exclusive": null,
+    "frame_count": 122,
+    "duration": 4.066666666666666,
+    "width": 2560,
+    "height": 1600
+  },
+  "rotation-direction": {
+    "filename": "rotation-direction.mp4",
+    "source_signature": "484422:1792293955850.5361:crop-bottom-100:frame-2560x1600:focus-y-0.5:end-frame-full:crf-16",
+    "crop_bottom": 100,
+    "crop_focus_y": 0.5,
+    "end_frame_exclusive": null,
+    "frame_count": 73,
+    "duration": 2.433333333333333,
+    "width": 2560,
+    "height": 1600
+  },
+  "ego-motion": {
+    "filename": "ego-motion.mp4",
+    "source_signature": "2048129:1792294174015.3457:crop-bottom-0:frame-2560x1600:focus-y-0.25:end-frame-full:crf-16",
+    "crop_bottom": 0,
+    "crop_focus_y": 0.25,
+    "end_frame_exclusive": null,
+    "frame_count": 149,
+    "duration": 4.966666666666667,
+    "width": 2560,
+    "height": 1600
+  },
+  "basketball-shot": {
+    "filename": "basketball-shot.mp4",
+    "source_signature": "8745205:1792294032709.6067:crop-bottom-0:frame-2560x1600:focus-y-0.25:end-frame-131:crf-16",
+    "crop_bottom": 0,
+    "crop_focus_y": 0.25,
+    "end_frame_exclusive": 131,
+    "frame_count": 131,
+    "duration": 4.366666666666666,
+    "width": 2560,
+    "height": 1600
+  },
+  "soccer-shot": {
+    "filename": "soccer-shot.mp4",
+    "source_signature": "969845:1792294098104.2698:crop-bottom-0:frame-2560x1600:focus-y-0.5:end-frame-full:crf-16",
+    "crop_bottom": 0,
+    "crop_focus_y": 0.5,
+    "end_frame_exclusive": null,
+    "frame_count": 53,
+    "duration": 1.7666666666666666,
+    "width": 2560,
+    "height": 1600
+  },
+  "fall-direction": {
+    "filename": "fall-direction.mp4",
+    "source_signature": "467941:1792294050889.1826:crop-bottom-116:frame-2560x1600:focus-y-0.5:end-frame-full:crf-16",
+    "crop_bottom": 116,
+    "crop_focus_y": 0.5,
+    "end_frame_exclusive": null,
+    "frame_count": 97,
+    "duration": 3.2333333333333334,
+    "width": 2560,
+    "height": 1600
+  }
+}
