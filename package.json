@@ -9,7 +9,8 @@
     "video:render": "npm run video:prepare && node scripts/render-astra-human-video.cjs",
     "test:video": "node --test tests/astra-human-video.test.cjs",
     "audio:render": ".venv-audio/bin/python scripts/render-astra-human-narration.py",
-    "video:mux": "node scripts/mux-astra-human-video.cjs"
+    "video:mux": "node scripts/mux-astra-human-video.cjs",
+    "subtitles:render": "node scripts/mux-astra-human-video.cjs"
   },
   "engines": {
     "node": ">=20"

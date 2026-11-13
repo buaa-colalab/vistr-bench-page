@@ -201,6 +201,14 @@ test("football uses the adult training clip with its original scored answer", ()
   const soccer = data.cases.find((item) => item.key === "soccer-shot");
   assert.equal(soccer.id, 629); assert.equal(soccer.answer, "Yes"); assert.equal(soccer.correctAnswer, "No");
 });
+test("English subtitle source covers all narration cues", () => {
+  const srt = fs.readFileSync(path.join(__dirname, "../docs/astra-human-video-subtitles.srt"), "utf8");
+  const blocks = srt.trim().split(/\n\s*\n/);
+  assert.equal(blocks.length, 14);
+  assert.ok(srt.includes("GPT-6-Astra"));
+  assert.ok(srt.includes("Outcome prediction"));
+  assert.ok(srt.includes("GPT-6-Astra predicts left, but the answer is right."));
+});
 test("frames are deterministic, finite, English-only, with unique SVG IDs", () => {
   const before = scene.render(data, 12).svg;
   const times = [0.5, 5, 12, 24, 28.5, 35, 42, ...data.cases.flatMap((item) => [item.start + 1, item.play + 0.5, item.reveal + 0.5, item.replay + 0.5])];

@@ -104,7 +104,7 @@ async function main() {
   console.log(`Verified: ${video.width}×${video.height}, ${video.r_frame_rate} fps, ${probe.format.duration}s, no audio track.`);
   if (data.audio?.enabled) {
     const result = require("./mux-astra-human-video.cjs").muxVideo({ video: target, start, duration: end - start });
-    console.log(`Mux verified: ${result.width}×${result.height}, ${result.duration}s, English narration (${result.audio}).`);
+    console.log(`Mux verified: ${result.width}×${result.height}, ${result.duration}s, English narration (${result.audio}) and subtitles (${result.subtitle}).`);
   }
   console.log(target);
 }

@@ -27,6 +27,7 @@ Public #111、#1139、#228 为三个表现较好的案例；#812、#629、#1288 
 - 预览：`astra-human-video.html`
 - 成片：`outputs/astra-human/astra-human-final.mp4`
 - 独立英文男声旁白：`outputs/astra-human/astra-human-narration.mp3` 与 `.wav`
+- 可开关英文字幕：`docs/astra-human-video-subtitles.srt`；最终 MP4 内嵌同一字幕轨道
 - 语音配置：`narration.config.json`
 - 设计数据：`docs/astra-human-video-data.json`
 - 节奏配置：`video.config.json`，各参数自带中文说明

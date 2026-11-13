@@ -101,7 +101,7 @@ npm run video:stills -- --at 2,5.5,11.9,14.7,15.3,23.3,35.8,49.5,64.6,77.1,87.9
 
 完整重建的顺序为：`npm run video:prepare` → `npm run audio:render` → `npm run video:render`。导出器会根据数据中的音轨配置自动调用同一合并程序。修改视频节奏后，需先同步英文稿时间码，避免旁白与画面错位。
 
-单独输出 `outputs/astra-human/astra-human-narration.mp3` 和 48 kHz、16-bit、单声道 WAV；最终成片 `outputs/astra-human/astra-human-final.mp4` 已带英文旁白。音频时长为 99.666667 秒。
+单独输出 `outputs/astra-human/astra-human-narration.mp3` 和 48 kHz、16-bit、单声道 WAV；字幕源文件为 `docs/astra-human-video-subtitles.srt`。最终成片 `outputs/astra-human/astra-human-final.mp4` 带英文旁白和可开关的英文 `mov_text` 字幕轨道。音频和视频时长为 99.666667 秒。
 
 `docs/astra-human-audio-timing.json` 记录逐句文本、实际发声起止点与语速。合并前会检查稿件是否与音频一致、总时长是否匹配，以及六个答案是否在画面揭晓后才读出。
 

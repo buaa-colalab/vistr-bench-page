@@ -1,7 +1,7 @@
 {
   "version": 8,
   "date": "2026-11-12",
-  "status": "Final verified: 4K, 99.666667 seconds; ego-motion narration refers to this task; fall-direction narration explicitly states GPT-6-Astra predicts left and the answer is right, followed by the overall conclusion; 14 cues aligned within 1 ms; page pauses at least 1.5 seconds; 4K video stream unchanged.",
+  "status": "Final verified: 4K, 99.666667 seconds; Andrew English narration and 14 aligned cues; selectable English mov_text subtitles embedded and SRT source retained; page pauses at least 1.5 seconds; 4K video stream unchanged.",
   "width": 1920,
   "height": 1080,
   "fps": 30,

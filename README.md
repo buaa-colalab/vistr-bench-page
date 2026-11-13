@@ -11,6 +11,7 @@
 
 - `model-chart.html`：选择模型、数据范围和指标，生成带厂商图标的比较图。
 - `astra-human-video.html`：预览 GPT-6-Astra 与人类的比较视频，支持播放、拖动、章节跳转和英文旁白。
+- `docs/astra-human-video-subtitles.srt`：与旁白对齐的英文字幕源文件；最终 MP4 内嵌同一字幕轨道，可开关。
 - `video.config.json` 与 `narration.config.json`：调整页面停留、切页静音及语音参数。
 - [英文讲稿](docs/astra-human-video-narration.md)、[配置说明](docs/video-config.md)、[导出与配音说明](docs/astra-human-video-implementation.md)。
 
