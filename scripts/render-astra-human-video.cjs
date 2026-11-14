@@ -9,7 +9,9 @@ const { Resvg } = require("@resvg/resvg-js");
 const root = path.resolve(__dirname, "..");
 const data = require("../static/video-story/data.js");
 const renderer = require("../static/js/astra-human-scene.js");
+const subtitleReport = JSON.parse(fs.readFileSync(path.join(root, "docs/astra-human-audio-timing.json"), "utf8"));
 const args = process.argv.slice(2);
+const burnSubtitles = !args.includes("--selectable-subtitles");
 function arg(name, fallback) {
   const index = args.indexOf(name);
   if (index < 0) return fallback;
@@ -52,6 +54,29 @@ function prepareFrames() {
 const fonts = ["Arial.ttf", "Arial Bold.ttf"].map((name) => `/System/Library/Fonts/Supplemental/${name}`).filter((file) => fs.existsSync(file));
 const options = { fitTo: { mode: "width", value: width }, font: { fontFiles: fonts, loadSystemFonts: fonts.length === 0, defaultFontFamily: "Arial" } };
 const rasterCache = new Map();
+function xmlEscape(value) { return String(value).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&apos;" }[c])); }
+function wrapSubtitle(value, maxChars) {
+  const lines = []; let line = "";
+  for (const word of value.split(/\s+/)) {
+    if (line && `${line} ${word}`.length > maxChars) { lines.push(line); line = word; }
+    else line = line ? `${line} ${word}` : word;
+  }
+  if (line) lines.push(line);
+  return lines;
+}
+function subtitleOverlay(time, act) {
+  const cue = subtitleReport.cues.find((item) => time >= item.speech_start && time < item.speech_end);
+  if (!cue) return "";
+  const lines = wrapSubtitle(cue.text, 78);
+  const x = 160;
+  const y = 966;
+  const width = 1600;
+  const lineHeight = 30;
+  const height = lines.length * lineHeight + 26;
+  const textY = y + 34;
+  const text = lines.map((line, index) => `<text x="${x + 24}" y="${textY + index * lineHeight}" font-size="26" font-weight="500" fill="#20252B">${xmlEscape(line)}</text>`).join("");
+  return `<g id="burned-subtitles"><rect x="${x}" y="${y}" width="${width}" height="${height}" rx="12" fill="#F1F3F6" stroke="#D8DEE6" stroke-width="1" opacity="0.96"/>${text}</g>`;
+}
 function pngAt(time) {
   const state = renderer.stateAt(data, time);
   let image = "";
@@ -59,7 +84,8 @@ function pngAt(time) {
     const frames = jpegFrames.get(state.video.key);
     image = frames[Math.min(frames.length - 1, Math.max(0, Math.floor(state.video.time * 30 + 0.0001)))];
   }
-  const { svg } = renderer.render(data, time, image);
+  const scene = renderer.render(data, time, image);
+  const svg = burnSubtitles ? scene.svg.replace("</g></svg>", `${subtitleOverlay(time, scene.act)}</g></svg>`) : scene.svg;
   if (rasterCache.has(svg)) return rasterCache.get(svg);
   const png = new Resvg(svg, options).render().asPng();
   if (rasterCache.size >= 48) rasterCache.delete(rasterCache.keys().next().value);
@@ -103,8 +129,9 @@ async function main() {
   if (Math.abs(Number(probe.format.duration) - (end - start)) > 1 / fps + 0.01) throw new Error("Export duration mismatch");
   console.log(`Verified: ${video.width}×${video.height}, ${video.r_frame_rate} fps, ${probe.format.duration}s, no audio track.`);
   if (data.audio?.enabled) {
-    const result = require("./mux-astra-human-video.cjs").muxVideo({ video: target, start, duration: end - start });
-    console.log(`Mux verified: ${result.width}×${result.height}, ${result.duration}s, English narration (${result.audio}) and subtitles (${result.subtitle}).`);
+    const result = require("./mux-astra-human-video.cjs").muxVideo({ video: target, start, duration: end - start, includeSubtitles: !burnSubtitles });
+    const subtitleStatus = burnSubtitles ? "subtitles burned into video frames" : `selectable subtitles (${result.subtitle})`;
+    console.log(`Mux verified: ${result.width}×${result.height}, ${result.duration}s, English narration (${result.audio}) and ${subtitleStatus}.`);
   }
   console.log(target);
 }

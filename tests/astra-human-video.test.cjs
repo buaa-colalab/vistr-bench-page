@@ -137,7 +137,7 @@ test("case category colors remain distinct, gaps are neutral gray, and answer ma
     const delta = Number((item.astra - item.human).toFixed(1));
     assert.ok(svg.includes("Astra - Human"));
     assert.ok(svg.includes((delta > 0 ? "+" : "") + delta.toFixed(1) + " pp"));
-    const valueTag = svg.match(/<text x="1184" y="1007"[^>]*>[^<]*<\/text>/)[0];
+    const valueTag = svg.match(/<text x="1184" y="900"[^>]*>[^<]*<\/text>/)[0];
     assert.ok(valueTag.includes('fill="' + scene.colors.gap + '"'));
     const act = data.acts.find((act) => item.start >= act.start && item.start < act.end);
     assert.ok(svg.includes(act.title));
@@ -156,7 +156,7 @@ test("case category colors remain distinct, gaps are neutral gray, and answer ma
     assert.equal(answer.length, 2); for (const tag of answer) assert.ok(tag.includes(`fill="${scene.colors.ink}"`));
     for (const match of svg.matchAll(/<text x="([\d.]+)" y="([\d.]+)"/g)) {
       const x = Number(match[1]), y = Number(match[2]);
-      assert.ok(y >= 919 || x >= 1184 || (x === 96 && y === 100), "Unexpected video-column text: " + x + ", " + y);
+      assert.ok(y >= 830 || x >= 1184 || (x === 96 && y === 100), "Unexpected video-column text: " + x + ", " + y);
     }
   }
 });

@@ -6,11 +6,12 @@
   "scripts": {
     "video:prepare": "node scripts/prepare-astra-human-video.cjs",
     "video:stills": "npm run video:prepare && node scripts/render-astra-human-video.cjs --stills",
-    "video:render": "npm run video:prepare && node scripts/render-astra-human-video.cjs",
+    "video:render": "npm run video:prepare && node scripts/render-astra-human-video.cjs --burn-subtitles",
     "test:video": "node --test tests/astra-human-video.test.cjs",
     "audio:render": ".venv-audio/bin/python scripts/render-astra-human-narration.py",
     "video:mux": "node scripts/mux-astra-human-video.cjs",
-    "subtitles:render": "node scripts/mux-astra-human-video.cjs"
+    "subtitles:render": "node scripts/mux-astra-human-video.cjs",
+    "subtitles:burn": "node scripts/render-astra-human-video.cjs --burn-subtitles"
   },
   "engines": {
     "node": ">=20"

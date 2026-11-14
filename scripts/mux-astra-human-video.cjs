@@ -44,7 +44,7 @@ function writeSubtitles(report, target) {
   fs.writeFileSync(target, `${cues.join("\n").trimEnd()}\n`);
 }
 
-function muxVideo({ video, start = 0, duration } = {}) {
+function muxVideo({ video, start = 0, duration, includeSubtitles = true } = {}) {
   const design = JSON.parse(fs.readFileSync(path.join(root, "docs/astra-human-video-data.json"), "utf8"));
   const config = JSON.parse(fs.readFileSync(path.join(root, "narration.config.json"), "utf8"));
   const report = JSON.parse(fs.readFileSync(path.join(root, "docs/astra-human-audio-timing.json"), "utf8"));
@@ -69,33 +69,41 @@ function muxVideo({ video, start = 0, duration } = {}) {
   const audio = path.resolve(root, design.audio.asset);
   const subtitles = path.join(root, "docs/astra-human-video-subtitles.srt");
   const outputSubtitles = path.join(root, "outputs/astra-human/astra-human-subtitles.srt");
-  writeSubtitles(report, subtitles);
-  fs.copyFileSync(subtitles, outputSubtitles);
+  if (includeSubtitles) {
+    writeSubtitles(report, subtitles);
+    fs.copyFileSync(subtitles, outputSubtitles);
+  }
   const before = probe(video).streams.find((stream) => stream.codec_type === "video");
   if (!before) throw new Error("Input video stream is missing");
   const audioProbe = probe(audio);
   if (Number(audioProbe.format.duration) + 0.001 < start + duration) throw new Error("Narration track is too short");
   const temporary = video.replace(/\.mp4$/i, "") + ".mux.mp4";
   try {
-    checked(["ffmpeg", "-y", "-hide_banner", "-loglevel", "error", "-i", video,
-      "-ss", String(start), "-i", audio, "-i", subtitles, "-map", "0:v:0", "-map", "1:a:0", "-map", "2:0", "-c:v", "copy",
+    const ffmpegArgs = ["ffmpeg", "-y", "-hide_banner", "-loglevel", "error", "-i", video,
+      "-ss", String(start), "-i", audio];
+    if (includeSubtitles) ffmpegArgs.push("-i", subtitles);
+    ffmpegArgs.push("-map", "0:v:0", "-map", "1:a:0");
+    if (includeSubtitles) ffmpegArgs.push("-map", "2:0");
+    ffmpegArgs.push("-c:v", "copy",
       "-c:a", "aac", "-b:a", "192k", "-ar", "48000", "-c:s", "mov_text", "-t", String(duration),
-      "-metadata:s:a:0", "language=eng", "-metadata:s:a:0", "title=English male narration",
-      "-metadata:s:s:0", "language=eng", "-metadata:s:s:0", "title=English subtitles",
-      "-movflags", "+faststart", temporary]);
+      "-metadata:s:a:0", "language=eng", "-metadata:s:a:0", "title=English male narration");
+    if (includeSubtitles) ffmpegArgs.push("-metadata:s:s:0", "language=eng", "-metadata:s:s:0", "title=English subtitles");
+    ffmpegArgs.push("-movflags", "+faststart", temporary);
+    checked(ffmpegArgs);
     const final = probe(temporary);
     const v = final.streams.find((stream) => stream.codec_type === "video");
     const a = final.streams.find((stream) => stream.codec_type === "audio");
     const s = final.streams.find((stream) => stream.codec_type === "subtitle");
     if (!v || !a || v.width !== before.width || v.height !== before.height || v.nb_frames !== before.nb_frames ||
-      !s || s.codec_name !== "mov_text" || s.tags?.language !== "eng" ||
+      (includeSubtitles && (!s || s.codec_name !== "mov_text" || s.tags?.language !== "eng")) ||
+      (!includeSubtitles && s) ||
       Math.abs(Number(final.format.duration) - duration) > 0.04 || Math.abs(Number(a.start_time || 0)) > 0.03 ||
-      Math.abs(Number(s.start_time || 0)) > 0.03 || Number(s.duration) > duration + 0.04 ||
-      Number(s.duration) + 0.2 < report.cues.at(-1).speech_end) {
+      (includeSubtitles && (Math.abs(Number(s.start_time || 0)) > 0.03 || Number(s.duration) > duration + 0.04 ||
+        Number(s.duration) + 0.2 < report.cues.at(-1).speech_end))) {
       throw new Error("Muxed video verification failed");
     }
     fs.renameSync(temporary, video);
-    return { video, subtitles, outputSubtitles, width: v.width, height: v.height, duration: Number(final.format.duration), audio: a.codec_name, subtitle: s.codec_name };
+    return { video, subtitles: includeSubtitles ? subtitles : null, outputSubtitles: includeSubtitles ? outputSubtitles : null, width: v.width, height: v.height, duration: Number(final.format.duration), audio: a.codec_name, subtitle: s?.codec_name || null };
   } finally {
     if (fs.existsSync(temporary)) fs.unlinkSync(temporary);
   }

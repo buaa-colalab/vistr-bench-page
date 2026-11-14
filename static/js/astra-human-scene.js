@@ -138,7 +138,7 @@
   function comparison(data, t) {
     let out = header(data.acts[1].title, "Overall accuracy (%)");
     out += group(fade(t, data.acts[1].start + 0.2), dimensions(data, t));
-    const conclusions = coloredConclusion(934, "Astra performs well in ", ["motion perception", "spatial reasoning"], C.green, 700) + coloredConclusion(993, "Gaps remain in ", ["outcome prediction", "physical dynamics"], C.red, 600);
+    const conclusions = coloredConclusion(860, "Astra performs well in ", ["motion perception", "spatial reasoning"], C.green, 700) + coloredConclusion(915, "Gaps remain in ", ["outcome prediction", "physical dynamics"], C.red, 600);
     out += group(fade(t, data.timing.dimensionsConclusion, data.animations.conclusion_fade_seconds), conclusions);
     return out;
   }
@@ -163,11 +163,11 @@
     panel += group(fade(t, item.start, data.animations.question_fade_seconds), question);
     const answer = text(1184, answerY, "Astra prediction", { size: 25, fill: C.muted }) + text(1184, answerY + 50, item.answer, { size: 40, weight: 700 }) + answerMark(item.correct, answerY + 50) + text(1184, answerY + 130, "Ground truth", { size: 25, fill: C.muted }) + text(1184, answerY + 180, item.correctAnswer, { size: 40, weight: 600 });
     panel += group(fade(t, item.reveal, Math.min(data.animations.answer_fade_seconds, item.replayReady - item.reveal)), answer);
-    panel += `<line x1="96" y1="919" x2="1824" y2="919" stroke="${C.grid}"/>`;
+    panel += `<line x1="96" y1="830" x2="1824" y2="830" stroke="${C.grid}"/>`;
     const delta = Number((item.astra - item.human).toFixed(1));
-    panel += text(96, 956, "Astra", { size: 24, fill: C.muted }) + text(96, 1007, `${item.astra.toFixed(1)}%`, { size: 38, weight: 700 });
-    panel += text(640, 956, "Human", { size: 24, fill: C.muted }) + text(640, 1007, `${item.human.toFixed(1)}%`, { size: 38, weight: 700, fill: C.human });
-    panel += text(1184, 956, "Astra - Human", { size: 24, fill: C.muted }) + text(1184, 1007, `${delta > 0 ? "+" : ""}${delta.toFixed(1)} pp`, { size: 38, fill: C.gap, weight: 700 });
+    panel += text(96, 858, "Astra", { size: 24, fill: C.muted }) + text(96, 900, `${item.astra.toFixed(1)}%`, { size: 38, weight: 700 });
+    panel += text(640, 858, "Human", { size: 24, fill: C.muted }) + text(640, 900, `${item.human.toFixed(1)}%`, { size: 38, weight: 700, fill: C.human });
+    panel += text(1184, 858, "Astra - Human", { size: 24, fill: C.muted }) + text(1184, 900, `${delta > 0 ? "+" : ""}${delta.toFixed(1)} pp`, { size: 38, fill: C.gap, weight: 700 });
     return text(96, 100, act.title, { size: 52, weight: 700, fill: categoryColor }) + panel;
   }
 

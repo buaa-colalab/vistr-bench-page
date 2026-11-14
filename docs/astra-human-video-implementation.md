@@ -6,7 +6,7 @@
 
 直接用浏览器打开仓库根目录 `astra-human-video.html`。数据、图标、六段无声素材都在仓库内，不需要网络或开发服务器。
 
-页面支持播放/暂停、时间线拖动、四幕跳转和全屏。预览控件位于画面外，不会进入导出视频。画面使用 1920×1080 逻辑坐标，默认按 2 倍导出为 3840×2160；素材画布为 2560×1600，素材与成片均使用 CRF 16 编码。
+页面支持播放/暂停、时间线拖动、四幕跳转和全屏。预览控件位于画面外，不会进入导出视频。画面使用 1920×1080 逻辑坐标，默认按 2 倍导出为 3840×2160；素材画布为 2560×1600，素材与成片均使用 CRF 16 编码。最终 MP4 的英文字幕直接烧录在画面最下方的浅灰色字幕带中，始终可见且不会遮挡主体内容。
 
 快捷键：空格播放/暂停，左右方向键前后 1 秒，F 全屏。输入框或按钮获得焦点时保留其原生键盘行为。
 
@@ -47,13 +47,15 @@ npm run test:video
 npm run video:stills
 ```
 
-完整导出：
+完整导出（含底部烧录字幕）：
 
 ```bash
 npm run video:render
 ```
 
 默认输出 `outputs/astra-human/astra-human-final.mp4`。导出后程序会核对分辨率、帧率、时长，并核对英文音轨及音画时长。
+
+若需要单独重建带底部字幕的版本，可运行 `npm run subtitles:burn`；它会先输出带字幕画面的中间文件，再将旁白合入最终成片。`npm run subtitles:render` 仅用于生成可选字幕轨道的兼容版本，不是当前交付的最终模式。
 
 快速导出某一段：
 
@@ -101,7 +103,7 @@ npm run video:stills -- --at 2,5.5,11.9,14.7,15.3,23.3,35.8,49.5,64.6,77.1,87.9
 
 完整重建的顺序为：`npm run video:prepare` → `npm run audio:render` → `npm run video:render`。导出器会根据数据中的音轨配置自动调用同一合并程序。修改视频节奏后，需先同步英文稿时间码，避免旁白与画面错位。
 
-单独输出 `outputs/astra-human/astra-human-narration.mp3` 和 48 kHz、16-bit、单声道 WAV；字幕源文件为 `docs/astra-human-video-subtitles.srt`。最终成片 `outputs/astra-human/astra-human-final.mp4` 带英文旁白和可开关的英文 `mov_text` 字幕轨道。音频和视频时长为 99.666667 秒。
+单独输出 `outputs/astra-human/astra-human-narration.mp3` 和 48 kHz、16-bit、单声道 WAV；字幕源文件为 `docs/astra-human-video-subtitles.srt`。最终成片 `outputs/astra-human/astra-human-final.mp4` 带英文旁白和烧录在画面底部的英文字幕。音频和视频时长为 99.666667 秒。
 
 `docs/astra-human-audio-timing.json` 记录逐句文本、实际发声起止点与语速。合并前会检查稿件是否与音频一致、总时长是否匹配，以及六个答案是否在画面揭晓后才读出。
 

@@ -1,7 +1,7 @@
 {
   "version": 8,
   "date": "2026-11-12",
-  "status": "Final verified: 4K, 99.666667 seconds; Andrew English narration and 14 aligned cues; selectable English mov_text subtitles embedded and SRT source retained; page pauses at least 1.5 seconds; 4K video stream unchanged.",
+  "status": "Final verified: 4K video with English narration and subtitles burned into a light bottom band; page pauses and wording revisions preserved.",
   "width": 1920,
   "height": 1080,
   "fps": 30,
@@ -677,5 +677,6 @@
     "voice": "en-US-AndrewNeural",
     "asset": "outputs/astra-human/astra-human-narration.wav",
     "engine": "edge-tts"
-  }
+  },
+  "subtitle_mode": "burned_in"
 }
