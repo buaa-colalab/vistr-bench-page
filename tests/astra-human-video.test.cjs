@@ -91,6 +91,8 @@ test("ranking uses the requested GPT-5.6-Sol presentation value without thinking
   assert.ok(svg.includes("GPT-5.6-Sol")); assert.ok(svg.includes("63.0"));
   assert.ok(!svg.includes("GPT-5.4")); assert.ok(!svg.includes("thinking"));
   assert.ok(svg.includes("GPT-6-Astra ranks first among the evaluated models."));
+  assert.ok(svg.includes('y="818"'));
+  assert.ok(svg.includes('y="878"'));
   const bar = (time, row) => scene.render(data, time).svg.match(new RegExp(`<rect x="620" y="${266 + row * 67 - 23}"[^>]*fill="([^"]+)"`))[1];
   assert.equal(bar(data.timing.rankingFocus, 1), scene.colors.other);
   assert.equal(bar(data.timing.rankingFocus, 1), bar(data.timing.rankingFocus, 2));
@@ -114,6 +116,10 @@ test("four-dimension comparison leads directly into examples without a per-task 
     assert.ok(tag); assert.ok(tag.includes('fill="' + scene.colors.ink + '"'));
     assert.ok(tag.includes(`<tspan fill="${color}">${first}</tspan> and <tspan fill="${color}">${second}</tspan>.`));
   }
+  const comparisonSvg = scene.render(data, data.timing.dimensionsConclusion + 0.1).svg;
+  assert.ok(comparisonSvg.includes('y="776"'));
+  assert.ok(comparisonSvg.includes('y="828"'));
+  assert.ok(comparisonSvg.includes('y="882"'));
 });
 test("all clips share an 8:5 canvas, caption bands are removed, and only the basketball final frame is trimmed", () => {
   const manifest = JSON.parse(fs.readFileSync(path.join(__dirname, "../static/video-story/media-manifest.json"), "utf8"));
@@ -217,8 +223,7 @@ test("burned subtitles are centered and change one sentence at audio pauses", ()
     const svg = subtitleOverlay((cue.start + cue.end) / 2);
     assert.equal((svg.match(/<text /g) || []).length, 1);
     assert.ok(svg.includes('x="960" y="1005" text-anchor="middle" dominant-baseline="central"'));
-    assert.ok(svg.includes('fill="#E9EEF3" fill-opacity="0.82"'));
-    assert.ok(svg.includes('stroke="#C9D2DC"'));
+    assert.ok(!svg.includes("<rect"));
     assert.ok(svg.includes('font-family="Helvetica Neue"'));
     assert.ok(svg.includes('fill="#343A40"'));
   }

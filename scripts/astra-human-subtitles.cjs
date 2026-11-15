@@ -16,6 +16,6 @@ const escape = (value) => value.replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<":
 function subtitleOverlay(time) {
   const cue = timing.cues.find((item) => time >= item.start && time < item.end);
   if (!cue) return "";
-  return `<g id="burned-subtitles"><rect x="160" y="970" width="1600" height="70" rx="14" fill="#E9EEF3" fill-opacity="0.82" stroke="#C9D2DC" stroke-opacity="0.7" stroke-width="1"/><text x="960" y="1005" text-anchor="middle" dominant-baseline="central" font-family="Helvetica Neue" font-size="30" font-weight="500" fill="#343A40">${escape(cue.text)}</text></g>`;
+  return `<g id="burned-subtitles"><text x="960" y="1005" text-anchor="middle" dominant-baseline="central" font-family="Helvetica Neue" font-size="30" font-weight="500" fill="#343A40">${escape(cue.text)}</text></g>`;
 }
 module.exports = { cues: timing.cues, subtitleOverlay };

@@ -43,4 +43,4 @@ Public #111、#1139、#228 为三个表现较好的案例；#812、#629、#1288 
 
 旁白用语：四维度统一使用 Outcome prediction；自运动归入表现较好类别，仅强调当前自运动任务接近人类水平；摔倒案例先说明 GPT-6-Astra 预测 left、正确答案 right，再用 Overall, it still struggles to predict the future. 收束。
 
-字幕按英文旁白逐句切换，每次仅显示一句、单行不换行。字幕使用 Helvetica Neue Medium 与石墨灰色 #343A40，在底部居中的半透明浅灰圆角框中显示；第一页结论上移避免遮挡，逐句时间点保存在 `docs/astra-human-subtitle-timing.json`。
+字幕按英文旁白逐句切换，每次仅显示一句、单行不换行。字幕使用 Helvetica Neue Medium 与石墨灰色 #343A40，在底部居中显示，不使用背景框；第一页结论上移避免遮挡，逐句时间点保存在 `docs/astra-human-subtitle-timing.json`。

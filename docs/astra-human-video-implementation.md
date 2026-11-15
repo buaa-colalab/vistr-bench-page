@@ -6,7 +6,7 @@
 
 直接用浏览器打开仓库根目录 `astra-human-video.html`。数据、图标、六段无声素材都在仓库内，不需要网络或开发服务器。
 
-页面支持播放/暂停、时间线拖动、四幕跳转和全屏。预览控件位于画面外，不会进入导出视频。画面使用 1920×1080 逻辑坐标，默认按 2 倍导出为 3840×2160；素材画布为 2560×1600，素材与成片均使用 CRF 16 编码。最终 MP4 的英文字幕直接烧录在画面最下方的半透明浅灰字幕框中，始终可见且不会遮挡主体内容。
+页面支持播放/暂停、时间线拖动、四幕跳转和全屏。预览控件位于画面外，不会进入导出视频。画面使用 1920×1080 逻辑坐标，默认按 2 倍导出为 3840×2160；素材画布为 2560×1600，素材与成片均使用 CRF 16 编码。最终 MP4 的英文字幕直接烧录在画面最下方的独立字幕区域中，始终可见且不会遮挡主体内容。
 
 快捷键：空格播放/暂停，左右方向键前后 1 秒，F 全屏。输入框或按钮获得焦点时保留其原生键盘行为。
 
@@ -113,6 +113,6 @@ npm run video:stills -- --at 2,5.5,11.9,14.7,15.3,23.3,35.8,49.5,64.6,77.1,87.9
 
 本版复用已合成的 Andrew 男声音频，保持原音色与语速。每页入场后 0.65 秒才开口，句尾距切页至少 0.85 秒；七次页面切换的旁白间隔已校验为 1.557–3.123 秒。只改停顿时可使用 `npm run audio:render -- --reuse`，随后重新渲染延长停留后的画面；不需要重新请求在线语音。
 
-字幕按英文旁白逐句切换，每次仅显示一句、单行不换行。字幕使用 Helvetica Neue Medium 与石墨灰色 #343A40，在底部居中的半透明浅灰圆角框中显示；逐句时间点保存在 `docs/astra-human-subtitle-timing.json`，按现有音频句间停顿对齐。第一页结论上移到字幕框上方，避免遮挡。
+字幕按英文旁白逐句切换，每次仅显示一句、单行不换行。字幕使用 Helvetica Neue Medium 与石墨灰色 #343A40，在底部居中显示，不使用背景框；逐句时间点保存在 `docs/astra-human-subtitle-timing.json`，按现有音频句间停顿对齐。第一页结论上移到字幕区域上方，避免遮挡。
 
-字幕样式参考：TED 的讲解视频字幕与逐段阅读节奏（https://www.ted.com/participate/translate/subtitling-tips），以及利兹大学对无衬线字体和避免遮挡主体的建议（https://digitalaccessibility.leeds.ac.uk/guidance/digital-audio-and-video/captions/）。本片使用 Helvetica Neue Medium、30px 逻辑字号（4K 中为 60px）、石墨灰 #343A40，并在底部加入 #E9EEF3、82% 不透明度的浅灰框和低对比度边线，保持可读性又不让背景过重。
+字幕样式参考：TED 的讲解视频字幕与逐段阅读节奏（https://www.ted.com/participate/translate/subtitling-tips），以及利兹大学对无衬线字体和避免遮挡主体的建议（https://digitalaccessibility.leeds.ac.uk/guidance/digital-audio-and-video/captions/）。本片使用 Helvetica Neue Medium、30px 逻辑字号（4K 中为 60px）、石墨灰 #343A40，底部留出独立字幕区域，不使用背景框。

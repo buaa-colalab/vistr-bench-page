@@ -96,7 +96,7 @@
     let out = header(data.acts[0].title, "Overall accuracy (%)");
     const a = data.animations;
     const progress = fade(t, data.timing.rankingDraw, Math.min(a.ranking_draw_seconds, data.timing.rankingFocus - data.timing.rankingDraw)), focus = fade(t, data.timing.rankingFocus, Math.min(a.ranking_highlight_seconds, data.timing.rankingConclusion - data.timing.rankingFocus));
-    out += group(fade(t, Math.min(0.5, data.timing.rankingDraw)), grid(620, 236, 1050, 798, 838));
+    out += group(fade(t, Math.min(0.5, data.timing.rankingDraw)), grid(620, 226, 1050, 778, 818));
     const rows = [{ name: "Human", score: data.humanScore }, ...data.ranking];
     rows.forEach((row, i) => {
       const y = 266 + i * 67;
@@ -117,10 +117,10 @@
   }
 
   function dimensions(data, t, barOpacity = 1, labels = true) {
-    let out = group(barOpacity, grid(610, 224, 1060, 806, 847));
+    let out = group(barOpacity, grid(610, 210, 1060, 734, 776));
     const progress = fade(t, data.timing.dimensionsDraw, Math.min(data.animations.dimensions_draw_seconds, data.timing.dimensionsConclusion - data.timing.dimensionsDraw));
     data.dimensions.forEach((row, i) => {
-      const y = 277 + i * 150;
+      const y = 255 + i * 130;
       if (labels) out += text(96, y + 12, row.name, { size: 32, weight: 600 });
       let bars = "";
       [["Human", row.human, C.human, -22], ["Astra", row.astra, C.ink, 26]].forEach(([label, value, color, offset]) => {
@@ -138,7 +138,7 @@
   function comparison(data, t) {
     let out = header(data.acts[1].title, "Overall accuracy (%)");
     out += group(fade(t, data.acts[1].start + 0.2), dimensions(data, t));
-    const conclusions = coloredConclusion(860, "Astra performs well in ", ["motion perception", "spatial reasoning"], C.green, 700) + coloredConclusion(915, "Gaps remain in ", ["outcome prediction", "physical dynamics"], C.red, 600);
+    const conclusions = coloredConclusion(828, "Astra performs well in ", ["motion perception", "spatial reasoning"], C.green, 700) + coloredConclusion(882, "Gaps remain in ", ["outcome prediction", "physical dynamics"], C.red, 600);
     out += group(fade(t, data.timing.dimensionsConclusion, data.animations.conclusion_fade_seconds), conclusions);
     return out;
   }
