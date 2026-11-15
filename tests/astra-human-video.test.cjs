@@ -92,7 +92,7 @@ test("ranking uses the requested GPT-5.6-Sol presentation value without thinking
   assert.ok(!svg.includes("GPT-5.4")); assert.ok(!svg.includes("thinking"));
   assert.ok(svg.includes("GPT-6-Astra ranks first among the evaluated models."));
   assert.ok(svg.includes('y="818"'));
-  assert.ok(svg.includes('y="878"'));
+  assert.ok(svg.includes('y="900"'));
   const bar = (time, row) => scene.render(data, time).svg.match(new RegExp(`<rect x="620" y="${266 + row * 67 - 23}"[^>]*fill="([^"]+)"`))[1];
   assert.equal(bar(data.timing.rankingFocus, 1), scene.colors.other);
   assert.equal(bar(data.timing.rankingFocus, 1), bar(data.timing.rankingFocus, 2));
@@ -118,8 +118,8 @@ test("four-dimension comparison leads directly into examples without a per-task 
   }
   const comparisonSvg = scene.render(data, data.timing.dimensionsConclusion + 0.1).svg;
   assert.ok(comparisonSvg.includes('y="776"'));
-  assert.ok(comparisonSvg.includes('y="828"'));
-  assert.ok(comparisonSvg.includes('y="882"'));
+  assert.ok(comparisonSvg.includes('y="850"'));
+  assert.ok(comparisonSvg.includes('y="906"'));
 });
 test("all clips share an 8:5 canvas, caption bands are removed, and only the basketball final frame is trimmed", () => {
   const manifest = JSON.parse(fs.readFileSync(path.join(__dirname, "../static/video-story/media-manifest.json"), "utf8"));
@@ -143,7 +143,7 @@ test("case category colors remain distinct, gaps are neutral gray, and answer ma
     const delta = Number((item.astra - item.human).toFixed(1));
     assert.ok(svg.includes("Astra - Human"));
     assert.ok(svg.includes((delta > 0 ? "+" : "") + delta.toFixed(1) + " pp"));
-    const valueTag = svg.match(/<text x="1184" y="900"[^>]*>[^<]*<\/text>/)[0];
+    const valueTag = svg.match(/<text x="1184" y="922"[^>]*>[^<]*<\/text>/)[0];
     assert.ok(valueTag.includes('fill="' + scene.colors.gap + '"'));
     const act = data.acts.find((act) => item.start >= act.start && item.start < act.end);
     assert.ok(svg.includes(act.title));
@@ -162,7 +162,7 @@ test("case category colors remain distinct, gaps are neutral gray, and answer ma
     assert.equal(answer.length, 2); for (const tag of answer) assert.ok(tag.includes(`fill="${scene.colors.ink}"`));
     for (const match of svg.matchAll(/<text x="([\d.]+)" y="([\d.]+)"/g)) {
       const x = Number(match[1]), y = Number(match[2]);
-      assert.ok(y >= 830 || x >= 1184 || (x === 96 && y === 100), "Unexpected video-column text: " + x + ", " + y);
+      assert.ok(y >= 850 || x >= 1184 || (x === 96 && y === 100), "Unexpected video-column text: " + x + ", " + y);
     }
   }
 });
