@@ -1,69 +1,107 @@
 1
-00:00:00,650 --> 00:00:07,483
-How close is GPT-6-Astra to humans? It leads the evaluated models, but still trails human
-performance.
+00:00:00,650 --> 00:00:03,597
+How close is GPT-6-Astra to humans?
 
 2
-00:00:09,450 --> 00:00:15,664
-Motion perception and spatial reasoning are strong. Outcome prediction and physical
-dynamics still lag behind.
+00:00:03,597 --> 00:00:07,483
+It leads the evaluated models, but still trails human performance.
 
 3
-00:00:17,250 --> 00:00:22,371
-Which vehicle is moving faster: green or blue?
-Watch how their positions change over time.
+00:00:09,450 --> 00:00:12,324
+Motion perception and spatial reasoning are strong.
 
 4
-00:00:24,333 --> 00:00:30,951
-GPT-6-Astra chooses blue, correctly. Its score on relative velocity is slightly above the
-human baseline.
+00:00:12,324 --> 00:00:15,664
+Outcome prediction and physical dynamics still lag behind.
 
 5
-00:00:32,550 --> 00:00:36,709
-Viewed from above, is the person turning
-clockwise or counterclockwise?
+00:00:17,250 --> 00:00:20,326
+Which vehicle is moving faster: green or blue?
 
 6
-00:00:37,600 --> 00:00:42,626
-Counterclockwise is correct. GPT-6-Astra
-nearly matches human performance on this task.
+00:00:20,326 --> 00:00:22,371
+Watch how their positions change over time.
 
 7
-00:00:44,183 --> 00:00:49,490
-As the camera moves, where does the table end up? Track its position relative to the moving
-camera.
+00:00:24,333 --> 00:00:27,348
+GPT-6-Astra chooses blue, correctly.
 
 8
-00:00:52,167 --> 00:00:57,581
-Front-left is correct. On this task,
-GPT-6-Astra is close to human performance.
+00:00:27,348 --> 00:00:30,951
+Its score on relative velocity is slightly above the human baseline.
 
 9
-00:01:01,283 --> 00:01:05,894
-Now predict the outcome. Will this basketball
-shot go in? Watch the ball's trajectory.
+00:00:32,550 --> 00:00:36,709
+Viewed from above, is the person turning clockwise or counterclockwise?
 
 10
-00:01:08,067 --> 00:01:13,460
-GPT-6-Astra says yes; the answer is no. Humans
-score much higher on this task.
+00:00:37,600 --> 00:00:38,969
+Counterclockwise is correct.
 
 11
-00:01:16,583 --> 00:01:20,146
-Ignoring the goalkeeper and defenders, will
-this free kick go in?
+00:00:38,969 --> 00:00:42,626
+GPT-6-Astra nearly matches human performance on this task.
 
 12
-00:01:21,367 --> 00:01:25,080
-GPT-6-Astra predicts a goal. The correct
-answer is no.
+00:00:44,183 --> 00:00:46,774
+As the camera moves, where does the table end up?
 
 13
-00:01:27,283 --> 00:01:30,557
-Will they fall left or right? Use the person's
-own perspective.
+00:00:46,774 --> 00:00:49,490
+Track its position relative to the moving camera.
 
 14
-00:01:32,933 --> 00:01:38,718
-GPT-6-Astra predicts left, but the answer is right. Overall, it still struggles to predict
-the future.
+00:00:52,167 --> 00:00:53,509
+Front-left is correct.
+
+15
+00:00:53,509 --> 00:00:57,581
+On this task, GPT-6-Astra is close to human performance.
+
+16
+00:01:01,283 --> 00:01:02,595
+Now predict the outcome.
+
+17
+00:01:02,595 --> 00:01:04,370
+Will this basketball shot go in?
+
+18
+00:01:04,370 --> 00:01:05,894
+Watch the ball's trajectory.
+
+19
+00:01:08,067 --> 00:01:11,348
+GPT-6-Astra says yes; the answer is no.
+
+20
+00:01:11,348 --> 00:01:13,460
+Humans score much higher on this task.
+
+21
+00:01:16,583 --> 00:01:20,146
+Ignoring the goalkeeper and defenders, will this free kick go in?
+
+22
+00:01:21,367 --> 00:01:23,740
+GPT-6-Astra predicts a goal.
+
+23
+00:01:23,740 --> 00:01:25,080
+The correct answer is no.
+
+24
+00:01:27,283 --> 00:01:28,847
+Will they fall left or right?
+
+25
+00:01:28,847 --> 00:01:30,557
+Use the person's own perspective.
+
+26
+00:01:32,933 --> 00:01:36,131
+GPT-6-Astra predicts left, but the answer is right.
+
+27
+00:01:36,131 --> 00:01:38,718
+Overall, it still struggles to predict the future.

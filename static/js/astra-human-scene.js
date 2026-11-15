@@ -112,7 +112,7 @@
       if (astra) rowSvg += group(focus, text(640, y + 7, "#1 model", { size: 24, fill: "#FFFFFF", weight: 700 }));
       out += group(fade(t, Math.min(0.65, data.timing.rankingDraw + 0.05)) * alpha, rowSvg);
     });
-    out += group(fade(t, data.timing.rankingConclusion, a.conclusion_fade_seconds), text(112, 960, "GPT-6-Astra ranks first among the evaluated models.", { size: 40, weight: 700 }));
+    out += group(fade(t, data.timing.rankingConclusion, a.conclusion_fade_seconds), text(112, 878, "GPT-6-Astra ranks first among the evaluated models.", { size: 40, weight: 700 }));
     return out;
   }
 

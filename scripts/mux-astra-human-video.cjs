@@ -20,28 +20,15 @@ function srtTime(seconds) {
   return `${String(hours).padStart(2, "0")}:${String(minutes).padStart(2, "0")}:${String(secs).padStart(2, "0")},${String(millis).padStart(3, "0")}`;
 }
 
-function wrapSubtitle(text, maxChars = 46) {
-  const words = text.split(/\s+/);
-  const lines = [];
-  let line = "";
-  for (const word of words) {
-    if (line && `${line} ${word}`.length > maxChars) { lines.push(line); line = word; }
-    else line = line ? `${line} ${word}` : word;
-  }
-  if (line) lines.push(line);
-  if (lines.length <= 2) return lines.join("\n");
-  const middle = Math.ceil(lines.length / 2);
-  return [lines.slice(0, middle).join(" "), lines.slice(middle).join(" ")].join("\n");
-}
-
 function writeSubtitles(report, target) {
-  const cues = report.cues.map((cue, index) => [
+  const { cues } = require("./astra-human-subtitles.cjs");
+  const blocks = cues.map((cue, index) => [
     String(index + 1),
-    `${srtTime(cue.speech_start)} --> ${srtTime(cue.speech_end)}`,
-    wrapSubtitle(cue.text),
+    `${srtTime(cue.start)} --> ${srtTime(cue.end)}`,
+    cue.text,
     ""
   ].join("\n"));
-  fs.writeFileSync(target, `${cues.join("\n").trimEnd()}\n`);
+  fs.writeFileSync(target, `${blocks.join("\n").trimEnd()}\n`);
 }
 
 function muxVideo({ video, start = 0, duration, includeSubtitles = true } = {}) {

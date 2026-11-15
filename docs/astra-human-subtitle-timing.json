@@ -1,0 +1,167 @@
+{
+  "alignment": "Sentence changes at measured pauses in the existing Andrew narration; audio is unchanged.",
+  "cues": [
+    {
+      "narration_cue": 0,
+      "start": 0.65,
+      "end": 3.596823,
+      "text": "How close is GPT-6-Astra to humans?"
+    },
+    {
+      "narration_cue": 0,
+      "start": 3.596823,
+      "end": 7.483270833333333,
+      "text": "It leads the evaluated models, but still trails human performance."
+    },
+    {
+      "narration_cue": 1,
+      "start": 9.45,
+      "end": 12.323771,
+      "text": "Motion perception and spatial reasoning are strong."
+    },
+    {
+      "narration_cue": 1,
+      "start": 12.323771,
+      "end": 15.664395833333334,
+      "text": "Outcome prediction and physical dynamics still lag behind."
+    },
+    {
+      "narration_cue": 2,
+      "start": 17.25,
+      "end": 20.325573,
+      "text": "Which vehicle is moving faster: green or blue?"
+    },
+    {
+      "narration_cue": 2,
+      "start": 20.325573,
+      "end": 22.370666666666665,
+      "text": "Watch how their positions change over time."
+    },
+    {
+      "narration_cue": 3,
+      "start": 24.333,
+      "end": 27.348386,
+      "text": "GPT-6-Astra chooses blue, correctly."
+    },
+    {
+      "narration_cue": 3,
+      "start": 27.348386,
+      "end": 30.950541666666666,
+      "text": "Its score on relative velocity is slightly above the human baseline."
+    },
+    {
+      "narration_cue": 4,
+      "start": 32.55,
+      "end": 36.709,
+      "text": "Viewed from above, is the person turning clockwise or counterclockwise?"
+    },
+    {
+      "narration_cue": 5,
+      "start": 37.6,
+      "end": 38.969479,
+      "text": "Counterclockwise is correct."
+    },
+    {
+      "narration_cue": 5,
+      "start": 38.969479,
+      "end": 42.62575,
+      "text": "GPT-6-Astra nearly matches human performance on this task."
+    },
+    {
+      "narration_cue": 6,
+      "start": 44.183,
+      "end": 46.774281,
+      "text": "As the camera moves, where does the table end up?"
+    },
+    {
+      "narration_cue": 6,
+      "start": 46.774281,
+      "end": 49.48970833333333,
+      "text": "Track its position relative to the moving camera."
+    },
+    {
+      "narration_cue": 7,
+      "start": 52.167,
+      "end": 53.509146,
+      "text": "Front-left is correct."
+    },
+    {
+      "narration_cue": 7,
+      "start": 53.509146,
+      "end": 57.5805,
+      "text": "On this task, GPT-6-Astra is close to human performance."
+    },
+    {
+      "narration_cue": 8,
+      "start": 61.283,
+      "end": 62.594844,
+      "text": "Now predict the outcome."
+    },
+    {
+      "narration_cue": 8,
+      "start": 62.594844,
+      "end": 64.370032,
+      "text": "Will this basketball shot go in?"
+    },
+    {
+      "narration_cue": 8,
+      "start": 64.370032,
+      "end": 65.893875,
+      "text": "Watch the ball's trajectory."
+    },
+    {
+      "narration_cue": 9,
+      "start": 68.067,
+      "end": 71.34799,
+      "text": "GPT-6-Astra says yes; the answer is no."
+    },
+    {
+      "narration_cue": 9,
+      "start": 71.34799,
+      "end": 73.4603125,
+      "text": "Humans score much higher on this task."
+    },
+    {
+      "narration_cue": 10,
+      "start": 76.583,
+      "end": 80.14558333333333,
+      "text": "Ignoring the goalkeeper and defenders, will this free kick go in?"
+    },
+    {
+      "narration_cue": 11,
+      "start": 81.367,
+      "end": 83.740188,
+      "text": "GPT-6-Astra predicts a goal."
+    },
+    {
+      "narration_cue": 11,
+      "start": 83.740188,
+      "end": 85.08016666666667,
+      "text": "The correct answer is no."
+    },
+    {
+      "narration_cue": 12,
+      "start": 87.283,
+      "end": 88.847458,
+      "text": "Will they fall left or right?"
+    },
+    {
+      "narration_cue": 12,
+      "start": 88.847458,
+      "end": 90.557375,
+      "text": "Use the person's own perspective."
+    },
+    {
+      "narration_cue": 13,
+      "start": 92.933,
+      "end": 96.130927,
+      "text": "GPT-6-Astra predicts left, but the answer is right."
+    },
+    {
+      "narration_cue": 13,
+      "start": 96.130927,
+      "end": 98.71839583333333,
+      "text": "Overall, it still struggles to predict the future."
+    }
+  ]
+}

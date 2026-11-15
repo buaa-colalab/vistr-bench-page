@@ -204,10 +204,28 @@ test("football uses the adult training clip with its original scored answer", ()
 test("English subtitle source covers all narration cues", () => {
   const srt = fs.readFileSync(path.join(__dirname, "../docs/astra-human-video-subtitles.srt"), "utf8");
   const blocks = srt.trim().split(/\n\s*\n/);
-  assert.equal(blocks.length, 14);
+  assert.equal(blocks.length, 27);
+  for (const block of blocks) assert.equal(block.split("\n").length, 3, "Each subtitle must occupy one line");
   assert.ok(srt.includes("GPT-6-Astra"));
   assert.ok(srt.includes("Outcome prediction"));
   assert.ok(srt.includes("GPT-6-Astra predicts left, but the answer is right."));
+});
+test("burned subtitles are centered and change one sentence at audio pauses", () => {
+  const { cues, subtitleOverlay } = require("../scripts/astra-human-subtitles.cjs");
+  for (const cue of cues) {
+    assert.equal((cue.text.match(/[.!?]/g) || []).length, 1);
+    const svg = subtitleOverlay((cue.start + cue.end) / 2);
+    assert.equal((svg.match(/<text /g) || []).length, 1);
+    assert.ok(svg.includes('x="960" y="1005" text-anchor="middle" dominant-baseline="central"'));
+    assert.ok(svg.includes('fill="#E9EEF3" fill-opacity="0.82"'));
+    assert.ok(svg.includes('stroke="#C9D2DC"'));
+    assert.ok(svg.includes('font-family="Helvetica Neue"'));
+    assert.ok(svg.includes('fill="#343A40"'));
+  }
+  assert.ok(subtitleOverlay(2).includes("How close is"));
+  assert.ok(!subtitleOverlay(2).includes("It leads"));
+  assert.ok(subtitleOverlay(5).includes("It leads"));
+  assert.equal(subtitleOverlay(8), "");
 });
 test("frames are deterministic, finite, English-only, with unique SVG IDs", () => {
   const before = scene.render(data, 12).svg;

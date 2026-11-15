@@ -303,3 +303,5 @@ localStorage["colalab-project-theme"]
 6. 使用公开地址重新执行发布前检查，尤其确认 CSV、视频、PDF 和外部链接可以访问。
 
 项目已经包含 `.nojekyll`，GitHub Pages 会直接按当前静态文件结构发布。所有页面和资源使用相对路径，因此应保持现有目录结构和文件名大小写。
+
+字幕按英文旁白逐句切换，每次仅显示一句、单行不换行。字幕使用 Helvetica Neue Medium 与石墨灰色 #343A40，在底部居中的半透明浅灰圆角框中显示；第一页结论已上移避免遮挡，逐句时间点保存在 `docs/astra-human-subtitle-timing.json`。
